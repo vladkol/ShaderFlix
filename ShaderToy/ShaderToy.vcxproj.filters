@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>2e7eb0a0-9e6d-4496-93c3-033cf3108741</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>1777cbbc-7f06-452f-8c2f-d87e5c8a7fd1</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="rapidjson">
+      <UniqueIdentifier>{61dd23de-b177-480e-b230-8caa440f3518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rapidjson\error">
+      <UniqueIdentifier>{90714e90-029d-4a6f-a26e-f9eb23d7b7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rapidjson\internal">
+      <UniqueIdentifier>{a7bfa0ac-f0e0-4904-9bf0-1f3c330f1bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rapidjson\msinttypes">
+      <UniqueIdentifier>{cd0fe7b5-151f-4a2f-afa2-82951b53088c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PresetData">
+      <UniqueIdentifier>{1ae06f12-dada-454e-8cc8-7acee1123323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PresetData\presets">
+      <UniqueIdentifier>{b99a7f5c-f7f4-4e4e-917a-0dfc9cfb6795}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="OpenGLES.cpp" />
+    <ClCompile Include="ShaderRenderer.cpp" />
+    <ClCompile Include="stb_image_impl.cpp" />
+    <ClCompile Include="HTTPDownloader.cpp" />
+    <ClCompile Include="Shader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+    <ClInclude Include="OpenGLES.h" />
+    <ClInclude Include="ShaderRenderer.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="rapidjson\allocators.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\document.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\encodedstream.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\encodings.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\filereadstream.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\filewritestream.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\fwd.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\istreamwrapper.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\memorybuffer.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\memorystream.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\ostreamwrapper.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\pointer.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\prettywriter.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\rapidjson.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\reader.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\schema.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\stream.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\stringbuffer.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\writer.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\error\en.h">
+      <Filter>rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\error\error.h">
+      <Filter>rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\biginteger.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\diyfp.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\dtoa.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\ieee754.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\itoa.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\meta.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\pow10.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\regex.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\stack.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\strfunc.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\strtod.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\internal\swap.h">
+      <Filter>rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\msinttypes\inttypes.h">
+      <Filter>rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidjson\msinttypes\stdint.h">
+      <Filter>rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPDownloader.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="MainShaders.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\LockScreenLogo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_0.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_1.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_2.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_3.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_4.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube00_5.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_0.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_1.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_2.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_3.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_4.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube01_5.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_0.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_1.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_2.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_3.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_4.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube02_5.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_0.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_1.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_2.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_3.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_4.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube03_5.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_0.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_1.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_2.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_3.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_4.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube04_5.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_0.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_1.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_2.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_3.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_4.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\cube05_5.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex00.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex01.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex02.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex03.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex04.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex05.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex06.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex07.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex08.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex09.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex10.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex11.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex12.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex14.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex15.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex16.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex17.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex18.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex19.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\tex20.jpg">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ShaderToy_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+</Project>
