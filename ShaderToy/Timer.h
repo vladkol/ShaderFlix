@@ -44,7 +44,8 @@ public:
 	{
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 		time_t tt = std::chrono::system_clock::to_time_t(now);
-		tm utc_tm = *gmtime(&tt);
+		tm utc_tm;
+		gmtime_s(&utc_tm, &tt);
 		return utc_tm;
 	}
 

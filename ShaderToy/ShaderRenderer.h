@@ -76,19 +76,24 @@ protected:
 	{
 		unsigned int id;
 		unsigned int targ;
+		unsigned int w;
+		unsigned int h;
 		std::string stype;
 	};
 
 	struct {
 		int resolution;
 		int globaltime;
+		int timedelta;
+		int frame;
 		int channeltime[4];
+		int channelres[4];
 		int mouse;
-		int sampler[4];
+		int samplerate[4];
 		int date;
 	} variables;
 
-	static int load_gl_texture(const std::vector<std::string>& fnames, const std::string& wrapMode, const std::string filterMode, bool srgb, bool vflip)
+	static int load_gl_texture(const std::vector<std::string>& fnames, const std::string& wrapMode, const std::string filterMode, bool srgb, bool vflip, unsigned int& width, unsigned int &height)
 	{
 		int w = 0;
 		int h = 0;
@@ -195,6 +200,9 @@ protected:
 			}
 		}
 
+		width = (unsigned) w;
+		height = (unsigned) w;
+
 		return tex;
 	}
 
@@ -206,7 +214,7 @@ protected:
 		std::vector<std::string> fnames;
 		fnames.push_back(fname);
 
-		tex->id = load_gl_texture(fnames, wrapMode, filterMode, srgb, vflip);
+		tex->id = load_gl_texture(fnames, wrapMode, filterMode, srgb, vflip, tex->w, tex->h);
 
 		if (!tex->id) {
 
@@ -228,7 +236,7 @@ protected:
 	{
 		Texture *tex = new Texture;
 
-		tex->id = load_gl_texture(fnames, wrapMode, filterMode, srgb, vflip);
+		tex->id = load_gl_texture(fnames, wrapMode, filterMode, srgb, vflip, tex->w, tex->h);
 
 		if (!tex->id) {
 
@@ -269,6 +277,7 @@ private:
 	void BakeShader();
 
 	std::unique_ptr<Timer> mTimer;
+	int mFrame;
 	bool mStarted;
 	bool mLoaded;
 

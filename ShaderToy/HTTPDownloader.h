@@ -10,6 +10,7 @@ public:
 	*/
 	std::string downloadString(const std::string& url);
 	std::vector<unsigned char> download(const std::string& url);
+
 private:
 	void* _curl;
 	std::string _contentType;

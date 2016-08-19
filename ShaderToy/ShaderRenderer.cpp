@@ -16,10 +16,10 @@ ShaderRenderer::ShaderRenderer() :
 	mWindowWidth(0),
 	mWindowHeight(0), 
 	mStarted(false), 
-	mLoaded(false)
+	mLoaded(false), 
+	mFrame(0)
 {
 	mTimer.reset(CreateTimer());
-
 	memset(mKeyboardState, 0, sizeof(char) * 256 * 3);
 }
 
@@ -27,6 +27,12 @@ ShaderRenderer::~ShaderRenderer()
 {
 	
 }
+
+
+// https://www.shadertoy.com/view/ldfGWn
+// https://github.com/beautypi/shadertoy-iOS-v2/blob/a852d8fd536e0606377a810635c5b654abbee623/shadertoy/ShaderPassRenderer.m
+// https://www.shadertoy.com/api/v1/shaders/lsXGzf?key=rtHtwn 
+// https://github.com/jherico/qtvr/blob/master/app/src/shadertoy/Renderer.cpp
 
 void ShaderRenderer::Draw()
 {
@@ -40,6 +46,15 @@ void ShaderRenderer::Draw()
 		// set uniforms
 		glUniform3f(variables.resolution, (float)mWindowWidth, (float)mWindowHeight, 1.0f);
 		glUniform1f(variables.globaltime, elapsedTime);
+		
+		for (int i = 0; i < 4; i++)
+		{
+			glUniform1f(variables.channeltime[i], elapsedTime);
+		}
+
+		glUniform1f(variables.timedelta, deltaTime);
+		glUniform1f(variables.frame, deltaTime);
+
 		glUniform4f(variables.mouse, mouse_x, mouse_y, click_x, click_y);
 		glUniform4f(variables.date, tm.tm_year, tm.tm_mon, tm.tm_mday,
 			tm.tm_sec + tm.tm_min * 60 + tm.tm_hour * 3600);
@@ -63,6 +78,11 @@ void ShaderRenderer::UpdateWindowSize(GLsizei width, GLsizei height)
 		mWindowHeight = height;
 
 		mStarted = true;
+
+		memset(mKeyboardState, 0, sizeof(char) * 256 * 3);
+		mFrame = 0;
+		mTimer.reset(CreateTimer());
+
 		mTimer->start();
 	}
 	else if (mWindowWidth != width || mWindowHeight != height)

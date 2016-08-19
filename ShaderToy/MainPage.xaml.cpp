@@ -9,6 +9,7 @@
 #include <sstream>
 #include "HTTPDownloader.h"
 #include "rapidjson/document.h"
+#include "Utils.h"
 
 using namespace ShaderToy;
 
@@ -251,7 +252,8 @@ void MainPage::FetchQuery()
 	{
 		// execute query 
 		std::string q(wq.begin(), wq.end());
-		url << "https://www.shadertoy.com/api/v1/shaders/query/" << q << "?sort=popular&key=" << APP_KEY;
+
+		url << "https://www.shadertoy.com/api/v1/shaders/query/" << url_encode(q) << "?sort=popular&key=" << APP_KEY;
 	}
 
 	std::string urlStr = url.str();
