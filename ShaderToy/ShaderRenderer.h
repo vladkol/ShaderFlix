@@ -21,6 +21,7 @@
 
 #include "Shader.h"
 #include "stb_image.h"
+#include "MainShaders.h"
 
 class ShaderRenderer
 {
@@ -79,9 +80,21 @@ protected:
 		unsigned int w;
 		unsigned int h;
 		std::string stype;
+
+		Texture() : 
+			id(0), 
+			targ(GL_TEXTURE_2D), 
+			w(0), 
+			h(0), 
+			stype("2D")
+		{
+
+		}
 	};
 
 	struct {
+		int fragcoordoffsetuniform;
+		int devicerotationuniform;
 		int resolution;
 		int globaltime;
 		int timedelta;
@@ -89,8 +102,9 @@ protected:
 		int channeltime[4];
 		int channelres[4];
 		int mouse;
-		int samplerate[4];
+		int sampler[4];
 		int date;
+		int samplerate;
 	} variables;
 
 	static int load_gl_texture(const std::vector<std::string>& fnames, const std::string& wrapMode, const std::string filterMode, bool srgb, bool vflip, unsigned int& width, unsigned int &height)
@@ -256,6 +270,8 @@ protected:
 
 	static Texture *create_keyboard_texture()
 	{
+		Texture *res = new Texture;
+
 		unsigned int tex = 0;
 		glGenTextures(1, &tex);
 		glBindTexture(GL_TEXTURE_2D, tex);
@@ -270,16 +286,33 @@ protected:
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, 256, 3, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, dummyData);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		res->id = tex;
+		res->targ = GL_TEXTURE_2D;
+		res->stype = "2D";
+		res->w = 256;
+		res->h = 3;
+
+		return res;
 	}
 
 private:
 
 	void BakeShader();
+	void InitVertexBuffer();
 
 	std::unique_ptr<Timer> mTimer;
 	int mFrame;
 	bool mStarted;
 	bool mLoaded;
+
+	GLuint mShaderProg;
+	GLuint mVertexBuffer;
+	GLuint mIndexBuffer;
+
+	GLuint mVertexArray;
+
+	Texture* mTextures[4];
 
 	GLsizei mWindowWidth;
 	GLsizei mWindowHeight;

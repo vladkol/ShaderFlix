@@ -11,6 +11,31 @@
 
 #include <sys/stat.h>
 
+#include <string>
+#include <cstdarg>
+#include <memory>
+
+inline std::string format(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+#ifndef _MSC_VER
+	size_t size = std::snprintf(nullptr, 0, format, args) + 1; // Extra space for '\0'
+	std::unique_ptr<char []> buf(new char[size]);
+	std::vsnprintf(buf.get(), size, format, args);
+	va_end(args);
+	return std::string(buf.get(), buf.get() + size - 1); // We don't want the '\0' inside
+#else
+	std::string result;
+	int size = _vscprintf(format, args) + 1;
+	std::unique_ptr<char []> buf(new char[size]);
+	vsnprintf_s(buf.get(), size, _TRUNCATE, format, args);
+	result = (const char*) buf.get();
+	va_end(args);
+	return result;
+#endif
+}
+
 inline std::vector<std::string> splitpath(
 	const std::string& str
 	, const std::set<char> delimiters)
