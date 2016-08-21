@@ -238,6 +238,7 @@ void MainPage::FetchQuery()
 {
 	progress->IsActive = true;
 	shadersList->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	shadersList->ItemsSource = nullptr;
 	mItems = ref new Platform::Collections::Vector<ShaderItem^>();
 
 	std::wstring wq = searchBox->QueryText->Data();
@@ -246,7 +247,7 @@ void MainPage::FetchQuery()
 	if (wq.length() == 0)
 	{
 		// get popular
-		url << "https://www.shadertoy.com/api/v1/shaders/query?sort=newest&key=" << APP_KEY;
+		url << "https://www.shadertoy.com/api/v1/shaders/query?sort=popular&key=" << APP_KEY;
 	}
 	else
 	{
@@ -308,6 +309,9 @@ void MainPage::FetchQuery()
 
 void ShaderToy::MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args)
 {
+	if (mItems == nullptr || mItems->Size == 0)
+		return;
+
 	int index = args->ItemIndex;
 	if (index == -1 || (unsigned)index >= mItems->Size)
 		return;
@@ -442,12 +446,14 @@ void ShaderToy::MainPage::OnPointerEntered(Windows::UI::Core::CoreWindow ^sender
 	state.y = (int) args->CurrentPoint->Position.Y;
 
 	mInputPointers[args->CurrentPoint->PointerId] = state;
+	UpdateMouseState();
 }
 
 
 void ShaderToy::MainPage::OnPointerExited(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers.erase(args->CurrentPoint->PointerId);
+	UpdateMouseState();
 }
 
 
@@ -455,18 +461,21 @@ void ShaderToy::MainPage::OnPointerMoved(Windows::UI::Core::CoreWindow ^sender, 
 {
 	mInputPointers[args->CurrentPoint->PointerId].x = (int) args->CurrentPoint->Position.X;
 	mInputPointers[args->CurrentPoint->PointerId].y = (int) args->CurrentPoint->Position.Y;
+	UpdateMouseState();
 }
 
 
 void ShaderToy::MainPage::OnPointerPressed(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers[args->CurrentPoint->PointerId].bPressed = true;
+	UpdateMouseState();
 }
 
 
 void ShaderToy::MainPage::OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers[args->CurrentPoint->PointerId].bPressed = false;
+	UpdateMouseState();
 }
 
 void ShaderToy::MainPage::UpdateMouseState()

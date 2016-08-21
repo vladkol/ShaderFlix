@@ -36,6 +36,14 @@ inline std::string format(const char* format, ...)
 #endif
 }
 
+
+inline std::string string_replace(std::string &s,
+	const std::string &toReplace,
+	const std::string &replaceWith)
+{
+	return(s.replace(s.find(toReplace), toReplace.length(), replaceWith));
+}
+
 inline std::vector<std::string> splitpath(
 	const std::string& str
 	, const std::set<char> delimiters)

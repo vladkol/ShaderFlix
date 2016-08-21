@@ -26,8 +26,11 @@ inline const char* main_fragment_code()
 	(
 		void main() 
 		{
+			//vec2 _gl_FragCoord = vec2(gl_FragCoord.x, iResolution.y-gl_FragCoord.y);
+			//mainImage(gl_FragColor, _gl_FragCoord.xy + ifFragCoordOffsetUniform);
+			
 			mainImage(gl_FragColor, gl_FragCoord.xy + ifFragCoordOffsetUniform);
-		}
+	}
 	);
 
 	return s;

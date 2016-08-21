@@ -150,6 +150,22 @@ protected:
 			break;
 		case STBI_rgb_alpha:
 			format = srgb ? GL_SRGB_ALPHA_EXT : GL_RGBA;
+			/*for (int i = 0; i < w*h; i++)
+			{
+				unsigned int *pPixel = (unsigned int*) (&image[w*h * 4]);
+				unsigned int pixel = *pPixel;
+				unsigned char r = pixel >> 24;
+				unsigned char g = (pixel >> 16) & 255;
+				unsigned char b = (pixel >> 8) & 255;
+				unsigned char a = (pixel) & 255;
+
+				pixel = a << 24;
+				pixel += r << 16;
+				pixel += g << 8;
+				pixel += b;
+				*pPixel = pixel;
+			}*/
+			break;
 		default:
 			assert(!"Invalid texture format!");
 			break;
@@ -178,28 +194,28 @@ protected:
 
 
 			if (filterMode == "mipmap")
-				glGenerateMipmap(GL_TEXTURE_2D);
+				glGenerateMipmap(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 
 			if (wrapMode == "repeat") {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			}
 			else {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			}
 
 			if (filterMode == "nearest") {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			}
 			else if (filterMode == "mipmap") {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			}
 			else {
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTexParameteri(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			}
 		}
 
@@ -215,7 +231,7 @@ protected:
 		}
 
 		width = (unsigned) w;
-		height = (unsigned) w;
+		height = (unsigned) h;
 
 		return tex;
 	}
@@ -311,6 +327,7 @@ private:
 	GLuint mIndexBuffer;
 
 	GLuint mVertexArray;
+	GLint mPositionSlot;
 
 	Texture* mTextures[4];
 

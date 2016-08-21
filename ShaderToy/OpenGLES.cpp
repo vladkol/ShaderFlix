@@ -46,12 +46,15 @@ void OpenGLES::Initialize()
 
 		// EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER is an optimization that can have large performance benefits on mobile devices.
 		// Its syntax is subject to change, though. Please update your Visual Studio templates if you experience compilation issues with it.
-		EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
+		//EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
 
 		// EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE is an option that enables ANGLE to automatically call 
 		// the IDXGIDevice3::Trim method on behalf of the application when it gets suspended. 
 		// Calling IDXGIDevice3::Trim when an application is suspended is a Windows Store application certification requirement.
 		EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
+
+		EGL_DIRECT_COMPOSITION_ANGLE, EGL_TRUE,
+
 		EGL_NONE,
 	};
 
