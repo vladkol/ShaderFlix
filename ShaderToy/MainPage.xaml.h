@@ -80,6 +80,10 @@ namespace ShaderToy
 		std::string mShaderToyId;
 		bool mPlaying;
 
+		std::mutex http_mutex;             // mutex for critical section
+		std::condition_variable http_cv; // condition variable for critical section  
+		unsigned int http_number;
+
 		Windows::UI::Color mDefTitleButtonColor, mDefTitleColor;
 
 		std::map<unsigned int, PointerState> mInputPointers;

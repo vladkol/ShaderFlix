@@ -26,7 +26,7 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-MainPage::MainPage() : mPlaying(false)
+MainPage::MainPage() : mPlaying(false), http_number(0)
 {
 	mItems = ref new Platform::Collections::Vector<ShaderItem^>();
 
@@ -358,6 +358,17 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 	
 	concurrency::create_async([this, index]()
 	{
+		{
+			std::unique_lock<std::mutex> lock(http_mutex);
+			if (http_number >= 5)
+			{
+				http_cv.wait(lock);
+			}
+			
+			http_number++;
+		}
+		
+
 		HTTPDownloader downloader;
 		auto item = mItems->GetAt((unsigned) index);
 
@@ -366,7 +377,13 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 		std::string id(wid.begin(), wid.end());
 		
 		shaderUrl << "https://www.shadertoy.com/api/v1/shaders/" << id << "?key=" << APP_KEY;
-		auto json = downloader.downloadString(shaderUrl.str());
+		auto json = downloader.downloadString(shaderUrl.str(), true);
+
+		{
+			std::unique_lock<std::mutex> lock(http_mutex);
+			http_number--;
+		}
+		http_cv.notify_one();
 
 		rapidjson::Document docShader;
 		docShader.Parse(json.c_str());
@@ -377,6 +394,10 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 			const rapidjson::Value& shader = docShader["Shader"];
 			const rapidjson::Value& info = shader["info"];
 			name = info["name"].GetString();
+		}
+		else
+		{
+			HTTPDownloader::DeleteCacheItem(shaderUrl.str().c_str());
 		}
 			
 		std::wstring wname(name.begin(), name.end());

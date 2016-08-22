@@ -27,14 +27,14 @@ Shader::~Shader()
 std::string Shader::DownloadShaderJSON()
 {
 	std::ostringstream stringStream;
-	stringStream << "https://www.shadertoy.com/api/v1/shaders/" << shaderId << "?key=" << apiKey; //https://www.shadertoy.com/api/v1/shaders/ldfGWn?key=rtHtwn 
+	stringStream << "https://www.shadertoy.com/api/v1/shaders/" << shaderId << "?key=" << apiKey; //example: https://www.shadertoy.com/api/v1/shaders/ldfGWn?key=rtHtwn 
 
 	std::string url = stringStream.str();
 
 	std::string jsonstr;
 
 	HTTPDownloader http;
-	jsonstr = http.downloadString(url);
+	jsonstr = http.downloadString(url, true);
 
 	return jsonstr;
 }
