@@ -44,15 +44,24 @@ MainPage::MainPage() : mPlaying(false)
 	this->Loaded +=
 		ref new Windows::UI::Xaml::RoutedEventHandler(this, &MainPage::OnPageLoaded);
 
-	window->KeyDown += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &ShaderToy::MainPage::OnKeyDown);
-	window->KeyUp += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &ShaderToy::MainPage::OnKeyUp);
-	window->PointerEntered += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerEntered);
-	window->PointerExited += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerExited);
-	window->PointerMoved += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerMoved);
-	window->PointerPressed += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerPressed);
-	window->PointerReleased += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerReleased);
+	window->KeyDown += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyDown);
+	window->KeyUp += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyUp);
+	window->PointerEntered += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerEntered);
+	window->PointerExited += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerExited);
+	window->PointerMoved += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerMoved);
+	window->PointerPressed += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerPressed);
+	window->PointerReleased += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerReleased);
 
-	window->SizeChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::WindowSizeChangedEventArgs ^>(this, &ShaderToy::MainPage::OnSizeChanged);
+	window->SizeChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::WindowSizeChangedEventArgs ^>(this, &MainPage::OnSizeChanged);
+
+	Windows::UI::ViewManagement::ApplicationViewTitleBar^ formattableTitleBar = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TitleBar;
+	formattableTitleBar->BackgroundColor = Windows::UI::Colors::Transparent;
+	formattableTitleBar->ButtonBackgroundColor = Windows::UI::Colors::Transparent;
+
+	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+	coreTitleBar->LayoutMetricsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^, Platform::Object ^>(this, &MainPage::OnLayoutMetricsChanged);
+	coreTitleBar->ExtendViewIntoTitleBar = true;
+	Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
 
 	FetchQuery();
 }
@@ -61,7 +70,7 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 {
 	// The SwapChainPanel has been created and arranged in the page layout, so EGL can be initialized.
 	CreateRenderSurface();
-	//StartRenderLoop();
+	logo->Height = searchBox->ActualHeight-2;
 }
 
 
@@ -227,7 +236,7 @@ void MainPage::StopRenderLoop()
 }
 
 
-void ShaderToy::MainPage::SetKeyState(Windows::System::VirtualKey key, bool pressed)
+void MainPage::SetKeyState(Windows::System::VirtualKey key, bool pressed)
 {
 	if (mRenderer)
 	{
@@ -245,13 +254,13 @@ void ShaderToy::MainPage::SetKeyState(Windows::System::VirtualKey key, bool pres
 	}
 }
 
-void ShaderToy::MainPage::searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args)
+void MainPage::searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args)
 {
 	FetchQuery();
 }
 
 
-void ShaderToy::MainPage::Shader_Tapped(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
+void MainPage::Shader_Tapped(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
 {
 	Platform::String^ id = ((FrameworkElement^) sender)->Tag->ToString();
 	std::wstring wid(id->Data());
@@ -331,7 +340,7 @@ void MainPage::FetchQuery()
 
 
 
-void ShaderToy::MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args)
+void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args)
 {
 	if (mItems == nullptr || mItems->Size == 0)
 		return;
@@ -381,7 +390,7 @@ void ShaderToy::MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml
 }
 
 
-void ShaderToy::MainPage::PlayShader(const std::string& id)
+void MainPage::PlayShader(const std::string& id)
 {
 	StopRenderLoop();
 	mPlaying = false;
@@ -410,7 +419,7 @@ void ShaderToy::MainPage::PlayShader(const std::string& id)
 
 
 
-void ShaderToy::MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
+void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
 	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
@@ -426,7 +435,7 @@ void ShaderToy::MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windo
 }
 
 
-void ShaderToy::MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
+void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
 	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
@@ -462,7 +471,7 @@ void ShaderToy::MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows
 }
 
 
-void ShaderToy::MainPage::OnPointerEntered(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
+void MainPage::OnPointerEntered(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	PointerState state;
 	state.bPresented = true;
@@ -475,14 +484,14 @@ void ShaderToy::MainPage::OnPointerEntered(Windows::UI::Core::CoreWindow ^sender
 }
 
 
-void ShaderToy::MainPage::OnPointerExited(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
+void MainPage::OnPointerExited(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers.erase(args->CurrentPoint->PointerId);
 	UpdateMouseState();
 }
 
 
-void ShaderToy::MainPage::OnPointerMoved(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
+void MainPage::OnPointerMoved(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers[args->CurrentPoint->PointerId].x = (int) args->CurrentPoint->Position.X;
 	mInputPointers[args->CurrentPoint->PointerId].y = (int) args->CurrentPoint->Position.Y;
@@ -490,20 +499,20 @@ void ShaderToy::MainPage::OnPointerMoved(Windows::UI::Core::CoreWindow ^sender, 
 }
 
 
-void ShaderToy::MainPage::OnPointerPressed(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
+void MainPage::OnPointerPressed(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers[args->CurrentPoint->PointerId].bPressed = true;
 	UpdateMouseState();
 }
 
 
-void ShaderToy::MainPage::OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
+void MainPage::OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args)
 {
 	mInputPointers[args->CurrentPoint->PointerId].bPressed = false;
 	UpdateMouseState();
 }
 
-void ShaderToy::MainPage::UpdateMouseState()
+void MainPage::UpdateMouseState()
 {
 	if (!mRenderer)
 		return;
@@ -538,13 +547,13 @@ void ShaderToy::MainPage::UpdateMouseState()
 }
 
 
-void ShaderToy::MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
+void MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
 {
 
 }
 
 
-void ShaderToy::MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e)
+void MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e)
 {
 	ItemsWrapGrid^ wg = (ItemsWrapGrid^) sender;
 	double w = wg->ActualWidth;
@@ -566,4 +575,12 @@ void ShaderToy::MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Wi
 	}
 
 	wg->ItemHeight = wg->ItemWidth / 2;
+}
+
+
+void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args)
+{
+	auto t = searchBox->Margin;
+	t.Right = sender->SystemOverlayRightInset;
+	searchBox->Margin = t;
 }

@@ -287,6 +287,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
   <ItemGroup>
     <Image Include="Assets\BG.jpg" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\ShaderToy.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.scale-200.png" />

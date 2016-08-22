@@ -9,7 +9,6 @@
 
     <Grid Background="Black" x:Name="host">
         <SwapChainPanel x:Name="swapchain">
-
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG.jpg" Stretch="UniformToFill"/>
         <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
@@ -20,7 +19,10 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <AutoSuggestBox x:Name="searchBox" QuerySubmitted="searchBox_QuerySubmitted"/>
+                <Grid x:Name="titleBar">
+                    <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderToy.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
+                </Grid>
+                <AutoSuggestBox x:Name="searchBox" Margin="102,2,2,2" Grid.Column="1" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
                 <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
                     <ListView.ItemsPanel>

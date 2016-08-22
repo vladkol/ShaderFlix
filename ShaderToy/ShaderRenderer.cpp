@@ -163,7 +163,9 @@ void ShaderRenderer::Draw()
 			mTextures[i]->w, mTextures[i]->h, 1.0f);
 	}
 
-	glUniform4f(variables.mouse, mouse_x, mouse_y, click_x, click_y);
+	if(click_x > -1)
+		glUniform4f(variables.mouse, mouse_x, mouse_y, click_x, click_y);
+
 	glUniform4f(variables.date, tm.tm_year, tm.tm_mon, tm.tm_mday,
 		tm.tm_sec + tm.tm_min * 60 + tm.tm_hour * 3600);
 	glUniform1f(variables.samplerate, 0);

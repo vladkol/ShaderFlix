@@ -72,8 +72,8 @@ public:
 
 		if(!pressed)
 		{
-			click_x = 0;
-			click_y = 0;
+			click_x = -1;
+			click_y = -1;
 		}
 	}
 	

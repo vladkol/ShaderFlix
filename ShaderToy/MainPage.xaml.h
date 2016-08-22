@@ -80,6 +80,8 @@ namespace ShaderToy
 		std::string mShaderToyId;
 		bool mPlaying;
 
+		Windows::UI::Color mDefTitleButtonColor, mDefTitleColor;
+
 		std::map<unsigned int, PointerState> mInputPointers;
 		void UpdateMouseState();
 
@@ -96,5 +98,6 @@ namespace ShaderToy
 		void OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args);
 		void OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args);
 		void ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e);
+		void OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args);
 	};
 }
