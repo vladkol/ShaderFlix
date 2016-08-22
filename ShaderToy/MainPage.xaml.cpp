@@ -85,7 +85,15 @@ void MainPage::CreateRenderSurface()
 	{
 		// The app can configure the the SwapChainPanel which may boost performance.
 		// By default, this template uses the default configuration.
-		mRenderSurface = mOpenGLES->CreateSurface(swapchain, nullptr, nullptr);
+		//mRenderSurface = mOpenGLES->CreateSurface(swapchain, nullptr, nullptr);
+
+		float w = swapchain->ActualWidth;
+		float h = swapchain->ActualHeight;
+		float tw = 1920;
+		float th = tw * h / w;
+
+		Size customRenderSurfaceSize = Size(tw, th);
+		mRenderSurface = mOpenGLES->CreateSurface(swapchain, &customRenderSurfaceSize, nullptr);
 
 		// You can configure the SwapChainPanel to render at a lower resolution and be scaled up to
 		// the swapchain panel size. This scaling is often free on mobile hardware.

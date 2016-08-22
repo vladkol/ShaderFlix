@@ -150,21 +150,25 @@ protected:
 			break;
 		case STBI_rgb_alpha:
 			format = srgb ? GL_SRGB_ALPHA_EXT : GL_RGBA;
-			/*for (int i = 0; i < w*h; i++)
-			{
-				unsigned int *pPixel = (unsigned int*) (&image[w*h * 4]);
-				unsigned int pixel = *pPixel;
-				unsigned char r = pixel >> 24;
-				unsigned char g = (pixel >> 16) & 255;
-				unsigned char b = (pixel >> 8) & 255;
-				unsigned char a = (pixel) & 255;
+			//for (int i = 0; i < w*h; i++)
+			//{
+			//	unsigned int *pPixel = (unsigned int*) (&image[i * 4]);
+			//	unsigned int pixel = *pPixel;
+			//	unsigned char r = pixel >> 24;
+			//	unsigned char g = (pixel >> 16) & 255;
+			//	unsigned char b = (pixel >> 8) & 255;
+			//	unsigned char a = (pixel) & 255;
 
-				pixel = a << 24;
-				pixel += r << 16;
-				pixel += g << 8;
-				pixel += b;
-				*pPixel = pixel;
-			}*/
+			//	r = (unsigned char)(int)(((float) r) * ((float) a) / 255.f);
+			//	g = (unsigned char) (int) (((float) g) * ((float) a) / 255.f);
+			//	b = (unsigned char) (int) (((float) b) * ((float) a) / 255.f);
+
+			//	pixel = r << 24;
+			//	pixel += g << 16;
+			//	pixel += b << 8;
+			//	pixel += a;
+			//	*pPixel = pixel;
+			//}
 			break;
 		default:
 			assert(!"Invalid texture format!");

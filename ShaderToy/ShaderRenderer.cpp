@@ -17,6 +17,7 @@ const float Vertices [] = {
 	-1,  1, 0,
 	-1, -1, 0
 };
+
 const GLubyte Indices [] = {
 	0, 1, 2,
 	2, 3, 0
@@ -109,6 +110,23 @@ void ShaderRenderer::Draw()
 		glUseProgram(mShaderProg);
 		assert(glGetError() == GL_NO_ERROR);
 
+		int tunit = 0;
+		for (int i = 0; (i < 4 && i < (int) mShader.imagePass.inputs.size()); i++)
+		{
+			/*if (mShader.imagePass.inputs[i].ctype == "keyboard")
+			{
+
+			}*/
+			if (mTextures[i]->id)
+			{
+				glActiveTexture(GL_TEXTURE0 + tunit);
+				glBindTexture(mTextures[i]->targ, mTextures[i]->id);
+				glUniform1i(variables.sampler[i], tunit);
+				tunit++;
+			}
+		}
+		assert(glGetError() == GL_NO_ERROR);
+
 		// set uniforms
 		float deltaTime = static_cast<float>(mTimer->getDeltaTime());
 		float elapsedTime = static_cast<float>(mTimer->getElapsedTime());
@@ -144,24 +162,6 @@ void ShaderRenderer::Draw()
 		float zeros2[2] = { 0, 0 };
 		glUniform2fv(variables.fragcoordoffsetuniform, 1, zeros2);
 
-		assert(glGetError() == GL_NO_ERROR);
-
-		int tunit = 0;
-		for (int i = 0; (i < 4 && i < (int)mShader.imagePass.inputs.size()); i++)
-		{
-			/*if (mShader.imagePass.inputs[i].ctype == "keyboard")
-			{
-
-			}*/
-			if (mTextures[i]->id)
-			{
-				glActiveTexture(GL_TEXTURE0 + tunit);
-				glBindTexture(mTextures[i]->targ, mTextures[i]->id);
-				glUniform1i(variables.sampler[i], tunit);
-				tunit++;
-			}
-		}
-		
 		assert(glGetError() == GL_NO_ERROR);
 
 		glEnableVertexAttribArray(mPositionSlot);
