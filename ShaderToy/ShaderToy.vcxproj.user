@@ -7,6 +7,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerMachineName>10.137.84.150</DebuggerMachineName>
-    <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
