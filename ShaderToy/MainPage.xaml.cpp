@@ -52,6 +52,8 @@ MainPage::MainPage() : mPlaying(false)
 	window->PointerPressed += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerPressed);
 	window->PointerReleased += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &ShaderToy::MainPage::OnPointerReleased);
 
+	window->SizeChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::WindowSizeChangedEventArgs ^>(this, &ShaderToy::MainPage::OnSizeChanged);
+
 	FetchQuery();
 }
 
@@ -87,8 +89,8 @@ void MainPage::CreateRenderSurface()
 		// By default, this template uses the default configuration.
 		//mRenderSurface = mOpenGLES->CreateSurface(swapchain, nullptr, nullptr);
 
-		float w = swapchain->ActualWidth;
-		float h = swapchain->ActualHeight;
+		float w = (float)swapchain->ActualWidth;
+		float h = (float)swapchain->ActualHeight;
 		float tw = 1920;
 		float th = tw * h / w;
 
@@ -128,7 +130,8 @@ void MainPage::RecoverFromLostDevice()
 
 	swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 	{
-		progressPreRender->IsActive = false;
+		imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		progressPreRender->IsActive = true;
 	}, CallbackContext::Any));
 
 	{
@@ -159,14 +162,16 @@ void MainPage::StartRenderLoop()
 
 		if (mRenderer.get() == nullptr)
 		{
-			mRenderer = std::make_shared<ShaderRenderer>();
-			mRenderer->InitShader(APP_KEY, mShaderToyId.c_str());
+			EGLint panelWidth = 0;
+			EGLint panelHeight = 0;
+			mOpenGLES->GetSurfaceDimensions(mRenderSurface, &panelWidth, &panelHeight);
 
-			swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
-			{
-				progressPreRender->IsActive = false;
-			}, CallbackContext::Any));
+			mRenderer = std::make_shared<ShaderRenderer>();
+			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
+			mRenderer->InitShader(APP_KEY, mShaderToyId.c_str());
 		}
+
+		bool bFirstFrameDone = false;
 
 		while (action->Status == Windows::Foundation::AsyncStatus::Started)
 		{
@@ -189,6 +194,17 @@ void MainPage::StartRenderLoop()
 				}, CallbackContext::Any));
 
 				return;
+			}
+
+			if (!bFirstFrameDone)
+			{
+				bFirstFrameDone = true;
+
+				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+				{
+					progressPreRender->IsActive = false;
+					imageBG->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+				}, CallbackContext::Any));
 			}
 		}
 
@@ -249,7 +265,7 @@ void MainPage::FetchQuery()
 	shadersList->ItemsSource = nullptr;
 	mItems = ref new Platform::Collections::Vector<ShaderItem^>();
 
-	std::wstring wq = searchBox->QueryText->Data();
+	std::wstring wq = searchBox->Text->Data();
 	std::ostringstream url;
 
 	if (wq.length() == 0)
@@ -418,6 +434,7 @@ void ShaderToy::MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows
 	{
 		if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
 		{
+			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			mPlaying = false;
 			StopRenderLoop();
@@ -518,4 +535,35 @@ void ShaderToy::MainPage::UpdateMouseState()
 
 		mRenderer->SetMouseState(true, x, y, bPressed);
 	}
+}
+
+
+void ShaderToy::MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
+{
+
+}
+
+
+void ShaderToy::MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e)
+{
+	ItemsWrapGrid^ wg = (ItemsWrapGrid^) sender;
+	double w = wg->ActualWidth;
+
+	if (Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily == L"Windows.Mobile")
+	{
+		wg->ItemWidth = w;
+	}
+	else
+	{
+		double minW = 360.0f;
+		int minNum = (int) (w / minW);
+		int minRest = (int) w % (int) minW;
+		if (minRest >= minNum)
+		{
+			minW += minRest / minNum;
+		}
+		wg->ItemWidth = minW;
+	}
+
+	wg->ItemHeight = wg->ItemWidth / 2;
 }

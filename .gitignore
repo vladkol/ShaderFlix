@@ -16,6 +16,8 @@ ipch/
 [Rr]elease/
 Generated Files/ 
 .vs/
+AppPackages/
+BundleArtifacts/
 
 # Windows Installer files
 *.cab

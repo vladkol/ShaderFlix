@@ -11,26 +11,27 @@
         <SwapChainPanel x:Name="swapchain">
 
         </SwapChainPanel>
+        <Image x:Name="imageBG" Source="Assets/BG.jpg" Stretch="UniformToFill"/>
         <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
         <Grid x:Name="galleryGridHost" Background="Transparent">
-            <Rectangle Fill="#7F000000"></Rectangle>
+            <!--<Rectangle Fill="#7F000000"></Rectangle>-->
             <Grid x:Name="galleryGrid" Background="Transparent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <SearchBox x:Name="searchBox" SearchHistoryEnabled="False" QuerySubmitted="searchBox_QuerySubmitted"/>
+                <AutoSuggestBox x:Name="searchBox" QuerySubmitted="searchBox_QuerySubmitted"/>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
                 <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal">
+                            <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid x:Name="itemGrid" Tag="{Binding Path=ShaderId}" Tapped="Shader_Tapped" Width="360" Height="180">
+                            <Grid x:Name="itemGrid" Tag="{Binding Path=ShaderId}" Tapped="Shader_Tapped">
                                 <Image x:Name="shaderPreviewImage" Stretch="UniformToFill">
                                     <Image.Source>
                                         <BitmapImage UriSource="{Binding Path=ShaderPreview}"/>

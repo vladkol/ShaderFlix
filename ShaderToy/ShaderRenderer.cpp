@@ -75,7 +75,8 @@ ShaderRenderer::ShaderRenderer() :
 	mStarted(false), 
 	mLoaded(false), 
 	mFrame(0), 
-	mShaderProg(0)
+	mShaderProg(0), 
+	mShaderReady(false)
 {
 	mTimer.reset(CreateTimer());
 	memset(mKeyboardState, 0, sizeof(char) * 256 * 3);
@@ -89,7 +90,9 @@ ShaderRenderer::ShaderRenderer() :
 
 ShaderRenderer::~ShaderRenderer()
 {
-	
+	glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 
@@ -100,100 +103,93 @@ ShaderRenderer::~ShaderRenderer()
 
 void ShaderRenderer::Draw()
 {
-	if (mStarted)
-	{	
-		glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		assert(glGetError() == GL_NO_ERROR);
+	glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	assert(glGetError() == GL_NO_ERROR);
 
-		glUseProgram(mShaderProg);
-		assert(glGetError() == GL_NO_ERROR);
+	if (!mShaderReady)
+		return;
 
-		int tunit = 0;
-		for (int i = 0; (i < 4 && i < (int) mShader.imagePass.inputs.size()); i++)
-		{
-			/*if (mShader.imagePass.inputs[i].ctype == "keyboard")
-			{
-
-			}*/
-			if (mTextures[i]->id)
-			{
-				glActiveTexture(GL_TEXTURE0 + tunit);
-				glBindTexture(mTextures[i]->targ, mTextures[i]->id);
-				glUniform1i(variables.sampler[i], tunit);
-				tunit++;
-			}
-		}
-		assert(glGetError() == GL_NO_ERROR);
-
-		// set uniforms
-		float deltaTime = static_cast<float>(mTimer->getDeltaTime());
-		float elapsedTime = static_cast<float>(mTimer->getElapsedTime());
-		if (elapsedTime < 0.0001f)
-			elapsedTime = 0.0f;
-
-		tm tm = mTimer->tm_now();
-
-		glUniform3f(variables.resolution, (float)mWindowWidth, (float)mWindowHeight, 1.0f);
-		glUniform1i(variables.frame, mFrame++);
-		assert(glGetError() == GL_NO_ERROR);
-
-		glUniform1f(variables.globaltime, elapsedTime);
-		glUniform1f(variables.timedelta, deltaTime);
-
-		for (int i = 0; i < 4; i++)
-		{
-			glUniform1f(variables.channeltime[i], elapsedTime);
-			glUniform3f(variables.channelres[i], 
-				mTextures[i]->w, mTextures[i]->h, 1.0f);
-		}
-
-		glUniform4f(variables.mouse, mouse_x, mouse_y, click_x, click_y);
-		glUniform4f(variables.date, tm.tm_year, tm.tm_mon, tm.tm_mday,
-			tm.tm_sec + tm.tm_min * 60 + tm.tm_hour * 3600);
-		glUniform1f(variables.samplerate, 0);
-
-		if (variables.devicerotationuniform > 0)
-		{
-
-		}
-
-		float zeros2[2] = { 0, 0 };
-		glUniform2fv(variables.fragcoordoffsetuniform, 1, zeros2);
-
-		assert(glGetError() == GL_NO_ERROR);
-
-		glEnableVertexAttribArray(mPositionSlot);
-		glVertexAttribPointer(mPositionSlot, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (const GLvoid *) 0);
-
-		glBindVertexArrayOES(mVertexArray);
-		glDrawElements(GL_TRIANGLES, sizeof(Indices) / sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
-	}
-}
-
-void ShaderRenderer::UpdateWindowSize(GLsizei width, GLsizei height)
-{
 	if (!mStarted)
 	{
-		mWindowWidth = width;
-		mWindowHeight = height;
-		glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
-
 		mStarted = true;
 
 		memset(mKeyboardState, 0, sizeof(char) * 256 * 3);
 		mFrame = 0;
 		mTimer.reset(CreateTimer());
-
 		mTimer->start();
 	}
-	else if (mWindowWidth != width || mWindowHeight != height)
+
+	glUseProgram(mShaderProg);
+	assert(glGetError() == GL_NO_ERROR);
+
+	int tunit = 0;
+	for (int i = 0; (i < 4 && i < (int) mShader.imagePass.inputs.size()); i++)
 	{
-		mWindowWidth = width;
-		mWindowHeight = height;
-		glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
+		/*if (mShader.imagePass.inputs[i].ctype == "keyboard")
+		{
+
+		}*/
+		if (mTextures[i]->id)
+		{
+			glActiveTexture(GL_TEXTURE0 + tunit);
+			glBindTexture(mTextures[i]->targ, mTextures[i]->id);
+			glUniform1i(variables.sampler[i], tunit);
+			tunit++;
+		}
 	}
+	assert(glGetError() == GL_NO_ERROR);
+
+	// set uniforms
+	float deltaTime = static_cast<float>(mTimer->getDeltaTime());
+	float elapsedTime = static_cast<float>(mTimer->getElapsedTime());
+	if (elapsedTime < 0.0001f)
+		elapsedTime = 0.0f;
+
+	tm tm = mTimer->tm_now();
+
+	glUniform3f(variables.resolution, (float)mWindowWidth, (float)mWindowHeight, 1.0f);
+	glUniform1i(variables.frame, mFrame++);
+	assert(glGetError() == GL_NO_ERROR);
+
+	glUniform1f(variables.globaltime, elapsedTime);
+	glUniform1f(variables.timedelta, deltaTime);
+
+	for (int i = 0; i < 4; i++)
+	{
+		glUniform1f(variables.channeltime[i], elapsedTime);
+		glUniform3f(variables.channelres[i], 
+			mTextures[i]->w, mTextures[i]->h, 1.0f);
+	}
+
+	glUniform4f(variables.mouse, mouse_x, mouse_y, click_x, click_y);
+	glUniform4f(variables.date, tm.tm_year, tm.tm_mon, tm.tm_mday,
+		tm.tm_sec + tm.tm_min * 60 + tm.tm_hour * 3600);
+	glUniform1f(variables.samplerate, 0);
+
+	if (variables.devicerotationuniform > 0)
+	{
+
+	}
+
+	float zeros2[2] = { 0, 0 };
+	glUniform2fv(variables.fragcoordoffsetuniform, 1, zeros2);
+
+	assert(glGetError() == GL_NO_ERROR);
+
+	glEnableVertexAttribArray(mPositionSlot);
+	glVertexAttribPointer(mPositionSlot, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (const GLvoid *) 0);
+
+	glBindVertexArrayOES(mVertexArray);
+	glDrawElements(GL_TRIANGLES, sizeof(Indices) / sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+}
+
+void ShaderRenderer::UpdateWindowSize(GLsizei width, GLsizei height)
+{
+	mWindowWidth = width;
+	mWindowHeight = height;
+	glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
 }
 
 void ShaderRenderer::BakeShader()
@@ -320,6 +316,7 @@ void ShaderRenderer::BakeShader()
 	assert(glGetError() == GL_NO_ERROR);
 
 	InitVertexBuffer();
+	mShaderReady = true;
 }
 
 void ShaderRenderer::InitVertexBuffer()

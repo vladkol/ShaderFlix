@@ -34,6 +34,11 @@ public:
 
 	void InitShader(const char* appKey, const char* shaderId)
 	{
+		mShaderReady = false;
+		glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
 		mShader.Initialize(shaderId, appKey);
 		BakeShader();
 	}
@@ -339,6 +344,7 @@ private:
 	GLsizei mWindowHeight;
 	
 	ShaderToy::Shader mShader;
+	bool mShaderReady;
 
 	char mKeyboardState[256 * 3];
 	int mouse_x, mouse_y, click_x, click_y;

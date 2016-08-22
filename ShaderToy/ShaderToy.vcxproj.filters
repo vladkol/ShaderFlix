@@ -348,6 +348,9 @@
     <Image Include="PresetData\presets\tex20.jpg">
       <Filter>PresetData\presets</Filter>
     </Image>
+    <Image Include="Assets\BG.jpg">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -355,6 +358,9 @@
   <ItemGroup>
     <None Include="ShaderToy_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="curl\prebuilt\win10\$(PlatformName)\libcurl.dll" />
+    <None Include="curl\prebuilt\win10\$(PlatformName)\libeay32.dll" />
+    <None Include="curl\prebuilt\win10\$(PlatformName)\ssleay32.dll" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
