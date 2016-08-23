@@ -317,7 +317,7 @@ void MainPage::FetchQuery()
 				{
 					auto items = doc["Results"].GetArray();
 
-					for (unsigned int i = 0; (i < items.Size() && i < 100); i++)
+					for (unsigned int i = 0; (i < items.Size() && i < 300); i++)
 					{
 						ShaderItem^ item = ref new ShaderItem();
 						std::string id = items[i].GetString();
