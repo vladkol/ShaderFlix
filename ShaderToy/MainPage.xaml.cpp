@@ -70,6 +70,8 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	coreTitleBar->ExtendViewIntoTitleBar = true;
 	Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
 
+	Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBoundsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::ViewManagement::ApplicationView ^, Platform::Object ^>(this, &ShaderToy::MainPage::OnVisibleBoundsChanged);
+
 	FetchQuery();
 }
 
@@ -264,6 +266,7 @@ void MainPage::SetKeyState(Windows::System::VirtualKey key, bool pressed)
 void MainPage::searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args)
 {
 	FetchQuery();
+	shadersList->Focus(Windows::UI::Xaml::FocusState::Programmatic);
 }
 
 
@@ -298,6 +301,8 @@ void MainPage::FetchQuery()
 	}
 
 	std::string urlStr = url.str();
+
+	searchBox->IsEnabled = false;
 
 	concurrency::create_async([this, urlStr]()
 	{
@@ -339,6 +344,7 @@ void MainPage::FetchQuery()
 			shadersList->ItemsSource = mItems;
 			progress->IsActive = false;
 			shadersList->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			searchBox->IsEnabled = true;
 		}, CallbackContext::Any));
 	});
 
@@ -444,6 +450,22 @@ void MainPage::PlayShader(const std::string& id)
 
 
 
+void MainPage::ToggleFullscreen()
+{
+	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+
+	if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+	{
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->ExitFullScreenMode();
+		coreTitleBar->ExtendViewIntoTitleBar = true;
+	}
+	else
+	{
+		coreTitleBar->ExtendViewIntoTitleBar = false;
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryEnterFullScreenMode();
+	}
+
+}
 
 
 
@@ -471,10 +493,18 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 	{
 		if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
 		{
-			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
-			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
-			mPlaying = false;
-			StopRenderLoop();
+			if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+			{
+				buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+				ToggleFullscreen();
+			}
+			else
+			{
+				imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
+				galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
+				mPlaying = false;
+				StopRenderLoop();
+			}
 		}
 		return;
 	}
@@ -611,4 +641,25 @@ void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreAppli
 	auto t = searchBox->Margin;
 	t.Right = sender->SystemOverlayRightInset;
 	searchBox->Margin = t;
+}
+
+
+void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ToggleFullscreen();
+	if (mPlaying)
+	{
+		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+}
+
+
+void ShaderToy::MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args)
+{
+	if (!sender->IsFullScreenMode)
+	{
+		Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+		coreTitleBar->ExtendViewIntoTitleBar = true;
+		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+	}
 }

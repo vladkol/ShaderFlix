@@ -68,5 +68,6 @@
                 </Grid>-->
             </Grid>
         </Grid>
+        <AppBarButton Icon="FullScreen" Margin="0,0,24,-12" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="buttonFullScreen" Click="buttonFullScreen_Click" Foreground="#FFC65F10" Background="#A0FFFFFF"/>
     </Grid>
 </Page>
