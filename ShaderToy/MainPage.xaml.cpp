@@ -57,6 +57,13 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	Windows::UI::ViewManagement::ApplicationViewTitleBar^ formattableTitleBar = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TitleBar;
 	formattableTitleBar->BackgroundColor = Windows::UI::Colors::Transparent;
 	formattableTitleBar->ButtonBackgroundColor = Windows::UI::Colors::Transparent;
+	formattableTitleBar->ButtonInactiveBackgroundColor = Windows::UI::Colors::Transparent;
+	formattableTitleBar->ButtonInactiveForegroundColor = Windows::UI::Colors::Gray;
+	formattableTitleBar->ButtonForegroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0xFE, 0x80, 0x20);
+	formattableTitleBar->ButtonPressedForegroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0xFE, 0x80, 0x20);
+	formattableTitleBar->ButtonPressedBackgroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40);
+	formattableTitleBar->ButtonHoverBackgroundColor = Windows::UI::Colors::Black;
+	formattableTitleBar->ButtonHoverForegroundColor = Windows::UI::Colors::White;
 
 	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
 	coreTitleBar->LayoutMetricsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^, Platform::Object ^>(this, &MainPage::OnLayoutMetricsChanged);
