@@ -19,10 +19,16 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid x:Name="titleBar">
-                    <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderToy.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
+                <Grid Background="#404040">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="titleBar" Grid.Column="0">
+                        <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderToy.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
+                    </Grid>
+                    <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
                 </Grid>
-                <AutoSuggestBox x:Name="searchBox" Margin="102,2,2,2" Grid.Column="1" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
                 <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
                     <ListView.ItemsPanel>
