@@ -656,9 +656,9 @@ void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xam
 
 void ShaderToy::MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args)
 {
+	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
 	if (!sender->IsFullScreenMode)
 	{
-		Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
 		coreTitleBar->ExtendViewIntoTitleBar = true;
 		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
 	}
