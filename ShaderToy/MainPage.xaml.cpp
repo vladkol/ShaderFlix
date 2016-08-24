@@ -46,6 +46,8 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	window->KeyDown += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyDown);
 	window->KeyUp += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyUp);
+	Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->BackRequested += ref new Windows::Foundation::EventHandler<Windows::UI::Core::BackRequestedEventArgs ^>(this, &ShaderToy::MainPage::OnBackRequested);
+
 	window->PointerEntered += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerEntered);
 	window->PointerExited += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerExited);
 	window->PointerMoved += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerMoved);
@@ -440,6 +442,7 @@ void MainPage::PlayShader(const std::string& id)
 			
 			StartRenderLoop();
 			mPlaying = true;
+			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Visible;
 		}
 		catch (...)
 		{
@@ -491,21 +494,7 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
 		args->VirtualKey == Windows::System::VirtualKey::GamepadB)
 	{
-		if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
-		{
-			if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
-			{
-				buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
-				ToggleFullscreen();
-			}
-			else
-			{
-				imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
-				galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
-				mPlaying = false;
-				StopRenderLoop();
-			}
-		}
+		HandleBack();
 		return;
 	}
 
@@ -638,9 +627,17 @@ void MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::
 
 void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args)
 {
-	auto t = searchBox->Margin;
+	auto t = buttonFullScreen->Margin;
 	t.Right = sender->SystemOverlayRightInset;
-	searchBox->Margin = t;
+	buttonFullScreen->Margin = t;
+
+	t = buttonFullScreen2->Margin;
+	t.Right = sender->SystemOverlayRightInset;
+	buttonFullScreen2->Margin = t;
+
+	t = logo->Margin;
+	t.Left = sender->SystemOverlayLeftInset;
+	logo->Margin = t;
 }
 
 
@@ -650,16 +647,49 @@ void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xam
 	if (mPlaying)
 	{
 		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 	}
 }
 
 
-void ShaderToy::MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args)
+void MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args)
 {
 	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
 	if (!sender->IsFullScreenMode)
 	{
 		coreTitleBar->ExtendViewIntoTitleBar = true;
 		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 	}
+}
+
+
+void MainPage::OnBackRequested(Platform::Object ^sender, Windows::UI::Core::BackRequestedEventArgs ^args)
+{
+	args->Handled = HandleBack();
+}
+
+bool MainPage::HandleBack()
+{
+	if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
+	{
+		if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		{
+			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			ToggleFullscreen();
+		}
+		else
+		{
+			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			mPlaying = false;
+			StopRenderLoop();
+			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Collapsed;
+		}
+
+		return true;
+	}
+
+	return false;
 }

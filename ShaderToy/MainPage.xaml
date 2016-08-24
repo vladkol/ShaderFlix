@@ -11,6 +11,9 @@
         <SwapChainPanel x:Name="swapchain">
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+            <SymbolIcon Symbol="FullScreen"/>
+        </Button>
         <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
         <Grid x:Name="galleryGridHost" Background="Transparent">
             <!--<Rectangle Fill="#7F000000"></Rectangle>-->
@@ -23,11 +26,15 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="titleBar" Grid.Column="0">
                         <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderToy.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
                     </Grid>
                     <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
+                    <Button Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
+                        <SymbolIcon Symbol="FullScreen"/>
+                    </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
                 <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
@@ -68,6 +75,5 @@
                 </Grid>-->
             </Grid>
         </Grid>
-        <AppBarButton Icon="FullScreen" Margin="0,0,24,-12" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="buttonFullScreen" Click="buttonFullScreen_Click" Foreground="#FFC65F10" Background="#A0FFFFFF"/>
     </Grid>
 </Page>
