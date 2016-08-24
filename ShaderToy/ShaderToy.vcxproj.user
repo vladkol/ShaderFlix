@@ -6,7 +6,11 @@
     <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DebuggerMachineName>10.137.84.150</DebuggerMachineName>
-    <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
+    <DebuggerMachineName>10.137.84.183</DebuggerMachineName>
+    <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebuggerMachineName>10.137.84.183</DebuggerMachineName>
+    <DebuggerFlavor>UWPRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

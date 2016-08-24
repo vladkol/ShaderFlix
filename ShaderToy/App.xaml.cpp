@@ -30,6 +30,14 @@ App::App()
 {
     InitializeComponent();
     Suspending += ref new SuspendingEventHandler(this, &App::OnSuspending);
+
+	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
+	if (deviceFamily == "Windows.Xbox")
+	{
+		RequiresPointerMode = Windows::UI::Xaml::ApplicationRequiresPointerMode::WhenRequested;
+		Windows::UI::ViewManagement::ApplicationViewScaling::TrySetDisableLayoutScaling(true);
+	}
+
 }
 
 /// <summary>
@@ -47,6 +55,15 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
          DebugSettings->EnableFrameRateCounter = true;
     }
 #endif
+
+	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
+	if (deviceFamily == "Windows.Xbox")
+	{
+		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->SetDesiredBoundsMode
+		(Windows::UI::ViewManagement::ApplicationViewBoundsMode::UseCoreWindow);
+	}
+
+
     auto rootFrame = dynamic_cast<Frame^>(Window::Current->Content);
 
     // Do not repeat app initialization when the Window already has content,

@@ -28,6 +28,9 @@ using namespace Windows::UI::Xaml::Navigation;
 
 MainPage::MainPage() : mPlaying(false), http_number(0)
 {
+	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
+	mIsXbox = (deviceFamily == "Windows.Xbox");
+
 	mItems = ref new Platform::Collections::Vector<ShaderItem^>();
 
 	InitializeComponent();
@@ -73,6 +76,25 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
 
 	Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBoundsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::ViewManagement::ApplicationView ^, Platform::Object ^>(this, &ShaderToy::MainPage::OnVisibleBoundsChanged);
+	
+
+	if (mIsXbox)
+	{
+		buttonFullScreen->Width = 0;
+		buttonFullScreen->Height = 0;
+		buttonFullScreen2->Width = 0;
+		buttonFullScreen2->Height = 0;
+		auto visb = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBounds;
+		galleryGridHost->Margin = Windows::UI::Xaml::Thickness(visb.Left, visb.Top, visb.Left, visb.Top);
+		
+		galleryGridHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
+		galleryGridHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
+
+		Windows::Gaming::Input::Gamepad::GamepadAdded += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderToy::MainPage::OnGamepadAdded);
+		Windows::Gaming::Input::Gamepad::GamepadRemoved += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderToy::MainPage::OnGamepadRemoved);
+
+	}
+
 
 	FetchQuery();
 }
@@ -188,10 +210,18 @@ void MainPage::StartRenderLoop()
 		return;
 	}
 
+	if (mIsXbox && mGamePad == nullptr && Windows::Gaming::Input::Gamepad::Gamepads->Size)
+	{
+		mGamePad = Windows::Gaming::Input::Gamepad::Gamepads->GetAt(0);
+	}
+
+
 	// Create a task for rendering that will be run on a background thread.
 	auto workItemHandler = ref new Windows::System::Threading::WorkItemHandler([this](Windows::Foundation::IAsyncAction ^ action)
 	{
 		Concurrency::critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
+
+		float xboxMouseX = 0, xboxMouseY = 0;
 
 		mOpenGLES->MakeCurrent(mRenderSurface);
 
@@ -200,6 +230,9 @@ void MainPage::StartRenderLoop()
 			EGLint panelWidth = 0;
 			EGLint panelHeight = 0;
 			mOpenGLES->GetSurfaceDimensions(mRenderSurface, &panelWidth, &panelHeight);
+
+			xboxMouseX = panelWidth / 2;
+			xboxMouseY = panelHeight / 2;
 
 			mRenderer = std::make_shared<ShaderRenderer>();
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
@@ -216,6 +249,33 @@ void MainPage::StartRenderLoop()
 
 			// Logic to update the scene could go here
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
+
+			if (mIsXbox && mGamePad != nullptr)
+			{
+				auto reading = mGamePad->GetCurrentReading();
+				double x = reading.LeftThumbstickX;
+				if (abs(x) < 0.06)
+					x = 0;
+				double y = reading.LeftThumbstickY;
+				if (abs(y) < 0.06)
+					y = 0;
+				bool bLeftClick = (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
+				
+				xboxMouseX += 10 * x;
+				if (xboxMouseX < 0)
+					xboxMouseX = 0;
+				else if (xboxMouseX >= panelWidth)
+					xboxMouseX = panelWidth - 1;
+
+				xboxMouseY += 10 * y;
+				if (xboxMouseY < 0)
+					xboxMouseY = 0;
+				else if (xboxMouseY >= panelHeight)
+					xboxMouseY = panelWidth - 1;
+
+				mRenderer->SetMouseState(true, xboxMouseX, xboxMouseY, bLeftClick);
+			}
+
 			mRenderer->Draw();
 
 			// The call to eglSwapBuffers might not be successful (i.e. due to Device Lost)
@@ -686,9 +746,11 @@ void MainPage::OnBackRequested(Platform::Object ^sender, Windows::UI::Core::Back
 
 bool MainPage::HandleBack()
 {
+	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
+
 	if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
 	{
-		if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		if (!mIsXbox && Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
 		{
 			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
@@ -707,4 +769,17 @@ bool MainPage::HandleBack()
 	}
 
 	return false;
+}
+
+void ShaderToy::MainPage::OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+{
+	if(mGamePad == nullptr)
+		mGamePad = args;
+}
+
+
+void ShaderToy::MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+{
+	if(mGamePad == args)
+		mGamePad = nullptr;
 }

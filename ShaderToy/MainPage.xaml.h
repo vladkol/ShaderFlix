@@ -79,6 +79,8 @@ namespace ShaderToy
 		std::shared_ptr<ShaderRenderer> mRenderer;
 		std::string mShaderToyId;
 		bool mPlaying;
+		bool mIsXbox;
+		Windows::Gaming::Input::Gamepad^ mGamePad;
 
 		std::mutex http_mutex;             // mutex for critical section
 		std::condition_variable http_cv; // condition variable for critical section  
@@ -109,5 +111,7 @@ namespace ShaderToy
 		void buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args);
 		void OnBackRequested(Platform::Object ^sender, Windows::UI::Core::BackRequestedEventArgs ^args);
+		void OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
+		void OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 	};
 }

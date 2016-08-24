@@ -8,14 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="Black" x:Name="host">
-        <SwapChainPanel x:Name="swapchain">
+        <SwapChainPanel x:Name="swapchain" >
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
         <Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
             <SymbolIcon Symbol="FullScreen"/>
         </Button>
         <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
-        <Grid x:Name="galleryGridHost" Background="Transparent">
+        <Grid x:Name="galleryGridHost" Background="Transparent" >
             <!--<Rectangle Fill="#7F000000"></Rectangle>-->
             <Grid x:Name="galleryGrid" Background="Transparent">
                 <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
                     </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
-                <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
+            <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
@@ -60,7 +60,7 @@
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="Margin" Value="0,2,2,0"></Setter>
+                            <Setter Property="Margin" Value="1"></Setter>
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
                             <Setter Property="Padding" Value="0"></Setter>
                         </Style>
