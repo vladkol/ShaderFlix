@@ -109,13 +109,28 @@ void MainPage::CreateRenderSurface()
 		// By default, this template uses the default configuration.
 		//mRenderSurface = mOpenGLES->CreateSurface(swapchain, nullptr, nullptr);
 
+		int iRenderWidth = 1920;
+
 		float w = (float)swapchain->ActualWidth;
 		float h = (float)swapchain->ActualHeight;
-		float tw = 1920;
+		float tw = (float) iRenderWidth;
 		float th = tw * h / w;
 
 		Size customRenderSurfaceSize = Size(tw, th);
 		mRenderSurface = mOpenGLES->CreateSurface(swapchain, &customRenderSurfaceSize, nullptr);
+		mOpenGLES->MakeCurrent(mRenderSurface);
+
+		std::string gpu = OpenGLES::GetGPUName();
+		if (findstr_ignorecase(gpu, "NVIDIA") == gpu.end())
+		{
+			iRenderWidth = 960;
+			tw = (float)iRenderWidth;
+			th = tw * h / w;
+			
+			mOpenGLES->DestroySurface(mRenderSurface);
+			customRenderSurfaceSize = Size(tw, th);
+			mRenderSurface = mOpenGLES->CreateSurface(swapchain, &customRenderSurfaceSize, nullptr);
+		}
 
 		// You can configure the SwapChainPanel to render at a lower resolution and be scaled up to
 		// the swapchain panel size. This scaling is often free on mobile hardware.

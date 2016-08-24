@@ -27,6 +27,12 @@ public:
 	EGLBoolean SwapBuffers(const EGLSurface surface);
 	void Reset();
 
+	static const char* GetGPUName()
+	{
+		const char* r = (const char*)glGetString(GL_RENDERER);
+		return r;
+	}
+
 private:
 	void Initialize();
 	void Cleanup();
