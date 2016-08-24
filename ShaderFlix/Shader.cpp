@@ -10,7 +10,7 @@
 #include <experimental\filesystem>
 #include "Utils.h"
 
-using namespace ShaderToy;
+using namespace ShaderFlix;
 
 Shader::Shader() : 
 	viewed(0), 
@@ -137,7 +137,7 @@ std::string Shader::CacheSource(const char* sourcePath)
 		if (!std::experimental::filesystem::exists(path))
 		{
 			// need to download
-			if (!CacheShadertoyFile(src.c_str()))
+			if (!CacheShaderFlixFile(src.c_str()))
 			{
 				src.clear();
 			}
@@ -201,7 +201,7 @@ bool Shader::CacheSources()
 	return !hasErrors;
 }
 
-bool Shader::CacheShadertoyFile(const char* sourcePath)
+bool Shader::CacheShaderFlixFile(const char* sourcePath)
 {
 	HTTPDownloader http;
 	std::string url = std::string("https://www.shadertoy.com") + sourcePath;

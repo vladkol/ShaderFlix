@@ -351,7 +351,7 @@
     <Image Include="Assets\BG.jpg">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Assets\ShaderToy.png">
+    <Image Include="Assets\ShaderFlix.png">
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\LogoSquare.png">
@@ -365,7 +365,7 @@
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderToy_TemporaryKey.pfx" />
+    <None Include="ShaderFlix_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\libcurl.dll" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\libeay32.dll" />

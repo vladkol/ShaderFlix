@@ -7,7 +7,7 @@
 
 #include "App.g.h"
 
-namespace ShaderToy
+namespace ShaderFlix
 {
 	/// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.

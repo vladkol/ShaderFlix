@@ -11,7 +11,7 @@
 #include "rapidjson/document.h"
 #include "Utils.h"
 
-using namespace ShaderToy;
+using namespace ShaderFlix;
 
 using namespace Platform;
 using namespace Windows::Foundation;
@@ -35,7 +35,7 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	InitializeComponent();
 
-	//mShaderToyId = "ldfGWn"; // "Truchet Tentacles"  https://www.shadertoy.com/view/ldfGWn
+	//mShaderFlixId = "ldfGWn"; // "Truchet Tentacles"  https://www.shadertoy.com/view/ldfGWn
 
 	mOpenGLES = new OpenGLES();
 
@@ -49,7 +49,7 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	window->KeyDown += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyDown);
 	window->KeyUp += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^>(this, &MainPage::OnKeyUp);
-	Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->BackRequested += ref new Windows::Foundation::EventHandler<Windows::UI::Core::BackRequestedEventArgs ^>(this, &ShaderToy::MainPage::OnBackRequested);
+	Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->BackRequested += ref new Windows::Foundation::EventHandler<Windows::UI::Core::BackRequestedEventArgs ^>(this, &ShaderFlix::MainPage::OnBackRequested);
 
 	window->PointerEntered += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerEntered);
 	window->PointerExited += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^>(this, &MainPage::OnPointerExited);
@@ -75,7 +75,7 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	coreTitleBar->ExtendViewIntoTitleBar = true;
 	Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
 
-	Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBoundsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::ViewManagement::ApplicationView ^, Platform::Object ^>(this, &ShaderToy::MainPage::OnVisibleBoundsChanged);
+	Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBoundsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::ViewManagement::ApplicationView ^, Platform::Object ^>(this, &ShaderFlix::MainPage::OnVisibleBoundsChanged);
 	
 
 	if (mIsXbox)
@@ -90,8 +90,8 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 		galleryGridHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
 		galleryGridHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
 
-		Windows::Gaming::Input::Gamepad::GamepadAdded += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderToy::MainPage::OnGamepadAdded);
-		Windows::Gaming::Input::Gamepad::GamepadRemoved += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderToy::MainPage::OnGamepadRemoved);
+		Windows::Gaming::Input::Gamepad::GamepadAdded += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadAdded);
+		Windows::Gaming::Input::Gamepad::GamepadRemoved += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadRemoved);
 
 	}
 
@@ -236,7 +236,7 @@ void MainPage::StartRenderLoop()
 
 			mRenderer = std::make_shared<ShaderRenderer>();
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
-			mRenderer->InitShader(APP_KEY, mShaderToyId.c_str());
+			mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str());
 		}
 
 		bool bFirstFrameDone = false;
@@ -506,9 +506,9 @@ void MainPage::PlayShader(const std::string& id)
 	StopRenderLoop();
 	mPlaying = false;
 
-	mShaderToyId = id;
+	mShaderFlixId = id;
 	
-	if (mShaderToyId.length() > 0)
+	if (mShaderFlixId.length() > 0)
 	{
 		try
 		{
@@ -771,14 +771,14 @@ bool MainPage::HandleBack()
 	return false;
 }
 
-void ShaderToy::MainPage::OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+void ShaderFlix::MainPage::OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
 {
 	if(mGamePad == nullptr)
 		mGamePad = args;
 }
 
 
-void ShaderToy::MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+void ShaderFlix::MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
 {
 	if(mGamePad == args)
 		mGamePad = nullptr;

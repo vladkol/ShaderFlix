@@ -24,7 +24,7 @@ const GLubyte Indices [] = {
 };
 
 
-// https://github.com/beautypi/shadertoy-iOS-v2/
+// https://github.com/beautypi/ShaderFlix-iOS-v2/
 
 //static const char *shader_header =
 //	"#extension GL_EXT_shader_texture_lod : enable \n"
@@ -97,9 +97,9 @@ ShaderRenderer::~ShaderRenderer()
 
 
 // https://www.shadertoy.com/view/ldfGWn
-// https://github.com/beautypi/shadertoy-iOS-v2/blob/a852d8fd536e0606377a810635c5b654abbee623/shadertoy/ShaderPassRenderer.m
+// https://github.com/beautypi/ShaderFlix-iOS-v2/blob/a852d8fd536e0606377a810635c5b654abbee623/ShaderFlix/ShaderPassRenderer.m
 // https://www.shadertoy.com/api/v1/shaders/lsXGzf?key=rtHtwn 
-// https://github.com/jherico/qtvr/blob/master/app/src/shadertoy/Renderer.cpp
+// https://github.com/jherico/qtvr/blob/master/app/src/ShaderFlix/Renderer.cpp
 
 void ShaderRenderer::Draw()
 {

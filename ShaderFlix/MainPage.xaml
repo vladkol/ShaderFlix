@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="ShaderToy.MainPage"
+    x:Class="ShaderFlix.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ShaderToy"
+    xmlns:local="using:ShaderFlix"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -29,7 +29,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="titleBar" Grid.Column="0">
-                        <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderToy.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
+                        <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderFlix.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
                     </Grid>
                     <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
                     <Button Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >

@@ -14,7 +14,7 @@
 
 #define APP_KEY "rtHtwn"
 
-namespace ShaderToy
+namespace ShaderFlix
 {
 	[Windows::UI::Xaml::Data::Bindable]
 	public ref class ShaderItem sealed
@@ -77,7 +77,7 @@ namespace ShaderToy
 		void SetKeyState(Windows::System::VirtualKey key, bool pressed);
 
 		std::shared_ptr<ShaderRenderer> mRenderer;
-		std::string mShaderToyId;
+		std::string mShaderFlixId;
 		bool mPlaying;
 		bool mIsXbox;
 		Windows::Gaming::Input::Gamepad^ mGamePad;

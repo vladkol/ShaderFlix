@@ -343,7 +343,7 @@ private:
 	GLsizei mWindowWidth;
 	GLsizei mWindowHeight;
 	
-	ShaderToy::Shader mShader;
+	ShaderFlix::Shader mShader;
 	bool mShaderReady;
 
 	char mKeyboardState[256 * 3];

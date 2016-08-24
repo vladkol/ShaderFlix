@@ -3,7 +3,7 @@
 
 #include <ctime>
 
-namespace ShaderToy
+namespace ShaderFlix
 {
 	struct APIShaderPassInputSampler
 	{
@@ -63,7 +63,7 @@ namespace ShaderToy
 		std::string DownloadShaderJSON();
 		std::string CacheSource(const char* sourcePath);
 		bool CacheSources();
-		bool CacheShadertoyFile(const char* sourcePath);
+		bool CacheShaderFlixFile(const char* sourcePath);
 	};
 }
 

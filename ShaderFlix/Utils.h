@@ -127,7 +127,7 @@ inline std::string get_appdata_path()
 		
 	#endif
 
-	path += "shadertoy";
+	path += "ShaderFlix";
 	_mkdir(path.c_str());
 #endif
 

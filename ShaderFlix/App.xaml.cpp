@@ -6,7 +6,7 @@
 #include "pch.h"
 #include "MainPage.xaml.h"
 
-using namespace ShaderToy;
+using namespace ShaderFlix;
 
 using namespace Platform;
 using namespace Windows::ApplicationModel;
