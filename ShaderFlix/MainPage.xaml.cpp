@@ -387,13 +387,6 @@ void MainPage::searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ 
 }
 
 
-void MainPage::Shader_Tapped(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
-{
-	Platform::String^ id = ((FrameworkElement^) sender)->Tag->ToString();
-	std::wstring wid(id->Data());
-	PlayShader(std::string(wid.begin(), wid.end()));
-}
-
 void MainPage::FetchQuery()
 {
 	progress->IsActive = true;
@@ -589,9 +582,9 @@ void MainPage::ToggleFullscreen()
 
 void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
-	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
-		args->VirtualKey == Windows::System::VirtualKey::Back ||
-		args->VirtualKey == Windows::System::VirtualKey::GamepadB)
+	if (args->VirtualKey == Windows::System::VirtualKey::Escape 
+		 || args->VirtualKey == Windows::System::VirtualKey::Back 
+		 || (mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
 	{
 		return;
 	}
@@ -607,16 +600,15 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 {
 	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
-		args->VirtualKey == Windows::System::VirtualKey::GamepadB)
+		(mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
 	{
 		HandleBack();
 		return;
 	}
 
-	if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Visible &&
+	/*if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Visible &&
 		searchBox->FocusState == Windows::UI::Xaml::FocusState::Unfocused && 
-		(args->VirtualKey == Windows::System::VirtualKey::Enter ||
-			args->VirtualKey == Windows::System::VirtualKey::GamepadA))
+		(args->VirtualKey == Windows::System::VirtualKey::Enter))
 	{
 		int index = shadersList->SelectedIndex;
 		if (index != -1)
@@ -630,7 +622,7 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 			}
 		}
 	}
-	else if (mRenderer && mPlaying)
+	else */if (mRenderer && mPlaying)
 	{
 		SetKeyState(args->VirtualKey, false);
 	}
@@ -815,15 +807,24 @@ bool MainPage::HandleBack()
 	return false;
 }
 
-void ShaderFlix::MainPage::OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+void MainPage::OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
 {
 	if(mGamePad == nullptr)
 		mGamePad = args;
 }
 
 
-void ShaderFlix::MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
+void MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args)
 {
 	if(mGamePad == args)
 		mGamePad = nullptr;
+}
+
+
+void MainPage::shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e)
+{
+	auto item = dynamic_cast<ShaderItem^>(e->ClickedItem);
+	Platform::String^ id = item->ShaderId;
+	std::wstring wid(id->Data());
+	PlayShader(std::string(wid.begin(), wid.end()));
 }

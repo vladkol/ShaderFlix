@@ -38,7 +38,7 @@
                     </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
-            <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging"  >
+            <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
@@ -47,7 +47,7 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid x:Name="itemGrid" Tag="{Binding Path=ShaderId}" Tapped="Shader_Tapped">
+                            <Grid x:Name="itemGrid" Tag="{Binding Path=ShaderId}">
                                 <Image x:Name="shaderPreviewImage" Stretch="UniformToFill">
                                     <Image.Source>
                                         <BitmapImage UriSource="{Binding Path=ShaderPreview}"/>

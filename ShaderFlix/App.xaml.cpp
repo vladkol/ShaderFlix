@@ -34,7 +34,7 @@ App::App()
 	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
 	if (deviceFamily == "Windows.Xbox")
 	{
-		RequiresPointerMode = Windows::UI::Xaml::ApplicationRequiresPointerMode::Auto;
+		RequiresPointerMode = Windows::UI::Xaml::ApplicationRequiresPointerMode::WhenRequested;
 		Windows::UI::ViewManagement::ApplicationViewScaling::TrySetDisableLayoutScaling(true);
 	}
 
