@@ -246,6 +246,15 @@ void MainPage::StartRenderLoop()
 					HandleBack();
 				}, CallbackContext::Any));
 			}
+			else
+			{
+				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+				{
+					focusButton->Visibility = Windows::UI::Xaml::Visibility::Visible;
+					focusButton->Focus(Windows::UI::Xaml::FocusState::Programmatic);
+				}, CallbackContext::Any));
+
+			}
 		}
 
 		bool bFirstFrameDone = false;
@@ -316,6 +325,11 @@ void MainPage::StartRenderLoop()
 		}
 
 		mRenderer.reset();
+
+		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+		{
+			focusButton->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}, CallbackContext::Any));
 	});
 
 	// Run task on a dedicated high priority background thread.
