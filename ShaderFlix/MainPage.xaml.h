@@ -93,6 +93,7 @@ namespace ShaderFlix
 
 		void ToggleFullscreen();
 		bool HandleBack();
+		void ShowLicense(bool firstTime);
 
 		void searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args);
 		void shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args);
@@ -113,6 +114,9 @@ namespace ShaderFlix
 		void OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e);
-		void Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void LicenseButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void closeButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void buttonAccept_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void buttonDecline_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

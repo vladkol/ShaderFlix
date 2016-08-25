@@ -104,6 +104,13 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 	// The SwapChainPanel has been created and arranged in the page layout, so EGL can be initialized.
 	CreateRenderSurface();
 	logo->Height = searchBox->ActualHeight-2;
+
+	auto settings = Windows::Storage::ApplicationData::Current->RoamingSettings->Values;
+	
+	if (!settings->HasKey("LicenseAccepted"))
+	{
+		ShowLicense(true);
+	}
 }
 
 
@@ -417,7 +424,7 @@ void MainPage::SetKeyState(Windows::System::VirtualKey key, bool pressed)
 void MainPage::searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args)
 {
 	FetchQuery();
-	shadersList->Focus(Windows::UI::Xaml::FocusState::Programmatic);
+	shadersList->Focus(Windows::UI::Xaml::FocusState::Keyboard);
 }
 
 
@@ -864,8 +871,38 @@ void MainPage::shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml
 }
 
 
-void ShaderFlix::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void MainPage::LicenseButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	ShowLicense(false);
+}
 
-		
+
+void MainPage::closeButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	licenseGrid->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
+}
+
+
+void MainPage::buttonAccept_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	licenseGrid->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	Windows::Storage::ApplicationData::Current->RoamingSettings->Values->Insert("LicenseAccepted", "yes");
+	galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
+}
+
+
+void MainPage::buttonDecline_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	App::Current->Exit();
+}
+
+void MainPage::ShowLicense(bool firstTime)
+{
+	galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	licenseGrid->Visibility = Windows::UI::Xaml::Visibility::Visible;
+	licenseButtons->Visibility = firstTime ? Windows::UI::Xaml::Visibility::Visible : Windows::UI::Xaml::Visibility::Collapsed;
+	closeButton->Visibility = firstTime ? Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
+	
+	(firstTime ? buttonAccept : closeButton)->Focus(Windows::UI::Xaml::FocusState::Keyboard);
 }
