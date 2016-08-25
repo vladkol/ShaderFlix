@@ -32,7 +32,7 @@
                     <Grid x:Name="titleBar" Grid.Column="0">
                         <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderFlix.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
                     </Grid>
-                    <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..." />
+                    <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
                     <Button Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
                         <SymbolIcon Symbol="FullScreen"/>
                     </Button>

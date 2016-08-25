@@ -600,6 +600,7 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 	}
 
 	if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Visible &&
+		searchBox->FocusState == Windows::UI::Xaml::FocusState::Unfocused && 
 		(args->VirtualKey == Windows::System::VirtualKey::Enter ||
 			args->VirtualKey == Windows::System::VirtualKey::GamepadA))
 	{
@@ -607,9 +608,12 @@ void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core:
 		if (index != -1)
 		{
 			auto item = mItems->GetAt(index);
-			Platform::String^ id = item->ShaderId;
-			std::wstring wid(id->Data());
-			PlayShader(std::string(wid.begin(), wid.end()));
+			if (((Controls::ListViewItem^)shadersList->ContainerFromItem(shadersList->SelectedItem))->FocusState != Windows::UI::Xaml::FocusState::Unfocused)
+			{
+				Platform::String^ id = item->ShaderId;
+				std::wstring wid(id->Data());
+				PlayShader(std::string(wid.begin(), wid.end()));
+			}
 		}
 	}
 	else if (mRenderer && mPlaying)
