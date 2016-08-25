@@ -162,10 +162,11 @@ void ShaderRenderer::Draw()
 	int tunit = 0;
 	for (int i = 0; (i < 4 && i < (int) mShader.imagePass.inputs.size()); i++)
 	{
-		/*if (mShader.imagePass.inputs[i].ctype == "keyboard")
+		if (mShader.imagePass.inputs[i].ctype == "keyboard")
 		{
-
-		}*/
+			glBindTexture(mTextures[i]->targ, mTextures[i]->id);
+			glTexSubImage2D(mTextures[i]->targ, 0, 0, 0, mTextures[i]->w, mTextures[i]->h, GL_LUMINANCE, GL_UNSIGNED_BYTE, mKeyboardState);
+		}
 		if (mTextures[i]->id)
 		{
 			glActiveTexture(GL_TEXTURE0 + tunit);
