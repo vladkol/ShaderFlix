@@ -34,7 +34,7 @@ std::string Shader::DownloadShaderJSON()
 	std::string jsonstr;
 
 	HTTPDownloader http;
-	jsonstr = http.downloadString(url, true);
+	jsonstr = http.downloadString(url, false);
 
 	return jsonstr;
 }

@@ -29,18 +29,21 @@ public:
 	ShaderRenderer();
 	~ShaderRenderer();
 
+	void ReleaseGL();
 	void Draw();
 	void UpdateWindowSize(GLsizei width, GLsizei height);
 
-	void InitShader(const char* appKey, const char* shaderId)
+	bool InitShader(const char* appKey, const char* shaderId)
 	{
 		mShaderReady = false;
 		glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		mShader.Initialize(shaderId, appKey);
-		BakeShader();
+		bool bRes = mShader.Initialize(shaderId, appKey);
+		if(bRes)
+			bRes = BakeShader();
+		return bRes;
 	}
 
 	void SetKeyState(unsigned int key, bool pressed)
@@ -138,7 +141,6 @@ protected:
 		glGenTextures(1, &tex);
 
 		glBindTexture(isCubeMap ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D, tex);
-
 
 		GLint format = 0;
 
@@ -323,7 +325,7 @@ protected:
 
 private:
 
-	void BakeShader();
+	bool BakeShader();
 	void InitVertexBuffer();
 
 	std::unique_ptr<Timer> mTimer;

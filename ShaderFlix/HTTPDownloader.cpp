@@ -124,9 +124,17 @@ string HTTPDownloader::downloadString(const std::string& url, bool cache /* = fa
 	if (cache && !_cache.HasParseError() && !_cache.IsNull() && _cache.HasMember(urlHashNumber.c_str()))
 	{
 		std::shared_lock<std::shared_mutex> lock(_cache_mutex);
-		out = _cache[urlHashNumber.c_str()].GetString();
-		if (out.length())
-			return out;
+		
+		if (!_cache[urlHashNumber.c_str()].IsNull())
+		{
+			out = _cache[urlHashNumber.c_str()].GetString();
+			if (out.length())
+				return out;
+		}
+		else
+		{
+			_cache.RemoveMember(urlHashNumber.c_str());
+		}
 	}
 #endif
 

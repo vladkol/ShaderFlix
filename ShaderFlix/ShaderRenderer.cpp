@@ -93,8 +93,43 @@ ShaderRenderer::~ShaderRenderer()
 	glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	ReleaseGL();
 }
 
+void ShaderRenderer::ReleaseGL()
+{
+	mShaderReady = false;
+
+	glDeleteProgram(mShaderProg);
+	mShaderProg = 0;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (mTextures[i]->id)
+		{
+			glDeleteTextures(1, &mTextures[i]->id);
+			mTextures[i]->id = 0;
+			delete mTextures[i];
+		}
+	}
+
+	if (mVertexBuffer)
+	{
+		glDeleteBuffers(1, &mVertexBuffer);
+		mVertexBuffer = 0;
+	}
+	if (mIndexBuffer)
+	{
+		glDeleteBuffers(1, &mIndexBuffer);
+		mIndexBuffer = 0;
+	}
+	if (mVertexArray)
+	{
+		glDeleteVertexArraysOES(1, &mVertexArray);
+		mVertexArray = 0;
+	}
+}
 
 // https://www.shadertoy.com/view/ldfGWn
 // https://github.com/beautypi/ShaderFlix-iOS-v2/blob/a852d8fd536e0606377a810635c5b654abbee623/ShaderFlix/ShaderPassRenderer.m
@@ -194,9 +229,15 @@ void ShaderRenderer::UpdateWindowSize(GLsizei width, GLsizei height)
 	glViewport(0, 0, static_cast<int>(mWindowWidth), static_cast<int>(mWindowHeight));
 }
 
-void ShaderRenderer::BakeShader()
+bool ShaderRenderer::BakeShader()
 {
+	bool bRes = true;
+	std::ostringstream shaderCode;
+	std::string shaderCodeStr;
+	GLuint VertexShaderID = 0;
+	GLuint FragmentShaderID = 0;
 	// all crazy loading stuff here 
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (mShader.imagePass.inputs.size() <= i)
@@ -222,17 +263,32 @@ void ShaderRenderer::BakeShader()
 				input.sampler.srgb == "true",
 				input.sampler.vflip == "true");
 		}
+		else
+		{
+			// unsupported input type
+			//bRes = false; // do not fail straight away
+			break;
+		}
 	}
 
-	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+	if (!bRes)
+	{
+		goto end;
+	}
+
+	VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+	FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
 	const char* VertexSourcePointer = main_vertex_code();
 	glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
 	glCompileShader(VertexShaderID);
+	auto err = glGetError();
 	assert(glGetError() == GL_NO_ERROR);
-
-	std::ostringstream shaderCode;
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot compile vertex shader code
+		goto end;
+	}
 
 	shaderCode << format(shader_header,
 		mTextures[0]->stype.c_str(),
@@ -243,17 +299,26 @@ void ShaderRenderer::BakeShader()
 	shaderCode << mShader.imagePass.code << "\n\n";
 	shaderCode << main_fragment_code() << "\n";
 
-	std::string shaderCodeStr = shaderCode.str();
-
-	//shaderCodeStr = string_replace(shaderCodeStr, "textureCube", "_textureCube");
-
+	shaderCodeStr = shaderCode.str();
 	const char*  FragmentSourcePointer = shaderCodeStr.c_str();
 
 	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
-	assert(glGetError() == GL_NO_ERROR);
-	glCompileShader(FragmentShaderID);
-	assert(glGetError() == GL_NO_ERROR);
+	err = glGetError();
+	assert(err == GL_NO_ERROR);
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot create fragment shader code
+		goto end;
+	}
 
+	glCompileShader(FragmentShaderID);
+	err = glGetError();
+	assert(err == GL_NO_ERROR);
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot compile fragment shader 
+		goto end;
+	}
 	GLuint programId = glCreateProgram();
 	glAttachShader(programId, VertexShaderID);
 	glAttachShader(programId, FragmentShaderID);
@@ -262,19 +327,24 @@ void ShaderRenderer::BakeShader()
 	//mPositionSlot = 0;
 	
 	glLinkProgram(programId);
-	assert(glGetError() == GL_NO_ERROR);
-
-	glDeleteShader(VertexShaderID);
-	glDeleteShader(FragmentShaderID);
+	err = glGetError();
+	assert(err == GL_NO_ERROR);
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot link program
+		goto end;
+	}
 
 	mShaderProg = programId;
 
-	//glUseProgram(mShaderProg);
-	//assert(glGetError() == GL_NO_ERROR);
-
 	mPositionSlot = glGetAttribLocation(mShaderProg, "position");
-	//if (mPositionSlot == -1)
-	//	mPositionSlot = 0;
+	err = glGetError();
+	assert(err == GL_NO_ERROR);
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot get slot position
+		goto end;
+	}
 
 	variables.resolution = glGetUniformLocation(mShaderProg, "iResolution");
 	variables.globaltime = glGetUniformLocation(mShaderProg, "iGlobalTime");
@@ -315,10 +385,26 @@ void ShaderRenderer::BakeShader()
 	variables.fragcoordoffsetuniform = glGetUniformLocation(mShaderProg, "ifFragCoordOffsetUniform");
 	variables.devicerotationuniform = glGetUniformLocation(mShaderProg, "iDeviceRotationUniform");
 	
-	assert(glGetError() == GL_NO_ERROR);
+	err = glGetError();
+	assert(err == GL_NO_ERROR);
+	if (err != GL_NO_ERROR)
+	{
+		bRes = false; // cannot link program
+		goto end;
+	}
+end:
 
-	InitVertexBuffer();
-	mShaderReady = true;
+	if(VertexShaderID)
+		glDeleteShader(VertexShaderID);
+	if(FragmentShaderID)
+		glDeleteShader(FragmentShaderID);
+
+	if (bRes)
+	{
+		InitVertexBuffer();
+		mShaderReady = true;
+	}
+	return bRes;
 }
 
 void ShaderRenderer::InitVertexBuffer()

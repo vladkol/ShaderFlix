@@ -236,13 +236,25 @@ void MainPage::StartRenderLoop()
 
 			mRenderer = std::make_shared<ShaderRenderer>();
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
-			mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str());
+			if (!mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str()))
+			{
+				mRenderer.reset();
+
+				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+				{
+					progressPreRender->IsActive = false;
+					HandleBack();
+				}, CallbackContext::Any));
+			}
 		}
 
 		bool bFirstFrameDone = false;
 
 		while (action->Status == Windows::Foundation::AsyncStatus::Started)
 		{
+			if (!mRenderer)
+				continue;
+
 			EGLint panelWidth = 0;
 			EGLint panelHeight = 0;
 			mOpenGLES->GetSurfaceDimensions(mRenderSurface, &panelWidth, &panelHeight);
