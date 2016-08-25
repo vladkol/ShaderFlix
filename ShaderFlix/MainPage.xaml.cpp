@@ -210,9 +210,12 @@ void MainPage::StartRenderLoop()
 		return;
 	}
 
-	if (mIsXbox && mGamePad == nullptr && Windows::Gaming::Input::Gamepad::Gamepads->Size)
+	if (mIsXbox)
 	{
-		mGamePad = Windows::Gaming::Input::Gamepad::Gamepads->GetAt(0);
+		if (mGamePad == nullptr && Windows::Gaming::Input::Gamepad::Gamepads->Size)
+		{
+			mGamePad = Windows::Gaming::Input::Gamepad::Gamepads->GetAt(0);
+		}
 	}
 
 
@@ -318,6 +321,11 @@ void MainPage::StartRenderLoop()
 
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
+					if (mIsXbox)
+					{
+						Window::Current->CoreWindow->PointerCursor = nullptr;
+					}
+
 					progressPreRender->IsActive = false;
 					imageBG->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 				}, CallbackContext::Any));
@@ -329,6 +337,7 @@ void MainPage::StartRenderLoop()
 		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 		{
 			focusButton->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+			progressPreRender->IsActive = false;
 		}, CallbackContext::Any));
 	});
 
@@ -338,6 +347,11 @@ void MainPage::StartRenderLoop()
 
 void MainPage::StopRenderLoop()
 {
+	if (mIsXbox)
+	{
+		Window::Current->CoreWindow->PointerCursor = ref new Windows::UI::Core::CoreCursor(Windows::UI::Core::CoreCursorType::Arrow, 0);
+	}
+
 	if (mRenderLoopWorker)
 	{
 		mRenderLoopWorker->Cancel();
