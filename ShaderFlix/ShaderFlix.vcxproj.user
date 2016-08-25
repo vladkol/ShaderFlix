@@ -8,7 +8,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerMachineName>10.137.84.183</DebuggerMachineName>
     <DebuggerFlavor>AppHostLocalDebugger</DebuggerFlavor>
-    <WindowsAppEmulatorID>98CD6FA8-9114-4179-ACA3-38E5D23C77EE;Mobile Emulator 10.0.10586.0 WVGA 4 inch 512MB</WindowsAppEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerMachineName>10.137.84.183</DebuggerMachineName>
