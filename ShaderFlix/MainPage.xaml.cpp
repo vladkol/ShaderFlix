@@ -234,12 +234,23 @@ void MainPage::StartRenderLoop()
 			EGLint panelHeight = 0;
 			mOpenGLES->GetSurfaceDimensions(mRenderSurface, &panelWidth, &panelHeight);
 
-			xboxMouseX = panelWidth / 2;
-			xboxMouseY = panelHeight / 2;
+			xboxMouseX = (float)panelWidth / 2;
+			xboxMouseY = (float) panelHeight / 2;
 
 			mRenderer = std::make_shared<ShaderRenderer>();
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
-			if (!mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str()))
+			bool bInitOK = false;
+
+			try
+			{
+				bInitOK = mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str());
+			}
+			catch (...)
+			{
+				assert(!"Exception while initializing shader");
+			}
+
+			if (!bInitOK)
 			{
 				mRenderer.reset();
 
@@ -277,11 +288,11 @@ void MainPage::StartRenderLoop()
 			if (mIsXbox && mGamePad != nullptr)
 			{
 				auto reading = mGamePad->GetCurrentReading();
-				double x = reading.LeftThumbstickX;
-				if (abs(x) < 0.06)
+				float x = (float) reading.LeftThumbstickX;
+				if (abs(x) < 0.06f)
 					x = 0;
-				double y = reading.LeftThumbstickY;
-				if (abs(y) < 0.06)
+				float y = (float) reading.LeftThumbstickY;
+				if (abs(y) < 0.06f)
 					y = 0;
 				bool bLeftClick = (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
 				
@@ -289,30 +300,44 @@ void MainPage::StartRenderLoop()
 				if (xboxMouseX < 0)
 					xboxMouseX = 0;
 				else if (xboxMouseX >= panelWidth)
-					xboxMouseX = panelWidth - 1;
+					xboxMouseX = (float) panelWidth - 1;
 
 				xboxMouseY += 10 * y;
 				if (xboxMouseY < 0)
 					xboxMouseY = 0;
 				else if (xboxMouseY >= panelHeight)
-					xboxMouseY = panelWidth - 1;
+					xboxMouseY = (float) panelWidth - 1;
 
-				mRenderer->SetMouseState(true, xboxMouseX, xboxMouseY, bLeftClick);
+				mRenderer->SetMouseState(true, (int)xboxMouseX, (int)xboxMouseY, bLeftClick);
 			}
 
-			mRenderer->Draw();
+			bool bNeedToStop = false;
 
-			// The call to eglSwapBuffers might not be successful (i.e. due to Device Lost)
-			// If the call fails, then we must reinitialize EGL and the GL resources.
-			if (mOpenGLES->SwapBuffers(mRenderSurface) != GL_TRUE)
+			try
 			{
-				// XAML objects like the SwapChainPanel must only be manipulated on the UI thread.
-				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
-				{
-					RecoverFromLostDevice();
-				}, CallbackContext::Any));
+				mRenderer->Draw();
+			}
+			catch (...)
+			{
+				assert(!"Exception while rendering shader");
+				bNeedToStop = true;
+			}
 
-				return;
+
+			if (!bNeedToStop)
+			{
+				// The call to eglSwapBuffers might not be successful (i.e. due to Device Lost)
+				// If the call fails, then we must reinitialize EGL and the GL resources.
+				if (mOpenGLES->SwapBuffers(mRenderSurface) != GL_TRUE)
+				{
+					// XAML objects like the SwapChainPanel must only be manipulated on the UI thread.
+					swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+					{
+						RecoverFromLostDevice();
+					}, CallbackContext::Any));
+
+					return;
+				}
 			}
 
 			if (!bFirstFrameDone)
@@ -329,6 +354,15 @@ void MainPage::StartRenderLoop()
 					progressPreRender->IsActive = false;
 					imageBG->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 				}, CallbackContext::Any));
+			}
+
+			if (bNeedToStop)
+			{
+				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
+				{
+					HandleBack();
+				}, CallbackContext::Any));
+				break;
 			}
 		}
 

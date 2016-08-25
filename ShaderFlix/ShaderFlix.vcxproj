@@ -141,6 +141,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>md "$(LayoutDir)"
@@ -161,6 +162,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>md "$(LayoutDir)"
@@ -181,6 +183,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>
