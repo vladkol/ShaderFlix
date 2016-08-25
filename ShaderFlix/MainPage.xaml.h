@@ -113,5 +113,6 @@ namespace ShaderFlix
 		void OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e);
+		void Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

@@ -862,3 +862,10 @@ void MainPage::shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml
 	std::wstring wid(id->Data());
 	PlayShader(std::string(wid.begin(), wid.end()));
 }
+
+
+void ShaderFlix::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+		
+}

@@ -30,7 +30,9 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="titleBar" Grid.Column="0">
-                        <Image x:Name="logo" Margin="0,0,2,0" Source="Assets/ShaderFlix.png" Stretch="Uniform"  HorizontalAlignment="Left" Height="30" VerticalAlignment="Stretch"/>
+                        <Button x:Name="logo" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" BorderBrush="Transparent" BorderThickness="0" Click="Button_Click" Padding="0">
+                            <Image  Source="Assets/ShaderFlix.png" Stretch="Uniform" />
+                        </Button>
                     </Grid>
                     <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
                     <Button Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
@@ -76,5 +78,47 @@
                 </Grid>-->
             </Grid>
         </Grid>
+        
+        <Grid Background="#404040" Margin="100" x:Name="licenseGrid" Visibility="Collapsed">
+            <ScrollViewer>
+                <StackPanel Margin="20" HorizontalAlignment="Center">
+                <TextBlock Text="License and Privacy" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <TextBlock TextWrapping="WrapWholeWords">
+                    <Span xml:space="preserve">
+<Run>Shaderflix is a ShaderToy.com application created by Vlad Kolesnikov.</Run><LineBreak/><LineBreak/><Run>It uses ShaderToy.com API. Every visualization and shader in this app and on ShaderToy.com may have a specific license.
+If not specified, </Run><Hyperlink Foreground="#FFC65F10" NavigateUri="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</Hyperlink><Run> is assumed.</Run><LineBreak/>
+<Run>        
+Copyright (c) 2016 Vlad Kolesnikov</Run><LineBreak/>
+<Run>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+of the Software.</Run><LineBreak/><Run>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</Run><LineBreak/>                    
+Shaderflix respects the privacy of its users and will not use collected anonymous data to compete with its users, market to its user's clients, advertise to, or contact them for any other means of profit. All user information and content is governed as specified in Disclamer below.
+                    </Span></TextBlock>
+                    <TextBlock Text="Disclamer" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                    <TextBlock TextWrapping="WrapWholeWords">
+                    <Span xml:space="preserve">    
+<Run>Shadertoy and Shaderflix authors are not responsible for the content created by ShaderToy.com users, 
+the users are responsible for that content. 
+Shadertoy reserves the right to suspend any user account without further notice and, in the same way, 
+Shadertoy reserves the right to block any shaders or assets without further notice.
+</Run><LineBreak/><Run>Shadertoy or its contributors are not responsible for content shared on the website that can potentially 
+damage hardware and/or software. The user agrees that WebGL is a delicate technology and he/she will assume 
+all the risk when browsing, playing or editing the shaders. However, Shadertoy is fully committed to provide 
+a good browsing experience, our team constantly tests and report any potential issues to the shader creators.
+                        </Run>
+                        </Span>
+            </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel x:Name="licenseButtons" Margin="24" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button HorizontalAlignment="Right" Margin="0,0,24,0" x:Name="buttonAccept">Accept</Button>
+                <Button HorizontalAlignment="Right" x:Name="buttonDecline">Decline</Button>
+            </StackPanel>
+            <Button x:Name="closeButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="24">Close</Button>
+        </Grid>
+        
     </Grid>
 </Page>
