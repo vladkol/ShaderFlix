@@ -26,6 +26,9 @@
     <Filter Include="PresetData\presets">
       <UniqueIdentifier>{b99a7f5c-f7f4-4e4e-917a-0dfc9cfb6795}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PresetData\presets\previz">
+      <UniqueIdentifier>{ab1e7393-1b11-48b3-b5a3-69268de4b91e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -372,6 +375,18 @@
     <Image Include="PresetData\presets\vid03.png">
       <Filter>PresetData\presets</Filter>
     </Image>
+    <Image Include="PresetData\presets\previz\buffer00.png">
+      <Filter>PresetData\presets\previz</Filter>
+    </Image>
+    <Image Include="PresetData\presets\previz\buffer01.png">
+      <Filter>PresetData\presets\previz</Filter>
+    </Image>
+    <Image Include="PresetData\presets\previz\buffer02.png">
+      <Filter>PresetData\presets\previz</Filter>
+    </Image>
+    <Image Include="PresetData\presets\previz\buffer03.png">
+      <Filter>PresetData\presets\previz</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -382,8 +397,53 @@
     <None Include="curl\prebuilt\win10\$(PlatformName)\libcurl.dll" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\libeay32.dll" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\ssleay32.dll" />
+    <None Include="PresetData\presets\vid00.ogv">
+      <Filter>PresetData\presets</Filter>
+    </None>
+    <None Include="PresetData\presets\vid02.ogv">
+      <Filter>PresetData\presets</Filter>
+    </None>
+    <None Include="samples.json" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="PresetData\presets\mzk00.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk01.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk02.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk03.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk04.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk05.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\mzk06.mp3">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\vid00.mp4">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\vid01.mp4">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\vid01.webm">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\vid02.mp4">
+      <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="PresetData\presets\vid03.webm">
+      <Filter>PresetData\presets</Filter>
+    </Media>
   </ItemGroup>
 </Project>
