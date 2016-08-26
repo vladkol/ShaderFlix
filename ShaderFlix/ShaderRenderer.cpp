@@ -26,27 +26,6 @@ const GLubyte Indices [] = {
 
 // https://github.com/beautypi/ShaderFlix-iOS-v2/
 
-//static const char *shader_header =
-//	"#extension GL_EXT_shader_texture_lod : enable \n"
-//	"#extension GL_OES_standard_derivatives : enable \n"
-//	"precision highp float;\n"
-//	"precision highp int;\n\n"
-//	"precision mediump sampler2D;\n\n"
-//	"uniform vec2  ifFragCoordOffsetUniform;\n"
-//	"uniform vec3  iResolution;\n"
-//	"uniform float iGlobalTime;\n"
-//	"uniform float iTimeDelta;\n"
-//	"uniform int   iFrame;\n"
-//	"uniform float iChannelTime[4];\n"
-//	"uniform vec3  iChannelResolution[4];\n"
-//	"uniform vec4  iMouse;\n"
-//	"uniform sampler%s iChannel0;\n"
-//	"uniform sampler%s iChannel1;\n"
-//	"uniform sampler%s iChannel2;\n"
-//	"uniform sampler%s iChannel3;\n"
-//	"uniform vec4  iDate;\n"
-//	"uniform float iSampleRate;\n\n";
-
 static const char *shader_header =
 "#extension GL_EXT_shader_texture_lod : enable \n"
 "#extension GL_OES_standard_derivatives : enable \n"
