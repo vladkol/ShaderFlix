@@ -89,10 +89,22 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 			APIShaderPassInput input;
 			input.id = inputsArr[k]["id"].GetInt();
 			input.channel = inputsArr[k]["channel"].GetInt();
+
 			input.src = inputsArr[k]["src"].GetString();
 			input.ctype = inputsArr[k]["ctype"].GetString();
 
-			if (input.ctype == "buffer" || input.ctype == "sound" || input.ctype == "video")
+			if (input.ctype == "video")
+			{
+				input.src = string_replace(input.src, ".webm", ".png");
+				input.src = string_replace(input.src, ".ogv", ".png");
+				input.ctype = "texture";
+			}
+			else if (input.ctype == "webcam")
+			{
+				input.src = "/presets/webcam.png";
+				input.ctype = "texture";
+			}
+			if (input.ctype == "buffer")
 			{
 				hasInputError = true;
 				break;

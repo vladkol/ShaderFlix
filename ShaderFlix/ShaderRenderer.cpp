@@ -264,6 +264,22 @@ bool ShaderRenderer::BakeShader()
 				input.sampler.srgb == "true",
 				input.sampler.vflip == "true");
 		}
+		else if (mShader.imagePass.inputs[i].ctype == "music" || mShader.imagePass.inputs[i].ctype == "musicstream")
+		{
+			mTextures[i] = new Texture();
+			GLuint texId = 0;
+			glGenTextures(1, &texId);
+			glBindTexture(GL_TEXTURE_2D, texId);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			
+			char dummyData[256 * 2] = { 0 };
+			mTextures[i]->id = texId;
+			mTextures[i]->stype = "2D";
+			mTextures[i]->targ = GL_TEXTURE_2D;
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RED_EXT, 256, 2, 0, GL_RED_EXT, GL_UNSIGNED_BYTE, dummyData);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
 		else
 		{
 			// unsupported input type
