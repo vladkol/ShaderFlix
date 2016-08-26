@@ -285,6 +285,9 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
     </None>
     <None Include="packages.config" />
+    <None Include="PresetData\presets\vid00.ogv" />
+    <None Include="PresetData\presets\vid02.ogv" />
+    <None Include="samples.json" />
     <None Include="ShaderFlix_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +338,10 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\cube05_3.png" />
     <Image Include="PresetData\presets\cube05_4.png" />
     <Image Include="PresetData\presets\cube05_5.png" />
+    <Image Include="PresetData\presets\previz\buffer00.png" />
+    <Image Include="PresetData\presets\previz\buffer01.png" />
+    <Image Include="PresetData\presets\previz\buffer02.png" />
+    <Image Include="PresetData\presets\previz\buffer03.png" />
     <Image Include="PresetData\presets\tex00.jpg" />
     <Image Include="PresetData\presets\tex01.jpg" />
     <Image Include="PresetData\presets\tex02.jpg" />
@@ -380,6 +387,20 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderRenderer.cpp" />
     <ClCompile Include="stb_image_impl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="PresetData\presets\mzk00.mp3" />
+    <Media Include="PresetData\presets\mzk01.mp3" />
+    <Media Include="PresetData\presets\mzk02.mp3" />
+    <Media Include="PresetData\presets\mzk03.mp3" />
+    <Media Include="PresetData\presets\mzk04.mp3" />
+    <Media Include="PresetData\presets\mzk05.mp3" />
+    <Media Include="PresetData\presets\mzk06.mp3" />
+    <Media Include="PresetData\presets\vid00.mp4" />
+    <Media Include="PresetData\presets\vid01.mp4" />
+    <Media Include="PresetData\presets\vid01.webm" />
+    <Media Include="PresetData\presets\vid02.mp4" />
+    <Media Include="PresetData\presets\vid03.webm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
