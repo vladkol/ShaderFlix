@@ -125,6 +125,8 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 		});
 		Windows::System::Threading::ThreadPool::RunAsync(workItemHandler, Windows::System::Threading::WorkItemPriority::High, Windows::System::Threading::WorkItemOptions::TimeSliced);
 	}
+
+	shadersList->Focus(Windows::UI::Xaml::FocusState::Keyboard);
 }
 
 

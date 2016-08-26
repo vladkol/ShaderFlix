@@ -82,6 +82,10 @@
         </Grid>
         
         <Grid Background="#404040" Margin="100" x:Name="licenseGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             <ScrollViewer>
                 <StackPanel Margin="20" HorizontalAlignment="Center">
                 <TextBlock Text="License and Privacy" Style="{StaticResource SubheaderTextBlockStyle}"/>
@@ -108,11 +112,11 @@ Shadertoy reserves the right to suspend any user account without further notice 
             </TextBlock>
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel x:Name="licenseButtons" Margin="24" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel Grid.Row="1" x:Name="licenseButtons" Margin="24" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button HorizontalAlignment="Right" Margin="0,0,24,0" x:Name="buttonAccept" Click="buttonAccept_Click">Accept</Button>
                 <Button HorizontalAlignment="Right" x:Name="buttonDecline" Click="buttonDecline_Click">Decline</Button>
             </StackPanel>
-            <Button x:Name="closeButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="24" Click="closeButton_Click">Close</Button>
+            <Button Grid.Row="1" x:Name="closeButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="24" Click="closeButton_Click">Close</Button>
         </Grid>
         
     </Grid>
