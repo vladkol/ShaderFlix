@@ -35,6 +35,18 @@ namespace ShaderFlix
 		std::vector<APIShaderPassInput> inputs;
 		std::string code;
 		std::string type;
+		int id;
+		int channel;
+
+		APIShaderPass() : id(0), channel(0)
+		{
+
+		}
+
+		bool IsBuffer()
+		{
+			return type == "buffer";
+		}
 	};
 
 	class Shader
@@ -57,7 +69,7 @@ namespace ShaderFlix
 
 		std::time_t date;
 
-		APIShaderPass imagePass;
+		std::map<int, APIShaderPass> passes;
 
 	private:
 		std::string DownloadShaderJSON();
