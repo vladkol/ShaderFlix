@@ -355,6 +355,10 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\tex18.jpg" />
     <Image Include="PresetData\presets\tex19.png" />
     <Image Include="PresetData\presets\tex20.jpg" />
+    <Image Include="PresetData\presets\vid00.png" />
+    <Image Include="PresetData\presets\vid01.png" />
+    <Image Include="PresetData\presets\vid02.png" />
+    <Image Include="PresetData\presets\vid03.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">

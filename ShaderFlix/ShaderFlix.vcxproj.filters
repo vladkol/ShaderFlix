@@ -360,6 +360,18 @@
     <Image Include="Assets\BG2.jpg">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="PresetData\presets\vid00.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\vid01.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\vid02.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\vid03.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

@@ -111,6 +111,20 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 	{
 		ShowLicense(true);
 	}
+
+	if (!settings->HasKey("PresetsCopied"))
+	{
+		auto workItemHandler = ref new Windows::System::Threading::WorkItemHandler([this, settings](Windows::Foundation::IAsyncAction ^ action)
+		{
+			Windows::Storage::StorageFolder^ appFolder = Windows::ApplicationModel::Package::Current->InstalledLocation;
+			std::wstring path = appFolder->Path->Data();
+			path += L"\\PresetData\\presets";
+
+			CachePresets(std::string(path.begin(), path.end()));
+			settings->Insert("PresetsCopied", "yes");
+		});
+		Windows::System::Threading::ThreadPool::RunAsync(workItemHandler, Windows::System::Threading::WorkItemPriority::High, Windows::System::Threading::WorkItemOptions::TimeSliced);
+	}
 }
 
 

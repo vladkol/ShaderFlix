@@ -14,6 +14,7 @@
 #include <string>
 #include <cstdarg>
 #include <memory>
+#include <experimental/filesystem>
 
 inline std::string format(const char* format, ...)
 {
@@ -41,7 +42,13 @@ inline std::string string_replace(std::string &s,
 	const std::string &toReplace,
 	const std::string &replaceWith)
 {
-	return(s.replace(s.find(toReplace), toReplace.length(), replaceWith));
+	size_t start_pos = 0;
+	while ((start_pos = s.find(toReplace, start_pos)) != std::string::npos) {
+		s.replace(start_pos, toReplace.length(), replaceWith);
+		start_pos += replaceWith.length();
+	}
+
+	return s;
 }
 
 inline std::vector<std::string> splitpath(
@@ -132,4 +139,10 @@ inline std::string get_appdata_path()
 #endif
 
 	return path;
+}
+
+inline void CachePresets(const std::string& srcPath)
+{
+	std::string dst = get_appdata_path() + "/presets/";
+	std::experimental::filesystem::copy(srcPath, dst);
 }
