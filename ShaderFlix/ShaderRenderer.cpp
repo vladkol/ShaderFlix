@@ -277,6 +277,8 @@ bool ShaderRenderer::BakeShader()
 			mTextures[i]->id = texId;
 			mTextures[i]->stype = "2D";
 			mTextures[i]->targ = GL_TEXTURE_2D;
+			mTextures[i]->w = 256;
+			mTextures[i]->h = 2;
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RED_EXT, 256, 2, 0, GL_RED_EXT, GL_UNSIGNED_BYTE, dummyData);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
@@ -284,6 +286,23 @@ bool ShaderRenderer::BakeShader()
 		{
 			// unsupported input type
 			//bRes = false; // do not fail straight away
+			
+			// create a dummy texture
+			mTextures[i] = new Texture();
+			GLuint texId = 0;
+			glGenTextures(1, &texId);
+			glBindTexture(GL_TEXTURE_2D, texId);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+			char dummyData[256 * 256] = { 0 };
+			mTextures[i]->id = texId;
+			mTextures[i]->stype = "2D";
+			mTextures[i]->targ = GL_TEXTURE_2D;
+			mTextures[i]->w = 256;
+			mTextures[i]->h = 256;
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RED_EXT, 256, 256, 0, GL_RED_EXT, GL_UNSIGNED_BYTE, dummyData);
+			glBindTexture(GL_TEXTURE_2D, 0);
 			break;
 		}
 	}
