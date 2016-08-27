@@ -387,6 +387,12 @@
     <Image Include="PresetData\presets\previz\buffer03.png">
       <Filter>PresetData\presets\previz</Filter>
     </Image>
+    <Image Include="PresetData\presets\music.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\webcam.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

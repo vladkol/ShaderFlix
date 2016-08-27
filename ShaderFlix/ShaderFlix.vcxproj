@@ -338,6 +338,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\cube05_3.png" />
     <Image Include="PresetData\presets\cube05_4.png" />
     <Image Include="PresetData\presets\cube05_5.png" />
+    <Image Include="PresetData\presets\music.png" />
     <Image Include="PresetData\presets\previz\buffer00.png" />
     <Image Include="PresetData\presets\previz\buffer01.png" />
     <Image Include="PresetData\presets\previz\buffer02.png" />
@@ -366,6 +367,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\vid01.png" />
     <Image Include="PresetData\presets\vid02.png" />
     <Image Include="PresetData\presets\vid03.png" />
+    <Image Include="PresetData\presets\webcam.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">
