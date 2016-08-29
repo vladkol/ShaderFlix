@@ -1,5 +1,5 @@
 # ShaderFlix
-ShaderToy.com Player for Windows 10 
+[ShaderToy.com](https://shadertoy.com) Player for Windows 10 
 Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. 
 
 It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). While it is a Windows 10 UWP app, pretty much everything but UI is portable C++ code. 
@@ -8,7 +8,9 @@ Currently, it doesn't support multipass shaders. Shaders with webcam, video and 
 To build this app, you need Visual Studio 2015 Update 3 or later, with latest Universal Windows Platform SDK. 
 IT uses Project "ANGLE" for OpenGL ES layer, libcURL for networking, rapidJSON for JSON parsing. Feel free to make derivatives on Windows and other platforms. 
 
-All the app content, if not specified, is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US). 
+![screenshot](https://cloud.githubusercontent.com/assets/4735184/18058010/4232e16e-6dc7-11e6-8d36-5ce909c6edaa.png)
+
+If not specified, all the app content, is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US). 
 
 Copyright © 2016 Vlad Kolesnikov
 
@@ -20,3 +22,5 @@ libcURL, Copyright © 1996 - 2016, Daniel Stenberg, daniel@haxx.se, and other co
 
 OpenGL ES implementation via ANGLE, Copyright © 2002-2013 The ANGLE Project Authors, Portions Copyright © Microsoft Corporation
 
+![another screenshot](https://cloud.githubusercontent.com/assets/4735184/18058056/7b42c10e-6dc7-11e6-8ef2-b1903e2c30bd.png)
+*[Truchet Tentacles by WAHa_06x36](https://www.shadertoy.com/view/ldfGWn)*
