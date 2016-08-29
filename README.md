@@ -1,6 +1,6 @@
 # ShaderFlix
-[ShaderToy.com](https://shadertoy.com) Player for Windows 10 
-Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. 
+[ShaderToy.com](https://shadertoy.com) Player for Windows 10.  
+Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. Shadertoy is a platform where developers can prototype, experiment, teach, learn, inspire and share visual creations with the community. 
 
 It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). While it is a Windows 10 UWP app, pretty much everything but UI is portable C++ code. 
 Currently, it doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. 
