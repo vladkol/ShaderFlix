@@ -450,5 +450,8 @@
     <Media Include="PresetData\presets\vid03.webm">
       <Filter>PresetData\presets</Filter>
     </Media>
+    <Media Include="Assets\1sec.mp3">
+      <Filter>Assets</Filter>
+    </Media>
   </ItemGroup>
 </Project>

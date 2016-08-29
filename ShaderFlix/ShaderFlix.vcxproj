@@ -392,6 +392,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile Include="stb_image_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\1sec.mp3" />
     <Media Include="PresetData\presets\mzk00.mp3" />
     <Media Include="PresetData\presets\mzk01.mp3" />
     <Media Include="PresetData\presets\mzk02.mp3" />

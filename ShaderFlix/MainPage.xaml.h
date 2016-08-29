@@ -90,6 +90,7 @@ namespace ShaderFlix
 		bool mPlaying;
 		bool mIsXbox;
 		Windows::Gaming::Input::Gamepad^ mGamePad;
+		Windows::Media::Playback::MediaPlayer^ mPlayer;
 
 		std::mutex http_mutex;             // mutex for critical section
 		std::condition_variable http_cv; // condition variable for critical section  
@@ -135,5 +136,6 @@ namespace ShaderFlix
 		void web_NavigationStarting(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ args);
 		void buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs^ args);
+		void OnButtonPressed(Windows::Media::SystemMediaTransportControls ^sender, Windows::Media::SystemMediaTransportControlsButtonPressedEventArgs ^args);
 	};
 }
