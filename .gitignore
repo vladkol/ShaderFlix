@@ -20,6 +20,7 @@ Generated Files/
 AppPackages/
 BundleArtifacts/
 *.StoreAssociation.xml
+*_StoreKey.pfx 
 
 # Windows Installer files
 *.cab
