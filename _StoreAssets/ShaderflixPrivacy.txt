@@ -1,0 +1,5 @@
+Shaderflix respects the privacy of its users and will not use collected anonymous data to compete with its users, market to its user's clients, advertise to, or contact them for any other means of profit. All user information and content is governed as specified in below. 
+
+Shadertoy and Shaderflix authors are not responsible for the content created by ShaderToy.com users, the users are responsible for that content. 
+Shadertoy reserves the right to suspend any user account without further notice and, in the same way, Shadertoy reserves the right to block any shaders or assets without further notice.
+Shadertoy or its contributors are not responsible for content shared on the website that can potentially damage hardware and/or software. The user agrees that WebGL is a delicate technology and he/she will assume all the risk when browsing, playing or editing the shaders. However, Shadertoy is fully committed to provide a good browsing experience, our team constantly tests and report any potential issues to the shader creators.

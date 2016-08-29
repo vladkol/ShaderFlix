@@ -12,11 +12,11 @@
             <Button x:Name="focusButton" Visibility="Collapsed" Width="0" Height="0" Background="Transparent" Foreground="Transparent" BorderThickness="0"/>
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+        <StackPanel Visibility="Collapsed" x:Name="playingButtons" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button TabIndex="4" ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
                 <SymbolIcon Symbol="Message"/>
             </Button>
-            <Button  x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+            <Button TabIndex="5" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
                 <SymbolIcon Symbol="FullScreen"/>
             </Button>
         </StackPanel>
@@ -38,16 +38,16 @@
                     <Grid x:Name="titleBar" Grid.Column="0">
                         <Image  Source="Assets/ShaderFlix.png" Stretch="Uniform" x:Name="logo" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
                     </Grid>
-                    <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
-                    <Button ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                    <AutoSuggestBox TabIndex="0" x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
+                    <Button TabIndex="1" ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
                         <SymbolIcon Symbol="Caption"/>
                     </Button>
-                    <Button Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
+                    <Button TabIndex="2" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
                         <SymbolIcon Symbol="FullScreen" ToolTipService.ToolTip="Fullscreen"/>
                     </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
-            <ListView Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
+            <ListView TabIndex="3" Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
@@ -103,7 +103,7 @@
                 <TextBlock Text="License and Privacy" Style="{StaticResource SubheaderTextBlockStyle}"/>
                     <TextBlock TextWrapping="WrapWholeWords">
                     <Span xml:space="preserve">
-<Run>Shaderflix is a ShaderToy.com application created by Vlad Kolesnikov.</Run><LineBreak/><LineBreak/><Run>It uses ShaderToy.com API. Every visualization and shader in this app and on ShaderToy.com may have a specific license.
+<Run>Shaderflix is a ShaderToy.com application created by Vlad Kolesnikov aka EqWu.</Run><LineBreak/><LineBreak/><Run>It uses ShaderToy.com API. Every visualization and shader in this app and on ShaderToy.com may have a specific license.
 If not specified, </Run><Hyperlink Foreground="#FFC65F10" NavigateUri="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</Hyperlink><Run> is assumed.</Run><LineBreak/>
 <Run>This version doesn't support multipass shaders. Shaders with webcam input, audio and video inputs can be played, but without actually getting real input data.</Run>
 <Run>Please send your feedback to </Run><Hyperlink Foreground="#FFC65F10" NavigateUri="mailto:shaderflix@vladkol.com">shaderflix@vladkol.com</Hyperlink><LineBreak/>

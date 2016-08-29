@@ -407,6 +407,8 @@
       <Filter>PresetData\presets</Filter>
     </None>
     <None Include="samples.json" />
+    <None Include="Package.StoreAssociation.xml" />
+    <None Include="ShaderFlix_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />

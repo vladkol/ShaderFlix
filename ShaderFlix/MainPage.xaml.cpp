@@ -679,6 +679,7 @@ void MainPage::PlayShader(const std::string& id)
 			StartRenderLoop();
 			mPlaying = true;
 			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Visible;
+			playingButtons->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		}
 		catch (...)
 		{
@@ -887,6 +888,8 @@ void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xam
 	{
 		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 	}
 }
 
@@ -899,6 +902,8 @@ void MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationVi
 		coreTitleBar->ExtendViewIntoTitleBar = true;
 		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 	}
 }
 
@@ -918,10 +923,13 @@ bool MainPage::HandleBack()
 		{
 			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			ToggleFullscreen();
 		}
 		else
 		{
+			playingButtons->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			mPlaying = false;
