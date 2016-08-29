@@ -23,6 +23,14 @@ namespace ShaderFlix
 		property Platform::String^ ShaderPreview;
 		property Platform::String^ ShaderName;
 		property Platform::String^ ShaderId;
+		property Platform::String^ ShaderLikes;
+		property bool NotSupported;
+		property Platform::String^ ShaderInfo;
+
+		ShaderItem()
+		{
+			NotSupported = false;
+		}
 	};
 
 	struct PointerState
@@ -55,6 +63,7 @@ namespace ShaderFlix
 
 	internal:
 		property Platform::Collections::Vector<ShaderItem^>^ mItems;
+		property ShaderItem^ lastPlayed;
 
 	private:
 

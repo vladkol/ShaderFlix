@@ -351,9 +351,6 @@
     <Image Include="PresetData\presets\tex20.jpg">
       <Filter>PresetData\presets</Filter>
     </Image>
-    <Image Include="Assets\BG.jpg">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Assets\ShaderFlix.png">
       <Filter>Assets</Filter>
     </Image>

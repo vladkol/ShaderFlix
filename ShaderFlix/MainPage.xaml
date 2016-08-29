@@ -12,9 +12,14 @@
             <Button x:Name="focusButton" Visibility="Collapsed" Width="0" Height="0" Background="Transparent" Foreground="Transparent" BorderThickness="0"/>
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
-            <SymbolIcon Symbol="FullScreen"/>
-        </Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                <SymbolIcon Symbol="Message"/>
+            </Button>
+            <Button  x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+                <SymbolIcon Symbol="FullScreen"/>
+            </Button>
+        </StackPanel>
         <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
         <Grid x:Name="galleryGridHost" Background="Transparent" >
             <!--<Rectangle Fill="#7F000000"></Rectangle>-->
@@ -34,11 +39,11 @@
                         <Image  Source="Assets/ShaderFlix.png" Stretch="Uniform" x:Name="logo" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
                     </Grid>
                     <AutoSuggestBox x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
-                    <Button Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
-                        <SymbolIcon Symbol="Important"/>
+                    <Button ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                        <SymbolIcon Symbol="Caption"/>
                     </Button>
                     <Button Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
-                        <SymbolIcon Symbol="FullScreen"/>
+                        <SymbolIcon Symbol="FullScreen" ToolTipService.ToolTip="Fullscreen"/>
                     </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
@@ -57,8 +62,15 @@
                                         <BitmapImage UriSource="{Binding Path=ShaderPreview}"/>
                                     </Image.Source>
                                 </Image>
+                                <Grid Background="#9F000000" Visibility="{Binding Path=NotSupported}">
+                                    <TextBlock FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic">Not supported</TextBlock>
+                                </Grid>
                                 <Rectangle Height="32" Fill="#7F000000" VerticalAlignment="Bottom"/>
                                 <TextBlock x:Name="shaderName" FontSize="18" Margin="12,0,4,4" Text="{Binding Path=ShaderName}"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <SymbolIcon Symbol="Like"/>
+                                    <TextBlock x:Name="shaderLikes" FontSize="18" Margin="4,4,12,4" Text="{Binding Path=ShaderLikes}" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -93,10 +105,15 @@
                     <Span xml:space="preserve">
 <Run>Shaderflix is a ShaderToy.com application created by Vlad Kolesnikov.</Run><LineBreak/><LineBreak/><Run>It uses ShaderToy.com API. Every visualization and shader in this app and on ShaderToy.com may have a specific license.
 If not specified, </Run><Hyperlink Foreground="#FFC65F10" NavigateUri="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</Hyperlink><Run> is assumed.</Run><LineBreak/>
+<Run>This version doesn't support multipass shaders. Shaders with webcam input, audio and video inputs can be played, but without actually getting real input data.</Run>
+<Run>Please send your feedback to </Run><Hyperlink Foreground="#FFC65F10" NavigateUri="mailto:shaderflix@vladkol.com">shaderflix@vladkol.com</Hyperlink><LineBreak/>
 <Run>        
-Copyright © 2016 Vlad Kolesnikov</Run><LineBreak/><Run>Copyright © 2016 Reinder Nijhoff and Beautypi</Run><LineBreak/>
-<Run>
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</Run><LineBreak/><Run>
+Copyright © 2016 Vlad Kolesnikov</Run><LineBreak/><Run>ShaderToy.com, Copyright © 2016 Reinder Nijhoff and Beautypi</Run>
+<Run>Shaderflix app background based on "Voronoi - distances" shader by Inigo Quilez (CC BY-NC-SA 3.0 US license)</Run>
+<Run>RapidJSON, Copyright © 2015 THL A29 Limited, a Tencent company, and Milo Yip.  All rights reserved.</Run>
+<Run>libcURL, Copyright (c) 1996 - 2016, Daniel Stenberg, daniel@haxx.se, and other contributors</Run>
+<Run>OpenGL ES implementation via ANGLE, Copyright (C) 2002-2013 The ANGLE Project Authors</Run><LineBreak/>
+<Run>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</Run><LineBreak/><Run>
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</Run><LineBreak/>                    
 Shaderflix respects the privacy of its users and will not use collected anonymous data to compete with its users, market to its user's clients, advertise to, or contact them for any other means of profit. All user information and content is governed as specified in the Disclamer below.

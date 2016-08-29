@@ -248,6 +248,7 @@ void MainPage::StartRenderLoop()
 		Concurrency::critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
 
 		float xboxMouseX = 0, xboxMouseY = 0;
+		Platform::String^ errorText = L"";
 
 		mOpenGLES->MakeCurrent(mRenderSurface);
 
@@ -270,16 +271,25 @@ void MainPage::StartRenderLoop()
 			}
 			catch (...)
 			{
+				errorText = L"Sorry, I cannot initialize this shader.";
 				assert(!"Exception while initializing shader");
 			}
 
 			if (!bInitOK)
 			{
+				errorText = L"Sorry, I cannot initialize this shader.";
 				mRenderer.reset();
 
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
 					progressPreRender->IsActive = false;
+
+					if (errorText->Length())
+					{
+						Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(errorText, "Error");
+						dlg->ShowAsync();
+					}
+
 					HandleBack();
 				}, CallbackContext::Any));
 			}
@@ -343,6 +353,7 @@ void MainPage::StartRenderLoop()
 			catch (...)
 			{
 				assert(!"Exception while rendering shader");
+				errorText = L"Sorry, there was an error while playing this shader.";
 				bNeedToStop = true;
 			}
 
@@ -383,6 +394,12 @@ void MainPage::StartRenderLoop()
 			{
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
+					if (errorText->Length())
+					{
+						Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(errorText, "Error");
+						dlg->ShowAsync();
+					}
+
 					HandleBack();
 				}, CallbackContext::Any));
 				break;
@@ -569,11 +586,60 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 		docShader.Parse(json.c_str());
 
 		std::string name = "[Error]";
+		std::string shaderInfo;
+		int likes = 0;
+		bool hasBuffer = false;
+
 		if (!docShader.HasParseError() && docShader.HasMember("Shader"))
 		{
 			const rapidjson::Value& shader = docShader["Shader"];
 			const rapidjson::Value& info = shader["info"];
-			name = info["name"].GetString();
+			name = format("%s by %s", info["name"].GetString(), info["username"].GetString());
+			likes = info["likes"].GetInt();
+
+			const rapidjson::Value& renderpassArr = shader["renderpass"];
+			unsigned int passCount = renderpassArr.GetArray().Size();
+
+			for (unsigned int i = 0; i < passCount; i++)
+			{
+				const rapidjson::Value& renderpass = renderpassArr[i];
+				std::string type = renderpass["type"].GetString();
+				if (type == "buffer")
+				{
+					hasBuffer = true;
+				}
+				else if (type == "image")
+				{
+					std::string codeComment;
+					std::string code = renderpass["code"].GetString();
+					
+					auto lines = splitpath(code, std::set<char> {'\n'});
+					for (size_t m = 0; m < lines.size(); m++)
+					{
+						if (lines[m].length() < 4)
+						{
+							lines.erase(lines.begin() + m);
+							m--;
+						}
+					}
+					auto first = code.find("//");
+					if (first == 0)
+					{
+						if (lines.size())
+						{
+							codeComment = lines[0];
+							if (lines.size() > 1 && lines[1].find("//") == 0)
+							{
+								codeComment += "\n";
+								codeComment += lines[1];
+							}
+						}
+					}
+					shaderInfo = format("%s\n\nInformation from header comments (may be just code comments):\n\n%s", 
+						info["description"].GetString(), codeComment.c_str());
+				}
+			}
+
 		}
 		else
 		{
@@ -581,11 +647,16 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 		}
 			
 		std::wstring wname(name.begin(), name.end());
+		std::wstring winfo(shaderInfo.begin(), shaderInfo.end());
 
 		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 		{
 			item->ShaderName = ref new Platform::String(wname.c_str());
+			item->ShaderLikes = likes.ToString();
+			item->ShaderInfo = ref new Platform::String(winfo.c_str());
+			item->NotSupported = hasBuffer;
 			mItems->SetAt(index, item);
+
 		}, CallbackContext::Any));
 	});
 }
@@ -881,15 +952,27 @@ void MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input
 void MainPage::shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e)
 {
 	auto item = dynamic_cast<ShaderItem^>(e->ClickedItem);
-	Platform::String^ id = item->ShaderId;
-	std::wstring wid(id->Data());
-	PlayShader(std::string(wid.begin(), wid.end()));
+	if (item && !item->NotSupported)
+	{
+		Platform::String^ id = item->ShaderId;
+		std::wstring wid(id->Data());
+		PlayShader(std::string(wid.begin(), wid.end()));
+		lastPlayed = item;
+	}
 }
 
 
 void MainPage::LicenseButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ShowLicense(false);
+	if(mPlaying && lastPlayed)
+	{ 
+		Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(lastPlayed->ShaderInfo, "About this shader");
+		dlg->ShowAsync();
+	}
+	else
+	{
+		ShowLicense(false);
+	}
 }
 
 
