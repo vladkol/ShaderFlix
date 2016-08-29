@@ -139,9 +139,9 @@ void ShaderRenderer::Draw()
 	assert(glGetError() == GL_NO_ERROR);
 
 	int tunit = 0;
-	for (int i = 0; (i < 4 && i < (int) mShader.passes[0].inputs.size()); i++)
+	for (int i = 0; (i < 4 && i < (int) mShader.passes.begin()->second.inputs.size()); i++)
 	{
-		if (mShader.passes[0].inputs[i].ctype == "keyboard")
+		if (mShader.passes.begin()->second.inputs[i].ctype == "keyboard")
 		{
 			glBindTexture(mTextures[i]->targ, mTextures[i]->id);
 			glTexSubImage2D(mTextures[i]->targ, 0, 0, 0, mTextures[i]->w, mTextures[i]->h, GL_LUMINANCE, GL_UNSIGNED_BYTE, mKeyboardState);
@@ -220,30 +220,30 @@ bool ShaderRenderer::BakeShader()
 
 	for (int i = 0; i < 4; i++)
 	{
-		if (mShader.passes[0].inputs.size() <= i)
+		if (mShader.passes.begin()->second.inputs.size() <= i)
 			break;
 
-		if (mShader.passes[0].inputs[i].ctype == "keyboard")
+		if (mShader.passes.begin()->second.inputs[i].ctype == "keyboard")
 		{
 			mTextures[i] = create_keyboard_texture();
 		}
-		else if (mShader.passes[0].inputs[i].ctype == "cubemap")
+		else if (mShader.passes.begin()->second.inputs[i].ctype == "cubemap")
 		{
-			auto input = mShader.passes[0].inputs[i];
+			auto input = mShader.passes.begin()->second.inputs[i];
 			mTextures[i] = load_cubemap(input.chachedSourceFiles,
 				input.sampler.wrap, input.sampler.filter,
 				input.sampler.srgb == "true",
 				input.sampler.vflip == "true");
 		}
-		else if (mShader.passes[0].inputs[i].ctype == "texture")
+		else if (mShader.passes.begin()->second.inputs[i].ctype == "texture")
 		{
-			auto input = mShader.passes[0].inputs[i];
+			auto input = mShader.passes.begin()->second.inputs[i];
 			mTextures[i] = load_texture(input.chachedSourceFiles[0].c_str(),
 				input.sampler.wrap, input.sampler.filter,
 				input.sampler.srgb == "true",
 				input.sampler.vflip == "true");
 		}
-		else if (mShader.passes[0].inputs[i].ctype == "music" || mShader.passes[0].inputs[i].ctype == "musicstream")
+		else if (mShader.passes.begin()->second.inputs[i].ctype == "music" || mShader.passes.begin()->second.inputs[i].ctype == "musicstream")
 		{
 			mTextures[i] = new Texture();
 			GLuint texId = 0;
@@ -311,7 +311,7 @@ bool ShaderRenderer::BakeShader()
 		mTextures[2]->stype.c_str(),
 		mTextures[3]->stype.c_str());
 
-	shaderCode << mShader.passes[0].code << "\n\n";
+	shaderCode << mShader.passes.begin()->second.code << "\n\n";
 	shaderCode << main_fragment_code() << "\n";
 
 	shaderCodeStr = shaderCode.str();

@@ -80,6 +80,9 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 		APIShaderPass pass;
 		pass.type = renderpass["type"].GetString();
 		pass.code = renderpass["code"].GetString();
+
+		if (pass.type == "sound")
+			continue;
 		
 		const rapidjson::Value& inputsArr = renderpassArr[i]["inputs"];
 		unsigned int inputsCount = inputsArr.GetArray().Size();
@@ -114,8 +117,8 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 			pass.inputs.push_back(input);
 		}
 
-		pass.id = renderpass["output"]["id"].GetInt();
-		pass.channel = renderpass["channel"]["id"].GetInt();
+		pass.id = renderpass["outputs"][0]["id"].GetInt();
+		pass.channel = renderpass["outputs"][0]["channel"].GetInt();
 
 		this->passes[pass.id] = pass;
 	}
