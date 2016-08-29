@@ -2,7 +2,7 @@
 [ShaderToy.com](https://shadertoy.com) Player for Windows 10.  
 Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. Shadertoy is a platform where developers can prototype, experiment, teach, learn, inspire and share visual creations with the community. 
 
-It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). While it is a Windows 10 UWP app, pretty much everything but UI is portable C++ code. 
+It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. While it is a Windows 10 UWP application, pretty much everything but UI is portable C++ code. 
 Currently, it doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. Overall, the source code requires a lot of refactoring which is a part of ongoing multipass support development. 
 
 To build this app, you need Visual Studio 2015 Update 3 or later, with latest Universal Windows Platform SDK. 
