@@ -19,6 +19,7 @@ Generated Files/
 .vs/
 AppPackages/
 BundleArtifacts/
+*.StoreAssociation.xml
 
 # Windows Installer files
 *.cab
