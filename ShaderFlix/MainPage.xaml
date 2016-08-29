@@ -13,10 +13,13 @@
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
         <StackPanel Visibility="Collapsed" x:Name="playingButtons" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button TabIndex="4" ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+            <Button TabIndex="6" ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
                 <SymbolIcon Symbol="Message"/>
             </Button>
-            <Button TabIndex="5" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+            <Button TabIndex="7" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
+                <SymbolIcon Symbol="Audio" ToolTipService.ToolTip="Music"/>
+            </Button>
+            <Button TabIndex="8" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
                 <SymbolIcon Symbol="FullScreen"/>
             </Button>
         </StackPanel>
@@ -34,20 +37,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid x:Name="titleBar" Grid.Column="0">
                         <Image  Source="Assets/ShaderFlix.png" Stretch="Uniform" x:Name="logo" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
                     </Grid>
-                    <AutoSuggestBox TabIndex="0" x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
-                    <Button TabIndex="1" ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                    <AutoSuggestBox TabIndex="1" x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
+                    <Button TabIndex="2" ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
                         <SymbolIcon Symbol="Caption"/>
                     </Button>
-                    <Button TabIndex="2" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
+                    <Button TabIndex="3" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic2" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
+                        <SymbolIcon Symbol="Audio" ToolTipService.ToolTip="Music"/>
+                    </Button>
+                    <Button TabIndex="4" Margin="0,2,0,0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
                         <SymbolIcon Symbol="FullScreen" ToolTipService.ToolTip="Fullscreen"/>
                     </Button>
                 </Grid>
                 <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
-            <ListView TabIndex="3" Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
+            <ListView TabIndex="5" Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
@@ -135,6 +142,23 @@ Shadertoy reserves the right to suspend any user account without further notice 
             </StackPanel>
             <Button Grid.Row="1" x:Name="closeButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="24" Click="closeButton_Click">Close</Button>
         </Grid>
-        
+        <Grid x:Name="soundPlayer" Margin="100" Background="#404040" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="buttonBack" Foreground="#FFC65F10" Click="buttonBack_Click" IsEnabled="False">
+                    <SymbolIcon Symbol="Back"/>
+                </Button>
+                <Button x:Name="buttonForward" Foreground="#FFC65F10" Margin="2,0,0,0" Click="buttonForward_Click" IsEnabled="False">
+                    <SymbolIcon Symbol="Forward"/>
+                </Button>
+            </StackPanel>
+            <Button x:Name="buttonCloseWeb" Foreground="#FFC65F10" HorizontalAlignment="Right" Click="buttonCloseWeb_Click">
+                <SymbolIcon Symbol="Clear" />
+            </Button>
+            <WebView x:Name="web" Source="https://soundredux.io" Grid.Row="1" NavigationCompleted="web_NavigationCompleted" NavigationStarting="web_NavigationStarting" ContentLoading="web_ContentLoading"/>
+        </Grid>
     </Grid>
 </Page>

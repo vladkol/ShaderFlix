@@ -95,6 +95,7 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	}
 
+	UpdateWebPlayerSize();
 
 	FetchQuery();
 }
@@ -804,6 +805,9 @@ void MainPage::UpdateMouseState()
 	if (!mRenderer)
 		return;
 
+	if (soundPlayer->Visibility == Windows::UI::Xaml::Visibility::Visible)
+		return;
+
 	std::map<unsigned int, PointerState> pointers = mInputPointers;
 
 	if (!pointers.size())
@@ -836,7 +840,7 @@ void MainPage::UpdateMouseState()
 
 void MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
 {
-
+	UpdateWebPlayerSize();
 }
 
 
@@ -890,6 +894,8 @@ void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xam
 		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 		buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 		buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		buttonMusic->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		buttonMusic2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 	}
 }
 
@@ -904,6 +910,8 @@ void MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationVi
 		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		buttonMusic->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		buttonMusic2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 	}
 }
 
@@ -925,6 +933,8 @@ bool MainPage::HandleBack()
 			buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			buttonLicense->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			buttonLicense2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			buttonMusic->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			buttonMusic2->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			ToggleFullscreen();
 		}
 		else
@@ -1012,4 +1022,65 @@ void MainPage::ShowLicense(bool firstTime)
 	closeButton->Visibility = firstTime ? Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
 	
 	(firstTime ? buttonAccept : closeButton)->Focus(Windows::UI::Xaml::FocusState::Keyboard);
+}
+
+void MainPage::UpdateWebPlayerSize()
+{
+	auto s = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds;
+	auto w = s.Width;
+	double targetw = 1280;
+	if (w < 1400)
+	{
+		targetw = w - 200;
+	}
+
+	double m = (w - targetw) / 2;
+	soundPlayer->Margin = Windows::UI::Xaml::Thickness(m, 100, m, 100);
+
+}
+
+void MainPage::buttonBack_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (web->CanGoBack)
+		web->GoBack();
+}
+
+
+void MainPage::buttonForward_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if(web->CanGoForward)
+		web->GoForward();
+}
+
+
+void MainPage::buttonCloseWeb_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+}
+
+
+void MainPage::web_NavigationCompleted(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
+}
+
+
+void MainPage::web_NavigationStarting(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
+}
+
+
+void MainPage::buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Visible;
+}
+
+
+void MainPage::web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
 }
