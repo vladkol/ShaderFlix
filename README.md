@@ -3,10 +3,10 @@
 Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. Shadertoy is a platform where developers can prototype, experiment, teach, learn, inspire and share visual creations with the community. 
 
 It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). While it is a Windows 10 UWP app, pretty much everything but UI is portable C++ code. 
-Currently, it doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. 
+Currently, it doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. Overall, the source code requires a lot of refactoring which is a part of ongoing multipass support development. 
 
 To build this app, you need Visual Studio 2015 Update 3 or later, with latest Universal Windows Platform SDK. 
-IT uses Project "ANGLE" for OpenGL ES layer, libcURL for networking, rapidJSON for JSON parsing. Feel free to make derivatives on Windows and other platforms. 
+IT uses [Project "ANGLE"](https://github.com/Microsoft/angle) as OpenGL ES layer, libcURL for networking, rapidJSON for JSON parsing. Feel free to make derivatives on Windows and other platforms. **Pull requests with great improvements are very welcome!** 
 
 ![screenshot](https://cloud.githubusercontent.com/assets/4735184/18058010/4232e16e-6dc7-11e6-8d36-5ce909c6edaa.png)
 
