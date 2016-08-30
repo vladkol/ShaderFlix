@@ -158,6 +158,7 @@ Shadertoy reserves the right to suspend any user account without further notice 
             <Button x:Name="buttonCloseWeb" Foreground="#FFC65F10" HorizontalAlignment="Right" Click="buttonCloseWeb_Click">
                 <SymbolIcon Symbol="Clear" />
             </Button>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFC65F10">soundredux.io player</TextBlock>
             <WebView x:Name="web" Source="https://soundredux.io" Grid.Row="1" NavigationCompleted="web_NavigationCompleted" NavigationStarting="web_NavigationStarting" ContentLoading="web_ContentLoading"/>
         </Grid>
     </Grid>

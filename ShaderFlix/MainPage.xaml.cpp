@@ -97,6 +97,7 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	}
 
+	web->NewWindowRequested += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Controls::WebView ^, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^>(this, &ShaderFlix::MainPage::OnNewWindowRequested);
 	UpdateWebPlayerSize();
 	FetchQuery();
 }
@@ -1059,15 +1060,34 @@ void MainPage::buttonCloseWeb_Click(Platform::Object^ sender, Windows::UI::Xaml:
 	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 }
 
-
 void MainPage::web_NavigationCompleted(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ args)
 {
 	buttonBack->IsEnabled = web->CanGoBack;
 	buttonForward->IsEnabled = web->CanGoForward;
 
+	std::wstring d = args->Uri->Domain->Data();
+	std::wstring u = args->Uri->ToString()->Data();
+	if (d.find(L"soundredux.io") == std::wstring::npos)
+	{
+		return;
+	}
+
 	auto jsargs = ref new Platform::Collections::Vector<String^>();
-	jsargs->Append(L"var audios = document.getElementsByTagName('audio'); for(var i=0, i < audios.length; i++) { audios[i].addAttribute('msAudioCategory', 'BackgroundCapableMedia');} ");
+	//jsargs->Append(L"function UpdateAudio() { var audios = document.getElementsByTagName('audio'); for(var i=0; i < audios.length; i++) { audios[i].addAttribute('msAudioCategory', 'BackgroundCapableMedia');} }");
+	jsargs->Append( L"document.getElementsByClassName('nav')[0].style.height = '34px'; " 
+					L"document.getElementsByClassName('nav')[0].style.backgroundColor = '#404040'; "
+					L"var conts = document.getElementsByClassName('container');" 
+					L"for(var i=0; i < conts.length; i++) conts[i].style.width = '1024px';"
+					L"document.getElementsByClassName('nav-user')[0].style.display = 'none';"
+					L"document.getElementsByClassName('ion-radio-waves')[0].style.display = 'none';"
+					L"document.getElementsByClassName('nav-nav-item-link')[0].style.display = 'none';");
 	web->InvokeScriptAsync(L"eval", jsargs);
+	/*concurrency::create_task(web->InvokeScriptAsync(L"eval", jsargs)).then([=](Platform::String^ result)
+	{
+		//jsargs->Clear();
+		//jsargs->Append(L"UpdateAudio()");
+		//web->InvokeScriptAsync(L"eval", jsargs);
+	});*/
 }
 
 
@@ -1091,6 +1111,8 @@ void MainPage::web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, 
 }
 
 
-
-
-
+void MainPage::OnNewWindowRequested(Windows::UI::Xaml::Controls::WebView ^sender, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^args)
+{
+	args->Handled = true;
+	web->Navigate(args->Uri);
+}
