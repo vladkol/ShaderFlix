@@ -90,6 +90,7 @@ namespace ShaderFlix
 		bool mPlaying;
 		bool mIsXbox;
 		Windows::Gaming::Input::Gamepad^ mGamePad;
+		Windows::System::Display::DisplayRequest^ mDisplayRequest;
 		Windows::Media::Playback::MediaPlayer^ mPlayer;
 
 		std::mutex http_mutex;             // mutex for critical section

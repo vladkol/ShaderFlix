@@ -683,9 +683,13 @@ void MainPage::PlayShader(const std::string& id)
 			mPlaying = true;
 			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Visible;
 			playingButtons->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+			mDisplayRequest = ref new Windows::System::Display::DisplayRequest();
+			mDisplayRequest->RequestActive();
 		}
 		catch (...)
 		{
+			mDisplayRequest = nullptr;
 			assert(!"Cannot play!");
 		}
 	}
@@ -956,6 +960,16 @@ bool MainPage::HandleBack()
 			mPlaying = false;
 			StopRenderLoop();
 			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Collapsed;
+		
+			if (mDisplayRequest)
+			{
+				try
+				{
+					mDisplayRequest->RequestRelease();
+				}
+				catch (...) {  }
+				mDisplayRequest = nullptr;
+			}
 		}
 
 		return true;
