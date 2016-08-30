@@ -97,21 +97,6 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 
 	}
 
-	mPlayer = ref new Windows::Media::Playback::MediaPlayer();
-	mPlayer->AutoPlay = false;
-	mPlayer->IsLoopingEnabled = true;
-	mPlayer->CommandManager->IsEnabled = false;
-	mPlayer->AudioCategory = Windows::Media::Playback::MediaPlayerAudioCategory::Media;
-	mPlayer->Source = Windows::Media::Core::MediaSource::CreateFromUri(ref new Uri("ms-appx:///Assets/1sec.mp3"));
-
-	mPlayer->Play();
-
-	auto ctl = Windows::Media::SystemMediaTransportControls::GetForCurrentView();
-	ctl->IsPauseEnabled = true;
-	ctl->IsPlayEnabled = true;
-	ctl->PlaybackStatus = Windows::Media::MediaPlaybackStatus::Playing;
-	ctl->ButtonPressed += ref new Windows::Foundation::TypedEventHandler<Windows::Media::SystemMediaTransportControls ^, Windows::Media::SystemMediaTransportControlsButtonPressedEventArgs ^>(this, &ShaderFlix::MainPage::OnButtonPressed);
-
 	UpdateWebPlayerSize();
 	FetchQuery();
 }
@@ -1108,12 +1093,4 @@ void MainPage::web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, 
 
 
 
-void MainPage::OnButtonPressed(Windows::Media::SystemMediaTransportControls ^sender, Windows::Media::SystemMediaTransportControlsButtonPressedEventArgs ^args)
-{
-	if (args->Button == Windows::Media::SystemMediaTransportControlsButton::Play)
-	{
-	}
-	else if (args->Button == Windows::Media::SystemMediaTransportControlsButton::Pause)
-	{
-	}
-}
+
