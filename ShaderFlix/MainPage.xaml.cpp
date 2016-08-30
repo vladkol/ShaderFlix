@@ -509,7 +509,7 @@ void MainPage::FetchQuery()
 				{
 					auto items = doc["Results"].GetArray();
 
-					for (unsigned int i = 0; (i < items.Size() && i < 300); i++)
+					for (unsigned int i = 0; (i < items.Size() && i < 1000); i++)
 					{
 						ShaderItem^ item = ref new ShaderItem();
 						std::string id = items[i].GetString();
@@ -843,6 +843,15 @@ void MainPage::UpdateMouseState()
 void MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
 {
 	UpdateWebPlayerSize();
+
+	if (!mPlaying)
+	{
+		Concurrency::critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
+
+		DestroyRenderSurface();
+		mOpenGLES->Reset();
+		CreateRenderSurface();
+	}
 }
 
 
