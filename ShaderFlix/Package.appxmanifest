@@ -23,8 +23,6 @@
           <uap:Rotation Preference="landscape" />
         </uap:InitialRotationPreference>
       </uap:VisualElements>
-      <Extensions>
-      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

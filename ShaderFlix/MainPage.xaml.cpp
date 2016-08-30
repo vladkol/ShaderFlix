@@ -1114,5 +1114,5 @@ void MainPage::web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, 
 void MainPage::OnNewWindowRequested(Windows::UI::Xaml::Controls::WebView ^sender, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^args)
 {
 	args->Handled = true;
-	web->Navigate(args->Uri);
+	//web->Navigate(args->Uri);
 }
