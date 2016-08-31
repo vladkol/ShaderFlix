@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "BooleanToVisibilityConverter.h"
 #include "MainPage.g.h"
 #include "OpenGLES.h"
 #include "ShaderRenderer.h"

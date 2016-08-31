@@ -192,6 +192,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BooleanToVisibilityConverter.h" />
     <ClInclude Include="HTTPDownloader.h" />
     <ClInclude Include="MainShaders.h" />
     <ClInclude Include="OpenGLES.h" />

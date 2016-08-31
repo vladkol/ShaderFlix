@@ -69,7 +69,7 @@
                                         <BitmapImage UriSource="{Binding Path=ShaderPreview}"/>
                                     </Image.Source>
                                 </Image>
-                                <Grid Background="#9F000000" Visibility="{Binding Path=NotSupported}">
+                                <Grid Background="#9F000000" Visibility="{Binding Path=NotSupported, Converter={StaticResource booleanToVisibilityConverter}}">
                                     <TextBlock FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic">Not supported</TextBlock>
                                 </Grid>
                                 <Rectangle Height="32" Fill="#7F000000" VerticalAlignment="Bottom"/>
