@@ -515,6 +515,9 @@ void MainPage::FetchQuery()
 						std::string id = items[i].GetString();
 						std::wstring wid(id.begin(), id.end());
 
+						if (id == "4sfGWX")
+							continue;
+
 						item->ShaderId = ref new Platform::String(wid.c_str());
 						item->ShaderPreview = ref new Platform::String(L"http://reindernijhoff.net/shadertoythumbs/") + item->ShaderId + L".jpg";
 
