@@ -90,6 +90,7 @@ namespace ShaderFlix
 		std::string mShaderFlixId;
 		bool mPlaying;
 		bool mIsXbox;
+		bool mIsHub;
 		Windows::Gaming::Input::Gamepad^ mGamePad;
 		Windows::System::Display::DisplayRequest^ mDisplayRequest;
 		Windows::Media::Playback::MediaPlayer^ mPlayer;
@@ -107,6 +108,8 @@ namespace ShaderFlix
 		bool HandleBack();
 		void ShowLicense(bool firstTime);
 		void UpdateWebPlayerSize();
+		void UpdatePlayerModeControls(bool playing);
+		void UpdateControlsSize(Windows::UI::Core::CoreWindow ^window);
 
 		void searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args);
 		void shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args);
@@ -120,9 +123,7 @@ namespace ShaderFlix
 		void OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args);
 		void OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args);
 		void ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e);
-		void OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args);
 		void buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args);
 		void OnBackRequested(Platform::Object ^sender, Windows::UI::Core::BackRequestedEventArgs ^args);
 		void OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
@@ -139,5 +140,6 @@ namespace ShaderFlix
 		void buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs^ args);
 		void OnNewWindowRequested(Windows::UI::Xaml::Controls::WebView ^sender, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^args);
+		void OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args);
 	};
 }

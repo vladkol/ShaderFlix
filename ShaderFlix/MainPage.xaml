@@ -9,52 +9,47 @@
 
     <Grid Background="Black" x:Name="host">
         <SwapChainPanel x:Name="swapchain" >
-            <Button x:Name="focusButton" Visibility="Collapsed" Width="0" Height="0" Background="Transparent" Foreground="Transparent" BorderThickness="0"/>
+            <Button x:Name="focusButton" IsEnabled="False" Width="0" Height="0" Background="Transparent" Foreground="Transparent" BorderThickness="0"/>
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
-        <StackPanel Visibility="Collapsed" x:Name="playingButtons" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Button TabIndex="6" ToolTipService.ToolTip="About this shader" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
-                <SymbolIcon Symbol="Message"/>
-            </Button>
-            <Button TabIndex="7" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
-                <SymbolIcon Symbol="Audio" ToolTipService.ToolTip="Music"/>
-            </Button>
-            <Button TabIndex="8" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
-                <SymbolIcon Symbol="FullScreen"/>
-            </Button>
-        </StackPanel>
-        <ProgressRing x:Name="progressPreRender" Grid.Row="1" Height="120" Width="120" IsActive="False"/>
-        <Grid x:Name="galleryGridHost" Background="Transparent" >
-            <!--<Rectangle Fill="#7F000000"></Rectangle>-->
-            <Grid x:Name="galleryGrid" Background="Transparent">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid Background="#404040">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid x:Name="titleBar" Grid.Column="0">
-                        <Image  Source="Assets/ShaderFlix.png" Stretch="Uniform" x:Name="logo" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
-                    </Grid>
-                    <AutoSuggestBox TabIndex="1" x:Name="searchBox" Grid.Column="1" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
-                    <Button TabIndex="2" ToolTipService.ToolTip="About" Margin="0,2,0,0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense2" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
-                        <SymbolIcon Symbol="Caption"/>
+        <Grid x:Name="controlsHost">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="titleHost" Grid.Row="0">
+                <Rectangle x:Name="titleBackground" Fill="#404040"/>
+                <Rectangle x:Name="titleBar" Fill="Transparent" HorizontalAlignment="Left"/>
+                <Image Source="Assets/LogoSquare.png" x:Name="logo" Stretch="Uniform" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonsStack">
+                    <Button TabIndex="6" ToolTipService.ToolTip="About" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                        <SymbolIcon x:Name="messageSymbol" Symbol="Help"/>
                     </Button>
-                    <Button TabIndex="3" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic2" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
+                    <Button TabIndex="7" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
                         <SymbolIcon Symbol="Audio" ToolTipService.ToolTip="Music"/>
                     </Button>
-                    <Button TabIndex="4" Margin="0,2,0,0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonFullScreen2" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" >
-                        <SymbolIcon Symbol="FullScreen" ToolTipService.ToolTip="Fullscreen"/>
+                    <Button TabIndex="8" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+                        <SymbolIcon Symbol="FullScreen"/>
                     </Button>
-                </Grid>
-                <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
-            <ListView TabIndex="5" Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
+                    <AutoSuggestBox TabIndex="1" MinWidth="200" MaxWidth="200" QueryIcon="Find" x:Name="searchBox" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
+                    <StackPanel x:Name="systemButtons" Orientation="Horizontal">
+                        <Button Foreground="Transparent" Background="Transparent" IsHitTestVisible="False">
+                            <SymbolIcon Opacity="0"/>
+                        </Button>
+                        <Button Foreground="Transparent" Background="Transparent" IsHitTestVisible="False">
+                            <SymbolIcon Opacity="0"/>
+                        </Button>
+                        <Button Foreground="Transparent" Background="Transparent" IsHitTestVisible="False">
+                            <SymbolIcon Opacity="0"/>
+                        </Button>
+                        <Button Foreground="Transparent" Background="Transparent" IsHitTestVisible="False">
+                            <SymbolIcon Opacity="0"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="galleryGridHost" Background="Transparent" Grid.Row="1">
+                <ListView TabIndex="5" Grid.Row="1" x:Name="shadersList" SelectionMode="Single" IsItemClickEnabled="True" Visibility="Collapsed" ContainerContentChanging="shadersList_ContainerContentChanging" IsFocusEngagementEnabled="True" ItemClick="shadersList_ItemClick" >
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal" ItemHeight="180" ItemWidth="360" SizeChanged="ItemsWrapGrid_SizeChanged">
@@ -90,15 +85,9 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-                <!--<Grid Grid.Row="1">
-                    <Grid Tag="{Binding ShaderId}" Tapped="Shader_Tapped" Height="180">
-                        <Image x:Name="shaderPreviewImage" Source="{Binding ShaderPreview}"  />
-                        <Rectangle Height="32" Fill="#7F000000" VerticalAlignment="Bottom"/>
-                        <TextBlock x:Name="shaderName" FontSize="18" Margin="12,0,4,4" Text="{Binding ShaderName}"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                    </Grid>
-                </Grid>-->
             </Grid>
         </Grid>
+        <ProgressRing x:Name="progress" Grid.Row="1" Height="120" Width="120" IsActive="True"/>
         
         <Grid Background="#404040" Margin="100" x:Name="licenseGrid" Visibility="Collapsed">
             <Grid.RowDefinitions>
