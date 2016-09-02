@@ -4,5 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ShaderFlix"
     RequestedTheme="Dark">
-    
+
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <local:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

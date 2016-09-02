@@ -97,11 +97,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <PackageCertificateKeyFile>ShaderFlix_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>ShaderFlix_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppxBundle>Auto</AppxBundle>
+    <PackageCertificateThumbprint>2AC7B560B2E3770E240A366F846DA2E65F340046</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)curl\include\win10;$(IncludePath)</IncludePath>
@@ -191,6 +192,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BooleanToVisibilityConverter.h" />
     <ClInclude Include="HTTPDownloader.h" />
     <ClInclude Include="MainShaders.h" />
     <ClInclude Include="OpenGLES.h" />
@@ -288,10 +290,10 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <None Include="PresetData\presets\vid00.ogv" />
     <None Include="PresetData\presets\vid02.ogv" />
     <None Include="samples.json" />
+    <None Include="ShaderFlix_StoreKey.pfx" />
     <None Include="ShaderFlix_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\BG.jpg" />
     <Image Include="Assets\BG2.jpg" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\LogoSquare.png" />
@@ -338,6 +340,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\cube05_3.png" />
     <Image Include="PresetData\presets\cube05_4.png" />
     <Image Include="PresetData\presets\cube05_5.png" />
+    <Image Include="PresetData\presets\music.png" />
     <Image Include="PresetData\presets\previz\buffer00.png" />
     <Image Include="PresetData\presets\previz\buffer01.png" />
     <Image Include="PresetData\presets\previz\buffer02.png" />
@@ -366,6 +369,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Image Include="PresetData\presets\vid01.png" />
     <Image Include="PresetData\presets\vid02.png" />
     <Image Include="PresetData\presets\vid03.png" />
+    <Image Include="PresetData\presets\webcam.png" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp">
@@ -389,6 +393,7 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <ClCompile Include="stb_image_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\1sec.mp3" />
     <Media Include="PresetData\presets\mzk00.mp3" />
     <Media Include="PresetData\presets\mzk01.mp3" />
     <Media Include="PresetData\presets\mzk02.mp3" />
@@ -401,6 +406,9 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Media Include="PresetData\presets\vid01.webm" />
     <Media Include="PresetData\presets\vid02.mp4" />
     <Media Include="PresetData\presets\vid03.webm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

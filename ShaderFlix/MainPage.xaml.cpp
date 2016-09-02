@@ -24,18 +24,16 @@ using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-MainPage::MainPage() : mPlaying(false), http_number(0)
+MainPage::MainPage() : mPlaying(false), http_number(0), mSoundPlayerVisible(false)
 {
 	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
 	mIsXbox = (deviceFamily == "Windows.Xbox");
+	mIsHub = (deviceFamily == "Windows.Team");
 
 	mItems = ref new Platform::Collections::Vector<ShaderItem^>();
 
 	InitializeComponent();
-
-	//mShaderFlixId = "ldfGWn"; // "Truchet Tentacles"  https://www.shadertoy.com/view/ldfGWn
 
 	mOpenGLES = new OpenGLES();
 
@@ -60,7 +58,9 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	window->SizeChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Core::CoreWindow ^, Windows::UI::Core::WindowSizeChangedEventArgs ^>(this, &MainPage::OnSizeChanged);
 
 	Windows::UI::ViewManagement::ApplicationViewTitleBar^ formattableTitleBar = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TitleBar;
-	formattableTitleBar->BackgroundColor = Windows::UI::Colors::Transparent;
+	formattableTitleBar->BackgroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40);
+	formattableTitleBar->InactiveBackgroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0x20, 0x20, 0x20);
+	formattableTitleBar->ForegroundColor = Windows::UI::ColorHelper::FromArgb(0xFF, 0xC6, 0x5F, 0x10);
 	formattableTitleBar->ButtonBackgroundColor = Windows::UI::Colors::Transparent;
 	formattableTitleBar->ButtonInactiveBackgroundColor = Windows::UI::Colors::Transparent;
 	formattableTitleBar->ButtonInactiveForegroundColor = Windows::UI::Colors::Gray;
@@ -70,32 +70,35 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	formattableTitleBar->ButtonHoverBackgroundColor = Windows::UI::Colors::Black;
 	formattableTitleBar->ButtonHoverForegroundColor = Windows::UI::Colors::White;
 
-	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
-	coreTitleBar->LayoutMetricsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^, Platform::Object ^>(this, &MainPage::OnLayoutMetricsChanged);
-	coreTitleBar->ExtendViewIntoTitleBar = true;
-	Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
 
-	Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBoundsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::UI::ViewManagement::ApplicationView ^, Platform::Object ^>(this, &ShaderFlix::MainPage::OnVisibleBoundsChanged);
-	
+	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+	coreTitleBar->LayoutMetricsChanged += ref new Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^, Platform::Object ^>(this, &ShaderFlix::MainPage::OnLayoutMetricsChanged);
+
+	if (mIsXbox || mIsHub)
+	{
+		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		systemButtons->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	}
+	else
+	{
+		coreTitleBar->ExtendViewIntoTitleBar = true;
+		Windows::UI::Xaml::Window::Current->SetTitleBar(titleBar);
+	}
 
 	if (mIsXbox)
 	{
-		buttonFullScreen->Width = 0;
-		buttonFullScreen->Height = 0;
-		buttonFullScreen2->Width = 0;
-		buttonFullScreen2->Height = 0;
 		auto visb = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBounds;
-		galleryGridHost->Margin = Windows::UI::Xaml::Thickness(visb.Left, visb.Top, visb.Left, visb.Top);
+		controlsHost->Margin = Windows::UI::Xaml::Thickness(visb.Left, visb.Top, visb.Left, visb.Top);
 		
-		galleryGridHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
-		galleryGridHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
+		//controlsHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
+		//controlsHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
 
 		Windows::Gaming::Input::Gamepad::GamepadAdded += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadAdded);
 		Windows::Gaming::Input::Gamepad::GamepadRemoved += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadRemoved);
-
 	}
 
-
+	web->NewWindowRequested += ref new Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Controls::WebView ^, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^>(this, &ShaderFlix::MainPage::OnNewWindowRequested);
+	UpdateWebPlayerSize();
 	FetchQuery();
 }
 
@@ -127,6 +130,11 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 	}
 
 	shadersList->Focus(Windows::UI::Xaml::FocusState::Keyboard);
+
+	UpdateControlsSize(Windows::UI::Xaml::Window::Current->CoreWindow);
+	UpdateWebPlayerSize();
+
+	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 }
 
 
@@ -136,7 +144,7 @@ void MainPage::OnVisibilityChanged(Windows::UI::Core::CoreWindow^ sender, Window
 	{
 		if (args->Visible && mRenderSurface != EGL_NO_SURFACE)
 		{
-			progressPreRender->IsActive = true;
+			progress->IsActive = true;
 			StartRenderLoop();
 		}
 		else
@@ -210,8 +218,7 @@ void MainPage::RecoverFromLostDevice()
 
 	swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 	{
-		imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
-		progressPreRender->IsActive = true;
+		progress->IsActive = true;
 	}, CallbackContext::Any));
 
 	{
@@ -248,6 +255,7 @@ void MainPage::StartRenderLoop()
 		Concurrency::critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
 
 		float xboxMouseX = 0, xboxMouseY = 0;
+		Platform::String^ errorText = L"";
 
 		mOpenGLES->MakeCurrent(mRenderSurface);
 
@@ -270,16 +278,25 @@ void MainPage::StartRenderLoop()
 			}
 			catch (...)
 			{
+				errorText = L"Sorry, I cannot initialize this shader.";
 				assert(!"Exception while initializing shader");
 			}
 
 			if (!bInitOK)
 			{
+				errorText = L"Sorry, I cannot initialize this shader.";
 				mRenderer.reset();
 
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
-					progressPreRender->IsActive = false;
+					progress->IsActive = false;
+
+					if (errorText->Length())
+					{
+						Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(errorText, "Error");
+						dlg->ShowAsync();
+					}
+
 					HandleBack();
 				}, CallbackContext::Any));
 			}
@@ -287,8 +304,6 @@ void MainPage::StartRenderLoop()
 			{
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
-					focusButton->Visibility = Windows::UI::Xaml::Visibility::Visible;
-					focusButton->Focus(Windows::UI::Xaml::FocusState::Programmatic);
 				}, CallbackContext::Any));
 
 			}
@@ -308,16 +323,17 @@ void MainPage::StartRenderLoop()
 			// Logic to update the scene could go here
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
 
-			if (mIsXbox && mGamePad != nullptr)
+			if (mIsXbox && mGamePad != nullptr && !mSoundPlayerVisible)
 			{
 				auto reading = mGamePad->GetCurrentReading();
-				float x = (float) reading.LeftThumbstickX;
+				float x = (float) reading.RightThumbstickX;
 				if (abs(x) < 0.06f)
 					x = 0;
-				float y = (float) reading.LeftThumbstickY;
+				float y = (float) reading.RightThumbstickY;
 				if (abs(y) < 0.06f)
 					y = 0;
-				bool bLeftClick = (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
+				
+				bool bLeftClick = (x != 0 || y != 0);// (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
 				
 				xboxMouseX += 10 * x;
 				if (xboxMouseX < 0)
@@ -329,7 +345,7 @@ void MainPage::StartRenderLoop()
 				if (xboxMouseY < 0)
 					xboxMouseY = 0;
 				else if (xboxMouseY >= panelHeight)
-					xboxMouseY = (float) panelWidth - 1;
+					xboxMouseY = (float) panelHeight - 1;
 
 				mRenderer->SetMouseState(true, (int)xboxMouseX, (int)xboxMouseY, bLeftClick);
 			}
@@ -343,6 +359,7 @@ void MainPage::StartRenderLoop()
 			catch (...)
 			{
 				assert(!"Exception while rendering shader");
+				errorText = L"Sorry, there was an error while playing this shader.";
 				bNeedToStop = true;
 			}
 
@@ -374,7 +391,7 @@ void MainPage::StartRenderLoop()
 						Window::Current->CoreWindow->PointerCursor = nullptr;
 					}
 
-					progressPreRender->IsActive = false;
+					progress->IsActive = false;
 					imageBG->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 				}, CallbackContext::Any));
 			}
@@ -383,6 +400,12 @@ void MainPage::StartRenderLoop()
 			{
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
+					if (errorText->Length())
+					{
+						Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(errorText, "Error");
+						dlg->ShowAsync();
+					}
+
 					HandleBack();
 				}, CallbackContext::Any));
 				break;
@@ -393,8 +416,7 @@ void MainPage::StartRenderLoop()
 
 		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 		{
-			focusButton->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
-			progressPreRender->IsActive = false;
+			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		}, CallbackContext::Any));
 	});
 
@@ -489,11 +511,14 @@ void MainPage::FetchQuery()
 				{
 					auto items = doc["Results"].GetArray();
 
-					for (unsigned int i = 0; (i < items.Size() && i < 300); i++)
+					for (unsigned int i = 0; (i < items.Size() && i < 1000); i++)
 					{
 						ShaderItem^ item = ref new ShaderItem();
 						std::string id = items[i].GetString();
 						std::wstring wid(id.begin(), id.end());
+
+						if (id == "4sfGWX") // hide by a special request from Store Certification team
+							continue;
 
 						item->ShaderId = ref new Platform::String(wid.c_str());
 						item->ShaderPreview = ref new Platform::String(L"http://reindernijhoff.net/shadertoythumbs/") + item->ShaderId + L".jpg";
@@ -569,11 +594,60 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 		docShader.Parse(json.c_str());
 
 		std::string name = "[Error]";
+		std::string shaderInfo;
+		int likes = 0;
+		bool hasBuffer = false;
+
 		if (!docShader.HasParseError() && docShader.HasMember("Shader"))
 		{
 			const rapidjson::Value& shader = docShader["Shader"];
 			const rapidjson::Value& info = shader["info"];
-			name = info["name"].GetString();
+			name = format("%s by %s", info["name"].GetString(), info["username"].GetString());
+			likes = info["likes"].GetInt();
+
+			const rapidjson::Value& renderpassArr = shader["renderpass"];
+			unsigned int passCount = renderpassArr.GetArray().Size();
+
+			for (unsigned int i = 0; i < passCount; i++)
+			{
+				const rapidjson::Value& renderpass = renderpassArr[i];
+				std::string type = renderpass["type"].GetString();
+				if (type == "buffer")
+				{
+					hasBuffer = true;
+				}
+				else if (type == "image")
+				{
+					std::string codeComment;
+					std::string code = renderpass["code"].GetString();
+					
+					auto lines = splitpath(code, std::set<char> {'\n'});
+					for (size_t m = 0; m < lines.size(); m++)
+					{
+						if (lines[m].length() < 4)
+						{
+							lines.erase(lines.begin() + m);
+							m--;
+						}
+					}
+					auto first = code.find("//");
+					if (first == 0)
+					{
+						if (lines.size())
+						{
+							codeComment = lines[0];
+							if (lines.size() > 1 && lines[1].find("//") == 0)
+							{
+								codeComment += "\n";
+								codeComment += lines[1];
+							}
+						}
+					}
+					shaderInfo = format("%s\n\nInformation from header comments (may be just code comments):\n\n%s", 
+						info["description"].GetString(), codeComment.c_str());
+				}
+			}
+
 		}
 		else
 		{
@@ -581,15 +655,59 @@ void MainPage::shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls:
 		}
 			
 		std::wstring wname(name.begin(), name.end());
+		std::wstring winfo(shaderInfo.begin(), shaderInfo.end());
 
 		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 		{
 			item->ShaderName = ref new Platform::String(wname.c_str());
+			item->ShaderLikes = likes.ToString();
+			item->ShaderInfo = ref new Platform::String(winfo.c_str());
+			item->NotSupported = hasBuffer;
 			mItems->SetAt(index, item);
+
 		}, CallbackContext::Any));
 	});
 }
 
+void MainPage::UpdatePlayerModeControls(bool playing)
+{
+	if (playing)
+	{
+		Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Visible;
+		searchBox->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		titleBackground->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		logo->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		messageSymbol->Symbol = Windows::UI::Xaml::Controls::Symbol::Message;
+
+		if (mIsXbox || mIsHub)
+		{
+			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		{
+			titleHost->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+
+	}
+	else
+	{
+		galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
+
+		Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Collapsed;
+		searchBox->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		titleBackground->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		logo->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		messageSymbol->Symbol = Windows::UI::Xaml::Controls::Symbol::Help;
+
+		if (mIsXbox || mIsHub)
+		{
+			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
+	}
+
+	controlsHost->UpdateLayout();
+}
 
 void MainPage::PlayShader(const std::string& id)
 {
@@ -600,39 +718,57 @@ void MainPage::PlayShader(const std::string& id)
 	
 	if (mShaderFlixId.length() > 0)
 	{
+		progress->IsActive = true;
+		
+			
+		StartRenderLoop();
+		mPlaying = true;
+
+		UpdatePlayerModeControls(true);
+
 		try
 		{
-			progressPreRender->IsActive = true;
-			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
-			
-			StartRenderLoop();
-			mPlaying = true;
-			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Visible;
+			mDisplayRequest = ref new Windows::System::Display::DisplayRequest();
+			mDisplayRequest->RequestActive();
 		}
 		catch (...)
 		{
+			mDisplayRequest = nullptr;
 			assert(!"Cannot play!");
 		}
 	}
 }
 
 
-
 void MainPage::ToggleFullscreen()
 {
-	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
-
-	if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+	if (!mIsHub && !mIsXbox)
 	{
-		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->ExitFullScreenMode();
-		coreTitleBar->ExtendViewIntoTitleBar = true;
+		if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		{
+			Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->ExitFullScreenMode();
+		}
+		else
+		{
+			Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryEnterFullScreenMode();
+		}
+
+		auto vis = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode ?
+			Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
+
+		if (mPlaying)
+		{
+			titleHost->Visibility = vis;
+		}
+		systemButtons->Visibility = vis;
 	}
 	else
 	{
-		coreTitleBar->ExtendViewIntoTitleBar = false;
-		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryEnterFullScreenMode();
+		titleHost->Visibility = titleHost->Visibility == Windows::UI::Xaml::Visibility::Visible ? 
+			Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
 	}
 
+	controlsHost->UpdateLayout();
 }
 
 
@@ -640,8 +776,8 @@ void MainPage::ToggleFullscreen()
 void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
 	if (args->VirtualKey == Windows::System::VirtualKey::Escape 
-		 || args->VirtualKey == Windows::System::VirtualKey::Back 
-		 || (mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
+		 /*|| args->VirtualKey == Windows::System::VirtualKey::Back 
+		 || (mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB)*/)
 	{
 		return;
 	}
@@ -655,31 +791,15 @@ void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Cor
 
 void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
-	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
+	if (args->VirtualKey == Windows::System::VirtualKey::Escape /*||
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
-		(mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
+		(mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB)*/)
 	{
 		HandleBack();
 		return;
 	}
 
-	/*if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Visible &&
-		searchBox->FocusState == Windows::UI::Xaml::FocusState::Unfocused && 
-		(args->VirtualKey == Windows::System::VirtualKey::Enter))
-	{
-		int index = shadersList->SelectedIndex;
-		if (index != -1)
-		{
-			auto item = mItems->GetAt(index);
-			if (((Controls::ListViewItem^)shadersList->ContainerFromItem(shadersList->SelectedItem))->FocusState != Windows::UI::Xaml::FocusState::Unfocused)
-			{
-				Platform::String^ id = item->ShaderId;
-				std::wstring wid(id->Data());
-				PlayShader(std::string(wid.begin(), wid.end()));
-			}
-		}
-	}
-	else */if (mRenderer && mPlaying)
+	if (mRenderer && mPlaying)
 	{
 		SetKeyState(args->VirtualKey, false);
 	}
@@ -732,6 +852,9 @@ void MainPage::UpdateMouseState()
 	if (!mRenderer)
 		return;
 
+	if (soundPlayer->Visibility == Windows::UI::Xaml::Visibility::Visible)
+		return;
+
 	std::map<unsigned int, PointerState> pointers = mInputPointers;
 
 	if (!pointers.size())
@@ -764,7 +887,33 @@ void MainPage::UpdateMouseState()
 
 void MainPage::OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args)
 {
+	UpdateWebPlayerSize();
 
+	if (!mPlaying)
+	{
+		Concurrency::critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
+
+		DestroyRenderSurface();
+		mOpenGLES->Reset();
+		CreateRenderSurface();
+	}
+
+	UpdateControlsSize(sender);
+}
+
+void MainPage::UpdateControlsSize(Windows::UI::Core::CoreWindow ^window)
+{
+	auto ttv = buttonsStack->TransformToVisual(this);
+	titleBar->Width = ttv->TransformPoint(Windows::Foundation::Point(0, 0)).X;
+
+	if (window->Bounds.Width > 1024)
+	{
+		logo->Source = ref new Windows::UI::Xaml::Media::Imaging::BitmapImage(ref new Uri("ms-appx:///Assets/ShaderFlix.png"));
+	}
+	else
+	{
+		logo->Source = ref new Windows::UI::Xaml::Media::Imaging::BitmapImage(ref new Uri("ms-appx:///Assets/LogoSquare.png"));
+	}
 }
 
 
@@ -793,42 +942,9 @@ void MainPage::ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::
 }
 
 
-void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args)
-{
-	auto t = buttonFullScreen->Margin;
-	t.Right = sender->SystemOverlayRightInset;
-	buttonFullScreen->Margin = t;
-
-	t = buttonFullScreen2->Margin;
-	t.Right = sender->SystemOverlayRightInset;
-	buttonFullScreen2->Margin = t;
-
-	t = logo->Margin;
-	t.Left = sender->SystemOverlayLeftInset;
-	logo->Margin = t;
-}
-
-
 void MainPage::buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	ToggleFullscreen();
-	if (mPlaying)
-	{
-		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
-		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
-	}
-}
-
-
-void MainPage::OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args)
-{
-	Windows::ApplicationModel::Core::CoreApplicationViewTitleBar^ coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
-	if (!sender->IsFullScreenMode)
-	{
-		coreTitleBar->ExtendViewIntoTitleBar = true;
-		buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
-		buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
-	}
 }
 
 
@@ -841,21 +957,46 @@ bool MainPage::HandleBack()
 {
 	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
 
-	if (galleryGridHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
+	if (soundPlayer->Visibility == Windows::UI::Xaml::Visibility::Visible)
 	{
-		if (!mIsXbox && Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		FrameworkElement^ elem = safe_cast<FrameworkElement^>(FocusManager::GetFocusedElement());
+		if (!mIsXbox || (elem != web && elem->Parent != soundPlayer && elem->Parent == webButtons))
 		{
-			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
-			buttonFullScreen2->Visibility = Windows::UI::Xaml::Visibility::Visible;
+			ShowMusicPlayer(false);
+		}
+		else if (mIsXbox)
+		{
+			buttonCloseWeb->Focus(Windows::UI::Xaml::FocusState::Programmatic);
+		}
+		return true;
+	}
+
+	if (mPlaying)
+	{
+		if ((mIsXbox || mIsHub) && titleHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
+		{
+			ToggleFullscreen();
+		}
+		else if (!mIsXbox && !mIsHub && Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		{
 			ToggleFullscreen();
 		}
 		else
 		{
-			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
-			galleryGridHost->Visibility = Windows::UI::Xaml::Visibility::Visible;
 			mPlaying = false;
 			StopRenderLoop();
-			Windows::UI::Core::SystemNavigationManager::GetForCurrentView()->AppViewBackButtonVisibility = Windows::UI::Core::AppViewBackButtonVisibility::Collapsed;
+
+			UpdatePlayerModeControls(false);
+		
+			if (mDisplayRequest)
+			{
+				try
+				{
+					mDisplayRequest->RequestRelease();
+				}
+				catch (...) {  }
+				mDisplayRequest = nullptr;
+			}
 		}
 
 		return true;
@@ -881,15 +1022,27 @@ void MainPage::OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input
 void MainPage::shadersList_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e)
 {
 	auto item = dynamic_cast<ShaderItem^>(e->ClickedItem);
-	Platform::String^ id = item->ShaderId;
-	std::wstring wid(id->Data());
-	PlayShader(std::string(wid.begin(), wid.end()));
+	if (item && !item->NotSupported)
+	{
+		Platform::String^ id = item->ShaderId;
+		std::wstring wid(id->Data());
+		PlayShader(std::string(wid.begin(), wid.end()));
+		lastPlayed = item;
+	}
 }
 
 
 void MainPage::LicenseButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ShowLicense(false);
+	if(mPlaying && lastPlayed)
+	{ 
+		Windows::UI::Popups::MessageDialog^ dlg = ref new Windows::UI::Popups::MessageDialog(lastPlayed->ShaderInfo, "About this shader");
+		dlg->ShowAsync();
+	}
+	else
+	{
+		ShowLicense(false);
+	}
 }
 
 
@@ -921,4 +1074,109 @@ void MainPage::ShowLicense(bool firstTime)
 	closeButton->Visibility = firstTime ? Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
 	
 	(firstTime ? buttonAccept : closeButton)->Focus(Windows::UI::Xaml::FocusState::Keyboard);
+}
+
+void MainPage::UpdateWebPlayerSize()
+{
+	auto s = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds;
+	auto w = s.Width;
+	double targetw = 1280;
+	if (w < 1400)
+	{
+		targetw = w - 200;
+	}
+
+	double m = (w - targetw) / 2;
+	soundPlayer->Margin = Windows::UI::Xaml::Thickness(m, 100, m, 100);
+
+}
+
+void MainPage::buttonBack_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (web->CanGoBack)
+		web->GoBack();
+}
+
+
+void MainPage::buttonForward_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if(web->CanGoForward)
+		web->GoForward();
+}
+
+
+void MainPage::buttonCloseWeb_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ShowMusicPlayer(false);
+}
+
+void MainPage::web_NavigationCompleted(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
+
+	std::wstring d = args->Uri->Domain->Data();
+	std::wstring u = args->Uri->ToString()->Data();
+	if (d.find(L"soundredux.io") != std::wstring::npos)
+	{
+
+
+		auto jsargs = ref new Platform::Collections::Vector<String^>();
+		jsargs->Append(L"document.getElementsByClassName('nav')[0].style.height = '34px'; "
+			L"document.getElementsByClassName('nav')[0].style.backgroundColor = '#404040'; "
+			L"var conts = document.getElementsByClassName('container');"
+			L"for(var i=0; i < conts.length; i++) conts[i].style.width = '1024px';"
+			L"document.getElementsByClassName('nav-user')[0].style.display = 'none';"
+			L"document.getElementsByClassName('ion-radio-waves')[0].style.display = 'none';"
+			L"document.getElementsByClassName('nav-nav-item-link')[0].style.display = 'none';");
+		web->InvokeScriptAsync(L"eval", jsargs);
+	}
+}
+
+
+void MainPage::web_NavigationStarting(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
+}
+
+
+void MainPage::buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	ShowMusicPlayer(true);
+}
+
+
+void MainPage::web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs^ args)
+{
+	buttonBack->IsEnabled = web->CanGoBack;
+	buttonForward->IsEnabled = web->CanGoForward;
+}
+
+
+void MainPage::OnNewWindowRequested(Windows::UI::Xaml::Controls::WebView ^sender, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^args)
+{
+	args->Handled = true;
+}
+
+
+void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args)
+{
+	auto t = logo->Margin;
+	t.Left = sender->SystemOverlayLeftInset;
+	logo->Margin = t;
+
+	auto ttv = buttonsStack->TransformToVisual(this);
+	titleBar->Width = ttv->TransformPoint(Windows::Foundation::Point(0, 0)).X;
+}
+
+void MainPage::ShowMusicPlayer(bool bShow)
+{
+	soundPlayer->Visibility = bShow ? Windows::UI::Xaml::Visibility::Visible : Windows::UI::Xaml::Visibility::Collapsed;
+	shadersList->IsEnabled = !bShow;
+
+	if(bShow)
+		web->Focus(Windows::UI::Xaml::FocusState::Pointer);
+
+	mSoundPlayerVisible = bShow;
 }

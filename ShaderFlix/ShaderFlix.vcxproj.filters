@@ -160,6 +160,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="MainShaders.h" />
+    <ClInclude Include="BooleanToVisibilityConverter.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
@@ -351,9 +352,6 @@
     <Image Include="PresetData\presets\tex20.jpg">
       <Filter>PresetData\presets</Filter>
     </Image>
-    <Image Include="Assets\BG.jpg">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Assets\ShaderFlix.png">
       <Filter>Assets</Filter>
     </Image>
@@ -387,6 +385,12 @@
     <Image Include="PresetData\presets\previz\buffer03.png">
       <Filter>PresetData\presets\previz</Filter>
     </Image>
+    <Image Include="PresetData\presets\music.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
+    <Image Include="PresetData\presets\webcam.png">
+      <Filter>PresetData\presets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -404,6 +408,8 @@
       <Filter>PresetData\presets</Filter>
     </None>
     <None Include="samples.json" />
+    <None Include="Package.StoreAssociation.xml" />
+    <None Include="ShaderFlix_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
@@ -444,6 +450,9 @@
     </Media>
     <Media Include="PresetData\presets\vid03.webm">
       <Filter>PresetData\presets</Filter>
+    </Media>
+    <Media Include="Assets\1sec.mp3">
+      <Filter>Assets</Filter>
     </Media>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "BooleanToVisibilityConverter.h"
 #include "MainPage.g.h"
 #include "OpenGLES.h"
 #include "ShaderRenderer.h"
@@ -23,6 +24,14 @@ namespace ShaderFlix
 		property Platform::String^ ShaderPreview;
 		property Platform::String^ ShaderName;
 		property Platform::String^ ShaderId;
+		property Platform::String^ ShaderLikes;
+		property bool NotSupported;
+		property Platform::String^ ShaderInfo;
+
+		ShaderItem()
+		{
+			NotSupported = false;
+		}
 	};
 
 	struct PointerState
@@ -55,6 +64,7 @@ namespace ShaderFlix
 
 	internal:
 		property Platform::Collections::Vector<ShaderItem^>^ mItems;
+		property ShaderItem^ lastPlayed;
 
 	private:
 
@@ -80,7 +90,11 @@ namespace ShaderFlix
 		std::string mShaderFlixId;
 		bool mPlaying;
 		bool mIsXbox;
+		bool mIsHub;
 		Windows::Gaming::Input::Gamepad^ mGamePad;
+		Windows::System::Display::DisplayRequest^ mDisplayRequest;
+		Windows::Media::Playback::MediaPlayer^ mPlayer;
+		bool mSoundPlayerVisible;
 
 		std::mutex http_mutex;             // mutex for critical section
 		std::condition_variable http_cv; // condition variable for critical section  
@@ -94,6 +108,10 @@ namespace ShaderFlix
 		void ToggleFullscreen();
 		bool HandleBack();
 		void ShowLicense(bool firstTime);
+		void UpdateWebPlayerSize();
+		void UpdatePlayerModeControls(bool playing);
+		void UpdateControlsSize(Windows::UI::Core::CoreWindow ^window);
+		void ShowMusicPlayer(bool bShow);
 
 		void searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args);
 		void shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args);
@@ -107,9 +125,7 @@ namespace ShaderFlix
 		void OnPointerReleased(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::PointerEventArgs ^args);
 		void OnSizeChanged(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::WindowSizeChangedEventArgs ^args);
 		void ItemsWrapGrid_SizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e);
-		void OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args);
 		void buttonFullScreen_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void OnVisibleBoundsChanged(Windows::UI::ViewManagement::ApplicationView ^sender, Platform::Object ^args);
 		void OnBackRequested(Platform::Object ^sender, Windows::UI::Core::BackRequestedEventArgs ^args);
 		void OnGamepadAdded(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
 		void OnGamepadRemoved(Platform::Object ^sender, Windows::Gaming::Input::Gamepad ^args);
@@ -118,5 +134,14 @@ namespace ShaderFlix
 		void closeButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void buttonAccept_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void buttonDecline_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void buttonBack_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void buttonForward_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void buttonCloseWeb_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void web_NavigationCompleted(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ args);
+		void web_NavigationStarting(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs^ args);
+		void buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void web_ContentLoading(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs^ args);
+		void OnNewWindowRequested(Windows::UI::Xaml::Controls::WebView ^sender, Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs ^args);
+		void OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreApplicationViewTitleBar ^sender, Platform::Object ^args);
 	};
 }

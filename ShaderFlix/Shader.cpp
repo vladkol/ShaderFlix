@@ -71,15 +71,18 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 
 	bool hasInputError = false;
 
+	passes.clear();
+
 	for (unsigned int i = 0; i < passCount; i++)
 	{
 		const rapidjson::Value& renderpass = renderpassArr[i];
-		if (std::string("image") != renderpass["type"].GetString())
-			continue;
 
-		imagePass.inputs.clear();
-		imagePass.type = "image";
-		imagePass.code = renderpass["code"].GetString();
+		APIShaderPass pass;
+		pass.type = renderpass["type"].GetString();
+		pass.code = renderpass["code"].GetString();
+
+		if (pass.type == "sound")
+			continue;
 		
 		const rapidjson::Value& inputsArr = renderpassArr[i]["inputs"];
 		unsigned int inputsCount = inputsArr.GetArray().Size();
@@ -104,11 +107,6 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 				input.src = "/presets/webcam.png";
 				input.ctype = "texture";
 			}
-			if (input.ctype == "buffer")
-			{
-				hasInputError = true;
-				break;
-			}
 
 			const rapidjson::Value& sampler = inputsArr[k]["sampler"];
 			input.sampler.filter = sampler["filter"].GetString();
@@ -116,10 +114,13 @@ bool Shader::Initialize(const char* shaderId, const char* apiKey)
 			input.sampler.vflip = sampler["vflip"].GetString();
 			input.sampler.srgb = sampler["srgb"].GetString();
 
-			imagePass.inputs.push_back(input);
+			pass.inputs.push_back(input);
 		}
 
-		break;
+		pass.id = renderpass["outputs"][0]["id"].GetInt();
+		pass.channel = renderpass["outputs"][0]["channel"].GetInt();
+
+		this->passes[pass.id] = pass;
 	}
 
 	if (hasInputError)
@@ -165,9 +166,10 @@ bool Shader::CacheSources()
 {
 	bool hasErrors = false;
 
-	for(unsigned int index=0; index < imagePass.inputs.size(); index++)
+	for(auto p = passes.begin(); p != passes.end(); p++)
+	for(unsigned int index=0; index < p->second.inputs.size(); index++)
 	{
-		APIShaderPassInput& input = imagePass.inputs[index];
+		APIShaderPassInput& input = p->second.inputs[index];
 		std::string src = input.src;
 		std::vector<std::string> sourceFiles;
 
