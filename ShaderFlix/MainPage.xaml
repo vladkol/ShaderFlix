@@ -9,7 +9,6 @@
 
     <Grid Background="Black" x:Name="host">
         <SwapChainPanel x:Name="swapchain" >
-            <Button x:Name="focusButton" IsEnabled="False" Width="0" Height="0" Background="Transparent" Foreground="Transparent" BorderThickness="0"/>
         </SwapChainPanel>
         <Image x:Name="imageBG" Source="Assets/BG2.jpg" Stretch="UniformToFill"/>
         <Grid x:Name="controlsHost">

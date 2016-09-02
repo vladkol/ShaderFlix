@@ -94,6 +94,7 @@ namespace ShaderFlix
 		Windows::Gaming::Input::Gamepad^ mGamePad;
 		Windows::System::Display::DisplayRequest^ mDisplayRequest;
 		Windows::Media::Playback::MediaPlayer^ mPlayer;
+		bool mSoundPlayerVisible;
 
 		std::mutex http_mutex;             // mutex for critical section
 		std::condition_variable http_cv; // condition variable for critical section  

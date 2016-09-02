@@ -25,7 +25,7 @@ using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
 
-MainPage::MainPage() : mPlaying(false), http_number(0)
+MainPage::MainPage() : mPlaying(false), http_number(0), mSoundPlayerVisible(false)
 {
 	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
 	mIsXbox = (deviceFamily == "Windows.Xbox");
@@ -304,8 +304,6 @@ void MainPage::StartRenderLoop()
 			{
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
-					focusButton->Visibility = Windows::UI::Xaml::Visibility::Visible;
-					focusButton->Focus(Windows::UI::Xaml::FocusState::Programmatic);
 				}, CallbackContext::Any));
 
 			}
@@ -325,16 +323,17 @@ void MainPage::StartRenderLoop()
 			// Logic to update the scene could go here
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
 
-			if (mIsXbox && mGamePad != nullptr)
+			if (mIsXbox && mGamePad != nullptr && !mSoundPlayerVisible)
 			{
 				auto reading = mGamePad->GetCurrentReading();
-				float x = (float) reading.LeftThumbstickX;
+				float x = (float) reading.RightThumbstickX;
 				if (abs(x) < 0.06f)
 					x = 0;
-				float y = (float) reading.LeftThumbstickY;
+				float y = (float) reading.RightThumbstickY;
 				if (abs(y) < 0.06f)
 					y = 0;
-				bool bLeftClick = (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
+				
+				bool bLeftClick = (x != 0 || y != 0);// (reading.Buttons & Windows::Gaming::Input::GamepadButtons::A) != Windows::Gaming::Input::GamepadButtons::None;
 				
 				xboxMouseX += 10 * x;
 				if (xboxMouseX < 0)
@@ -346,7 +345,7 @@ void MainPage::StartRenderLoop()
 				if (xboxMouseY < 0)
 					xboxMouseY = 0;
 				else if (xboxMouseY >= panelHeight)
-					xboxMouseY = (float) panelWidth - 1;
+					xboxMouseY = (float) panelHeight - 1;
 
 				mRenderer->SetMouseState(true, (int)xboxMouseX, (int)xboxMouseY, bLeftClick);
 			}
@@ -417,8 +416,6 @@ void MainPage::StartRenderLoop()
 
 		swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 		{
-			focusButton->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
-			progress->IsActive = false;
 			imageBG->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		}, CallbackContext::Any));
 	});
@@ -963,8 +960,14 @@ bool MainPage::HandleBack()
 	if (soundPlayer->Visibility == Windows::UI::Xaml::Visibility::Visible)
 	{
 		FrameworkElement^ elem = safe_cast<FrameworkElement^>(FocusManager::GetFocusedElement());
-		if(!mIsXbox || (elem != web && elem->Parent != soundPlayer && elem->Parent == webButtons))
+		if (!mIsXbox || (elem != web && elem->Parent != soundPlayer && elem->Parent == webButtons))
+		{
 			ShowMusicPlayer(false);
+		}
+		else if (mIsXbox)
+		{
+			buttonCloseWeb->Focus(Windows::UI::Xaml::FocusState::Programmatic);
+		}
 		return true;
 	}
 
@@ -1174,4 +1177,6 @@ void MainPage::ShowMusicPlayer(bool bShow)
 
 	if(bShow)
 		web->Focus(Windows::UI::Xaml::FocusState::Pointer);
+
+	mSoundPlayerVisible = bShow;
 }
