@@ -22,16 +22,16 @@
                 <Rectangle x:Name="titleBar" Fill="Transparent" HorizontalAlignment="Left"/>
                 <Image Source="Assets/LogoSquare.png" x:Name="logo" Stretch="Uniform" Margin="0,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="30" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonsStack">
-                    <Button TabIndex="6" ToolTipService.ToolTip="About" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
+                    <Button TabIndex="1" ToolTipService.ToolTip="About" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonLicense" Foreground="#FFC65F10" Background="Transparent" Click="LicenseButton_Click" >
                         <SymbolIcon x:Name="messageSymbol" Symbol="Help"/>
                     </Button>
-                    <Button TabIndex="7" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
+                    <Button TabIndex="2" Margin="0,2,0,0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="buttonMusic" Foreground="#FFC65F10" Background="Transparent" Click="buttonMusic_Click" >
                         <SymbolIcon Symbol="Audio" ToolTipService.ToolTip="Music"/>
                     </Button>
-                    <Button TabIndex="8" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click">
+                    <Button TabIndex="3" x:Name="buttonFullScreen" Foreground="#FFC65F10" Background="Transparent" Click="buttonFullScreen_Click" Margin="0,0,0,0">
                         <SymbolIcon Symbol="FullScreen"/>
                     </Button>
-                    <AutoSuggestBox TabIndex="1" MinWidth="200" MaxWidth="200" QueryIcon="Find" x:Name="searchBox" Margin="2,2,2,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
+                    <AutoSuggestBox TabIndex="4" MinWidth="200" MaxWidth="200" QueryIcon="Find" x:Name="searchBox" Margin="2,2,0,2" QuerySubmitted="searchBox_QuerySubmitted" PlaceholderText="search..."/>
                     <StackPanel x:Name="systemButtons" Orientation="Horizontal">
                         <Button Foreground="Transparent" Background="Transparent" IsHitTestVisible="False">
                             <SymbolIcon Opacity="0"/>
@@ -131,20 +131,20 @@ Shadertoy reserves the right to suspend any user account without further notice 
             </StackPanel>
             <Button Grid.Row="1" x:Name="closeButton" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="24" Click="closeButton_Click">Close</Button>
         </Grid>
-        <Grid x:Name="soundPlayer" Margin="100" Background="#404040" Visibility="Collapsed">
+        <Grid x:Name="soundPlayer" Margin="100" Background="#404040">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="buttonBack" Foreground="#FFC65F10" Click="buttonBack_Click" IsEnabled="False">
+            <StackPanel Orientation="Horizontal" x:Name="webButtons">
+                <Button x:Name="buttonBack" Foreground="#FFC65F10" Click="buttonBack_Click" IsEnabled="False" TabIndex="6">
                     <SymbolIcon Symbol="Back"/>
                 </Button>
-                <Button x:Name="buttonForward" Foreground="#FFC65F10" Margin="2,0,0,0" Click="buttonForward_Click" IsEnabled="False">
+                <Button x:Name="buttonForward" Foreground="#FFC65F10" Margin="2,0,0,0" Click="buttonForward_Click" IsEnabled="False" TabIndex="7">
                     <SymbolIcon Symbol="Forward"/>
                 </Button>
             </StackPanel>
-            <Button x:Name="buttonCloseWeb" Foreground="#FFC65F10" HorizontalAlignment="Right" Click="buttonCloseWeb_Click">
+            <Button x:Name="buttonCloseWeb" Foreground="#FFC65F10" HorizontalAlignment="Right" Click="buttonCloseWeb_Click" TabIndex="8">
                 <SymbolIcon Symbol="Clear" />
             </Button>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFC65F10">soundredux.io player</TextBlock>

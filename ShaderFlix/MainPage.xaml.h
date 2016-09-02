@@ -110,6 +110,7 @@ namespace ShaderFlix
 		void UpdateWebPlayerSize();
 		void UpdatePlayerModeControls(bool playing);
 		void UpdateControlsSize(Windows::UI::Core::CoreWindow ^window);
+		void ShowMusicPlayer(bool bShow);
 
 		void searchBox_QuerySubmitted(Windows::UI::Xaml::Controls::SearchBox^ sender, Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs^ args);
 		void shadersList_ContainerContentChanging(Windows::UI::Xaml::Controls::ListViewBase^ sender, Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs^ args);

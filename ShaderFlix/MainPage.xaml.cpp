@@ -88,10 +88,10 @@ MainPage::MainPage() : mPlaying(false), http_number(0)
 	if (mIsXbox)
 	{
 		auto visb = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->VisibleBounds;
-		galleryGridHost->Margin = Windows::UI::Xaml::Thickness(visb.Left, visb.Top, visb.Left, visb.Top);
+		controlsHost->Margin = Windows::UI::Xaml::Thickness(visb.Left, visb.Top, visb.Left, visb.Top);
 		
-		galleryGridHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
-		galleryGridHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
+		//controlsHost->BorderBrush = ref new Windows::UI::Xaml::Media::SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x40, 0x40, 0x40));
+		//controlsHost->BorderThickness = Windows::UI::Xaml::Thickness(2, 2, 2, 2);
 
 		Windows::Gaming::Input::Gamepad::GamepadAdded += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadAdded);
 		Windows::Gaming::Input::Gamepad::GamepadRemoved += ref new Windows::Foundation::EventHandler<Windows::Gaming::Input::Gamepad ^>(this, &ShaderFlix::MainPage::OnGamepadRemoved);
@@ -133,6 +133,8 @@ void MainPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedE
 
 	UpdateControlsSize(Windows::UI::Xaml::Window::Current->CoreWindow);
 	UpdateWebPlayerSize();
+
+	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 }
 
 
@@ -681,10 +683,15 @@ void MainPage::UpdatePlayerModeControls(bool playing)
 		logo->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 		messageSymbol->Symbol = Windows::UI::Xaml::Controls::Symbol::Message;
 
-		if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		if (mIsXbox || mIsHub)
+		{
+			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Visible;
+		}
+		else if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
 		{
 			titleHost->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
 		}
+
 	}
 	else
 	{
@@ -695,6 +702,11 @@ void MainPage::UpdatePlayerModeControls(bool playing)
 		titleBackground->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		logo->Visibility = Windows::UI::Xaml::Visibility::Visible;
 		messageSymbol->Symbol = Windows::UI::Xaml::Controls::Symbol::Help;
+
+		if (mIsXbox || mIsHub)
+		{
+			buttonFullScreen->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+		}
 	}
 
 	controlsHost->UpdateLayout();
@@ -733,23 +745,32 @@ void MainPage::PlayShader(const std::string& id)
 
 void MainPage::ToggleFullscreen()
 {
-	if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+	if (!mIsHub && !mIsXbox)
 	{
-		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->ExitFullScreenMode();
+		if (Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		{
+			Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->ExitFullScreenMode();
+		}
+		else
+		{
+			Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryEnterFullScreenMode();
+		}
+
+		auto vis = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode ?
+			Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
+
+		if (mPlaying)
+		{
+			titleHost->Visibility = vis;
+		}
+		systemButtons->Visibility = vis;
 	}
 	else
 	{
-		Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryEnterFullScreenMode();
+		titleHost->Visibility = titleHost->Visibility == Windows::UI::Xaml::Visibility::Visible ? 
+			Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
 	}
 
-	auto vis = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode ?
-		Windows::UI::Xaml::Visibility::Collapsed : Windows::UI::Xaml::Visibility::Visible;
-
-	if (mPlaying)
-	{
-		titleHost->Visibility = vis;
-	}
-	systemButtons->Visibility = vis;
 	controlsHost->UpdateLayout();
 }
 
@@ -758,8 +779,8 @@ void MainPage::ToggleFullscreen()
 void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
 	if (args->VirtualKey == Windows::System::VirtualKey::Escape 
-		 || args->VirtualKey == Windows::System::VirtualKey::Back 
-		 || (mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
+		 /*|| args->VirtualKey == Windows::System::VirtualKey::Back 
+		 || (mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB)*/)
 	{
 		return;
 	}
@@ -773,9 +794,9 @@ void MainPage::OnKeyDown(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Cor
 
 void MainPage::OnKeyUp(Windows::UI::Core::CoreWindow ^sender, Windows::UI::Core::KeyEventArgs ^args)
 {
-	if (args->VirtualKey == Windows::System::VirtualKey::Escape ||
+	if (args->VirtualKey == Windows::System::VirtualKey::Escape /*||
 		args->VirtualKey == Windows::System::VirtualKey::Back ||
-		(mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB))
+		(mPlaying && args->VirtualKey == Windows::System::VirtualKey::GamepadB)*/)
 	{
 		HandleBack();
 		return;
@@ -939,9 +960,21 @@ bool MainPage::HandleBack()
 {
 	auto deviceFamily = Windows::System::Profile::AnalyticsInfo::VersionInfo->DeviceFamily;
 
+	if (soundPlayer->Visibility == Windows::UI::Xaml::Visibility::Visible)
+	{
+		FrameworkElement^ elem = safe_cast<FrameworkElement^>(FocusManager::GetFocusedElement());
+		if(!mIsXbox || (elem != web && elem->Parent != soundPlayer && elem->Parent == webButtons))
+			ShowMusicPlayer(false);
+		return true;
+	}
+
 	if (mPlaying)
 	{
-		if (!mIsXbox && !mIsHub && Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
+		if ((mIsXbox || mIsHub) && titleHost->Visibility == Windows::UI::Xaml::Visibility::Collapsed)
+		{
+			ToggleFullscreen();
+		}
+		else if (!mIsXbox && !mIsHub && Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->IsFullScreenMode)
 		{
 			ToggleFullscreen();
 		}
@@ -1071,7 +1104,7 @@ void MainPage::buttonForward_Click(Platform::Object^ sender, Windows::UI::Xaml::
 
 void MainPage::buttonCloseWeb_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Collapsed;
+	ShowMusicPlayer(false);
 }
 
 void MainPage::web_NavigationCompleted(Windows::UI::Xaml::Controls::WebView^ sender, Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs^ args)
@@ -1107,7 +1140,7 @@ void MainPage::web_NavigationStarting(Windows::UI::Xaml::Controls::WebView^ send
 
 void MainPage::buttonMusic_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	soundPlayer->Visibility = Windows::UI::Xaml::Visibility::Visible;
+	ShowMusicPlayer(true);
 }
 
 
@@ -1132,4 +1165,13 @@ void MainPage::OnLayoutMetricsChanged(Windows::ApplicationModel::Core::CoreAppli
 
 	auto ttv = buttonsStack->TransformToVisual(this);
 	titleBar->Width = ttv->TransformPoint(Windows::Foundation::Point(0, 0)).X;
+}
+
+void MainPage::ShowMusicPlayer(bool bShow)
+{
+	soundPlayer->Visibility = bShow ? Windows::UI::Xaml::Visibility::Visible : Windows::UI::Xaml::Visibility::Collapsed;
+	shadersList->IsEnabled = !bShow;
+
+	if(bShow)
+		web->Focus(Windows::UI::Xaml::FocusState::Pointer);
 }
