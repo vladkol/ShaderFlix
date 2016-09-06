@@ -1180,3 +1180,20 @@ void MainPage::ShowMusicPlayer(bool bShow)
 
 	mSoundPlayerVisible = bShow;
 }
+
+void ShaderFlix::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Button^ btn = safe_cast<Button^>(sender); 
+	if (btn)
+	{
+		ShaderItem^ item = safe_cast<ShaderItem^>(btn->DataContext);
+
+		if (item && !item->NotSupported)
+		{
+			Platform::String^ id = item->ShaderId;
+			std::wstring wid(id->Data());
+			PlayShader(std::string(wid.begin(), wid.end()));
+			lastPlayed = item;
+		}
+	}
+}
