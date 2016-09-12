@@ -2,11 +2,12 @@
 [ShaderToy.com](https://shadertoy.com) Player for Windows 10, aimed to be portable across Windows/macOS/iOS/Android.  
 Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. Shadertoy is a platform where developers can prototype, experiment, teach, learn, inspire and share visual creations with the community. 
 
-It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. First version a Windows 10 UWP application, pretty much everything but UI is portable C++ code. This is just the beggining. The idea is to keep the code as portable as possible across Windows, macOS, iOS and Android. Currently working on a new version of the UI layer using [React Native](https://facebook.github.io/react-native/), keeping the renderer in C++.
+It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. First version a Windows 10 UWP application, pretty much everything but UI is portable C++ code. This is just the beggining. The idea is to keep the code as portable as possible across Windows, macOS, iOS and Android. Now working on a new version of the UI layer using [React Native](https://facebook.github.io/react-native/), keeping the renderer in C++.
 
 Try Shaderflix [from Windows Store](https://www.microsoft.com/store/apps/9NBLGGH520JS).
 It also works on Xbox One! 
-[![Get it on Windows 10](https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png =480x)](https://www.microsoft.com/store/apps/9NBLGGH520JS?ocid=badge) 
+<a href="https://www.microsoft.com/store/apps/9NBLGGH520JS?ocid=badge" target="_blank">
+<img src="https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png" alt="Get it on Windows 10" width="256px"></a>
 
 Currently, Shaderflix doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. Overall, the source code requires a lot of refactoring which is a part of ongoing multipass support development. 
 
