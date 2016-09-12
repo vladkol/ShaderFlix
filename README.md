@@ -6,6 +6,7 @@ It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iO
 
 Try Shaderflix [from Windows Store](https://www.microsoft.com/store/apps/9NBLGGH520JS).
 It also works on Xbox One! 
+![Get it on Windows 10](https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png)
 
 Currently, Shaderflix doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. Overall, the source code requires a lot of refactoring which is a part of ongoing multipass support development. 
 
