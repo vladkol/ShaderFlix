@@ -2,7 +2,7 @@
 [ShaderToy.com](https://shadertoy.com) Player for Windows 10, aimed to be portable across Windows/macOS/iOS/Android.  
 Browse shaders from Shadertoy.com on your device and enjoy great visual experiences. Shadertoy is a platform where developers can prototype, experiment, teach, learn, inspire and share visual creations with the community. 
 
-It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. While it is a Windows 10 UWP application, pretty much everything but UI is portable C++ code. This version is just the beggining. The idea is to keep the code as portable as possible across Windows, macOS, iOS and Android.
+It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. First version a Windows 10 UWP application, pretty much everything but UI is portable C++ code. This is just the beggining. The idea is to keep the code as portable as possible across Windows, macOS, iOS and Android. Current plan is to re-make the UI layer using [React Native](https://facebook.github.io/react-native/) keeping the renderer in C++.
 
 Try Shaderflix [from Windows Store](https://www.microsoft.com/store/apps/9NBLGGH520JS).
 It also works on Xbox One! 
@@ -10,7 +10,7 @@ It also works on Xbox One!
 Currently, Shaderflix doesn't support multipass shaders. Shaders with webcam, video and audio input are supported, but don't receive real input data. Overall, the source code requires a lot of refactoring which is a part of ongoing multipass support development. 
 
 To build this app, you need Visual Studio 2015 Update 3 or later, with latest Universal Windows Platform SDK. 
-It uses [Project "ANGLE"](https://github.com/Microsoft/angle) as OpenGL ES layer, libcURL for networking, rapidJSON for JSON parsing. **You may need to regenerate certificate file (last tab in Package.appxmanifest file editor).** 
+It uses [Project "ANGLE"](https://github.com/Microsoft/angle) as OpenGL ES layer on Windows, [libcURL](https://curl.haxx.se/libcurl/) for networking, [rapidJSON](http://rapidjson.org/) for JSON parsing, [stb image](https://github.com/nothings/stb) for loading textures. **You may need to regenerate certificate file (last tab in Package.appxmanifest file editor).** 
 
 Feel free to make derivatives on Windows and other platforms. **Pull requests with great improvements are very welcome!** 
 
