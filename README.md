@@ -5,7 +5,7 @@ Browse shaders from Shadertoy.com on your device and enjoy great visual experien
 It is a C++ port of [ShaderToy iOS app](https://github.com/beautypi/shadertoy-iOS-v2). Well, not quate a port, but inspired by that official app. First version a Windows 10 UWP application, pretty much everything but UI is portable C++ code. This is just the beggining. The idea is to keep the code as portable as possible across Windows, macOS, iOS and Android. Now working on a new version of the UI layer using [React Native](https://facebook.github.io/react-native/), keeping the renderer in C++.
 
 Try Shaderflix [from Windows Store](https://www.microsoft.com/store/apps/9NBLGGH520JS).
-It also works on Xbox One! 
+It also works on Xbox One!  
 <a href="https://www.microsoft.com/store/apps/9NBLGGH520JS?ocid=badge" target="_blank">
 <img src="https://assets.windowsphone.com/f2f77ec7-9ba9-4850-9ebe-77e366d08adc/English_Get_it_Win_10_InvariantCulture_Default.png" alt="Get it on Windows 10" width="256px"></a>
 
