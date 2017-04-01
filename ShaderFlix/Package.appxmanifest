@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
-  <Identity Name="10788EqWu.Shaderflix" Publisher="CN=E6A5A183-9DBD-4161-9A25-476D0F486F02" Version="1.1.8.0" />
+  <Identity Name="10788EqWu.Shaderflix" Publisher="CN=E6A5A183-9DBD-4161-9A25-476D0F486F02" Version="1.1.10.0" />
   <mp:PhoneIdentity PhoneProductId="7d97df27-f14f-4d5c-b04e-13f5ca4c27cf" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Shaderflix</DisplayName>
