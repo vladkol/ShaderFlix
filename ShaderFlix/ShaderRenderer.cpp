@@ -26,12 +26,14 @@ const GLubyte Indices [] = {
 
 // https://github.com/beautypi/ShaderFlix-iOS-v2/
 
-static const char *shader_header =
+static const char *shader_header = 
+"#version 300 es\n"
+//"#pragma optimize(off)\n"
 "#extension GL_EXT_shader_texture_lod : enable \n"
 "#extension GL_OES_standard_derivatives : enable \n"
 "precision highp float;\n"
 "precision highp int;\n"
-"precision mediump sampler2D;\n\n"
+"precision highp sampler2D;\n\n"
 "//precision highp samplerCube;\n\n"
 "uniform vec2      ifFragCoordOffsetUniform;\n"
 "uniform vec3      iResolution;\n"           // viewport resolution (in pixels)
@@ -305,6 +307,26 @@ bool ShaderRenderer::BakeShader()
 		goto end;
 	}
 
+	GLint isOK = 0;
+	glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &isOK);
+	if (isOK == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &maxLength);
+
+		//The maxLength includes the NULL character
+		std::vector<GLchar> infoLog(maxLength + 1);
+		glGetShaderInfoLog(VertexShaderID, maxLength, &maxLength, &infoLog[0]);
+
+		const char* errStr = &infoLog[0];
+		OutputDebugStringA(errStr);
+
+		//Exit with failure.
+		bRes = false; 
+		goto end;
+	}
+
+
 	shaderCode << format(shader_header,
 		mTextures[0]->stype.c_str(),
 		mTextures[1]->stype.c_str(),
@@ -327,6 +349,25 @@ bool ShaderRenderer::BakeShader()
 	}
 
 	glCompileShader(FragmentShaderID);
+	
+	glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &isOK);
+	if (isOK == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &maxLength);
+
+		//The maxLength includes the NULL character
+		std::vector<GLchar> infoLog(maxLength + 1);
+		glGetShaderInfoLog(FragmentShaderID, maxLength, &maxLength, &infoLog[0]);
+
+		const char* errStr = &infoLog[0];
+		OutputDebugStringA(errStr);
+
+		//Exit with failure.
+		bRes = false; // cannot link program
+		goto end;
+	}
+
 	err = glGetError();
 	assert(err == GL_NO_ERROR);
 	if (err != GL_NO_ERROR)
@@ -350,9 +391,32 @@ bool ShaderRenderer::BakeShader()
 		goto end;
 	}
 
+	isOK = 0;
+	glGetProgramiv(programId, GL_LINK_STATUS, &isOK);
+	if (isOK == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &maxLength);
+
+		//The maxLength includes the NULL character
+		std::vector<GLchar> infoLog(maxLength+1);
+		glGetProgramInfoLog(programId, maxLength, &maxLength, &infoLog[0]);
+
+		//The program is useless now. So delete it.
+		glDeleteProgram(programId);
+
+		const char* errStr = &infoLog[0];
+		OutputDebugStringA(errStr);
+
+		//Exit with failure.
+		bRes = false; // cannot link program
+		goto end;
+	}
+
 	mShaderProg = programId;
 
 	mPositionSlot = glGetAttribLocation(mShaderProg, "position");
+	
 	err = glGetError();
 	assert(err == GL_NO_ERROR);
 	if (err != GL_NO_ERROR)

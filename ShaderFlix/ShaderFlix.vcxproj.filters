@@ -397,7 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ShaderFlix_TemporaryKey.pfx" />
-    <None Include="packages.config" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\libcurl.dll" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\libeay32.dll" />
     <None Include="curl\prebuilt\win10\$(PlatformName)\ssleay32.dll" />
@@ -410,6 +409,7 @@
     <None Include="samples.json" />
     <None Include="Package.StoreAssociation.xml" />
     <None Include="ShaderFlix_StoreKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />

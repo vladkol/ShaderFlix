@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <angle-DeviceType Condition="'$(TargetPlatformIdentifier)' == 'UAP'">UAP</angle-DeviceType>
+
+    <angle-Platform Condition="'$(Platform)' == 'x86'">Win32</angle-Platform>
+    <angle-Platform Condition="'$(Platform)' != 'x86'">$(Platform)</angle-Platform>
+
+    <angle-BinPath>$(MSBuildThisFileDirectory)..\..\bin\$(angle-DeviceType)\$(angle-Platform)</angle-BinPath>
+  </PropertyGroup>
+  
+  <Target Name="angle-win81-check" BeforeTargets="ResolveAssemblyReferences">
+    <Error 
+      Condition="'$(angle-DeviceType)' != 'UAP'" 
+      Text="Target must be Windows 10 UWP. Note that this ANGLE NuGet package doesn't contain binaries for Windows 8.1 or Windows Phone 8.1." />
+  </Target>
+  
+  <ItemGroup Label="ANGLE">
+    <Content Include="$(angle-BinPath)\*.dll">
+      <Link>%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

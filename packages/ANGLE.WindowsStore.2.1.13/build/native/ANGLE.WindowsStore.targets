@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <angle-DeviceType Condition="'$(TargetPlatformIdentifier)' == 'UAP'">UAP</angle-DeviceType>
+
+    <angle-BinPath>$(MSBuildThisFileDirectory)..\..\bin\$(angle-DeviceType)\$(Platform)</angle-BinPath>
+  </PropertyGroup>
+
+  <Target Name="angle-win81-check" BeforeTargets="ResolveAssemblyReferences">
+      <Error 
+        Condition="'$(angle-DeviceType)' != 'UAP'" 
+        Text="Target must be Windows 10 UWP. Note that this ANGLE NuGet package doesn't contain binaries for Windows 8.1 or Windows
+              Phone 8.1. For 8.1 please use the 'ANGLE.WindowsStore.win81' NuGet package." />
+  </Target>
+
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(angle-BinPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libGLESv2.lib;libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemGroup Label="ANGLE">
+    <PackagingOutputs Include="$(angle-BinPath)\libEGL.dll">
+        <OutputGroup>AngleBinaries</OutputGroup>
+        <ProjectName>$(ProjectName)</ProjectName>
+        <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </PackagingOutputs>
+    <PackagingOutputs Include="$(angle-BinPath)\libGLESv2.dll">
+        <OutputGroup>AngleBinaries</OutputGroup>
+        <ProjectName>$(ProjectName)</ProjectName>
+        <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </PackagingOutputs>
+  </ItemGroup>
+
+</Project>

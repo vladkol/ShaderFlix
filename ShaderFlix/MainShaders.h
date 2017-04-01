@@ -6,9 +6,13 @@ inline const char* main_vertex_code()
 {
 	static const char* s = SHADER_SOURCE
 	(
+		#version 300 es\n
+
 		precision highp float;
 		precision highp int;
-		attribute vec3 position;
+
+		in vec3 position;
+
 		void main() 
 		{
 			gl_Position.xyz = position;
@@ -24,12 +28,13 @@ inline const char* main_fragment_code()
 {
 	static const char* s = SHADER_SOURCE
 	(
+		out vec4 glFragColor;
 		void main() 
 		{
 			//vec2 _gl_FragCoord = vec2(gl_FragCoord.x, iResolution.y-gl_FragCoord.y);
 			//mainImage(gl_FragColor, _gl_FragCoord.xy + ifFragCoordOffsetUniform);
 			
-			mainImage(gl_FragColor, gl_FragCoord.xy + ifFragCoordOffsetUniform);
+			mainImage(glFragColor, gl_FragCoord.xy + ifFragCoordOffsetUniform);
 	}
 	);
 
