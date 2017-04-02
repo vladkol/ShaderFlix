@@ -6,6 +6,11 @@ using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
 
+// exporting NvOptimusEnablement for forcing NVIDIA GPUs on hybrid systems 
+extern "C" {
+	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
+
 OpenGLES::OpenGLES() :
 	mEglConfig(nullptr),
 	mEglDisplay(EGL_NO_DISPLAY),
