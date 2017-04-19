@@ -272,12 +272,28 @@ void MainPage::StartRenderLoop()
 			mRenderer->UpdateWindowSize(panelWidth, panelHeight);
 			bool bInitOK = false;
 
+			Microsoft::Services::Store::Engagement::StoreServicesCustomEventLogger^ logger = nullptr;
+			try
+			{
+				logger = Microsoft::Services::Store::Engagement::StoreServicesCustomEventLogger::GetDefault();
+			}
+			catch(...)
+			{ }
+
 			try
 			{
 				bInitOK = mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str());
+				if (!bInitOK && logger != nullptr)
+				{
+					logger->Log(L"ShaderInitError");
+				}
 			}
 			catch (...)
 			{
+				if (logger != nullptr)
+				{
+					logger->Log(L"ShaderInitException");
+				}
 				errorText = L"Sorry, I cannot initialize this shader.";
 				assert(!"Exception while initializing shader");
 			}
@@ -302,6 +318,11 @@ void MainPage::StartRenderLoop()
 			}
 			else
 			{
+				if (logger != nullptr)
+				{
+					logger->Log(L"ShaderInitSuccess");
+				}
+
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()
 				{
 				}, CallbackContext::Any));
