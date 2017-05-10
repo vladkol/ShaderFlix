@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">使用 Microsoft AdControl，开发人员可以向自己的应用程序中添加广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">当 AdControl 收到新广告时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">在 AdControl 检索广告而遇到错误时发生此事件。</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">用户单击广告并开始扩展体验时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">AdControl 呈现广告前发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">当 AdControl 收到手势更改事件时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">当 AdControl 收到鼠标滑轮事件时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">用户使用鼠标、指针或触摸在广告控件内下按时发生此事件。应用程序可使用此事件在广告控件上制作动画效果以实现视觉下触反馈。如果广告自身提供视觉下触反馈，可能会抑制该事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">在用户使用鼠标、指针或触摸时在广告控件内释放下按操作时发生此事件。应用程序可使用此事件在广告控件上制作动画效果以实现视觉下触反馈。如果广告自身提供视觉下触反馈，可能会抑制该事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">当 AdControl 收到指针移动事件时发生此事件。</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">应用程序的应用程序 ID。向 pubCenter 注册应用程序时提供该值。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">广告单元标识符。
+      
+该值在发布商在 pubCenter 中创建广告单元时提供给发布商。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">启用或禁用自动广告刷新。该属性在首次设置后不能再更改。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">指明用户当前是否正在与广告交互。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">用户所在的国家或地区。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">如果 AdControl 收到来自服务器的广告，则返回 true。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">指明 AdControl 当前是否处于挂起状态。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">广告目标中使用的关键字。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">用户的邮政编码。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">启动新广告请求，一旦有可用新广告就会显示。
+      
+当 IsAutoRefreshEnabled 设置为 true 时，可能不能使用该方法。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">向广告控件添加广告标记。每个广告控件最多可以包含 10 个标记。如果超过最大值，将发生 errorOccurred 事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">标记的名称。最长 16 个字符，如果超出，将发生 errorOccurred 事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">标记的值。最长 128 个字符，如果超出，将发生 errorOccurred 事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">从广告控件中删除广告标记。如果标记名称不存在，此操作无效。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">要删除的标记的名称。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">挂起当前广告。禁用广告刷新。如果广告忙，则关闭扩展的广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">在广告挂起后恢复广告的正常功能。
+      
+如果 IsAutoRefreshEnabled=true，将恢复 AdControl 的自动刷新功能，并允许再次手动刷新。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">使用 InterstitialAd，开发人员可以向应用程序中添加全屏插播广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">插播广告准备显示时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">当用户在广告被视为结束前取消广告时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">广告已关闭且广告体验被视为结束时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">在 InterstitialAd 检索广告而遇到错误时发生此事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">用户所在的国家或地区。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">目标中使用的关键字。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">用户的邮政编码。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">超时前，等待广告请求完成的毫秒数。默认为 30000 毫秒或 30 秒。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">插播广告的当前状态。请参见 InterstitialAdState 枚举。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">添加要在广告请求中使用的广告标记。最多可以包含 10 个标记。如果超过最大值，将发生错误事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">标记的名称。最长 16 个字符，如果超出，将发生 errorOccurred 事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">标记的值。最长 128 个字符，如果超出，将发生 errorOccurred 事件。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">删除广告标记。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">要删除的标记的名称。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">从服务器请求插播广告。请求成功完成时，将发生 AdReady 事件。如果获取广告时出现问题，将发生 ErrorOccurred 事件。在调用 Show 之前不会显示广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">请求的插播广告的类型。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">应用程序的应用程序 ID。向 pubCenter 注册应用程序时提供该值。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">pubCenter 上置备的 adUnitId。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">显示处于就绪状态的插播广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">关闭显示的插播广告。一旦关闭，同一个广告可能不会再显示。在前一个广告关闭后，应用程序可以请求新广告。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

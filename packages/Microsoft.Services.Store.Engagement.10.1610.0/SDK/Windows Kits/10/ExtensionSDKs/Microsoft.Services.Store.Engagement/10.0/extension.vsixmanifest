@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="MSStoreEngagementSDK.e317a1af-e03c-47a5-9af9-0dfcbdf3ce15" Version="10.0.1610.24003" Language="en-US" Publisher="Microsoft Corporation" />
+    <DisplayName>Microsoft Store Services Engagement Framework</DisplayName>
+    <Description xml:space="preserve">This framework (part of the Microsoft Store Services SDK) helps you engage with your app customers with features such as A/B testing, facilitating user feedback, and more.</Description>
+    <MoreInfo>http://aka.ms/store-em-docs</MoreInfo>
+    <License>License.rtf</License>
+  </Metadata>
+  <Installation Scope="Global" AllUsers="true" InstalledByMsi="true">
+    <InstallationTarget Id="Microsoft.ExtensionSDK" TargetPlatformIdentifier="UWP" TargetPlatformVersion="v10.0" SdkName="MicrosoftStoreEngagementAndMonetizationSDK.msi" SdkVersion="10.0.1610.24003" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.VCLibs" DisplayName="Microsoft Visual C++ Libs" Version="14.0" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.ExtensionSDK" d:Source="File" Path="SDKManifest.xml" />
+  </Assets>
+</PackageManifest>

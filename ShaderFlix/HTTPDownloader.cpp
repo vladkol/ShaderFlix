@@ -27,6 +27,9 @@ using namespace std;
 
 	void HTTPDownloader::FlushCache()
 	{
+		// temporary fix, do not store the cache 
+		return;
+
 		if (!_cache.HasParseError() && !_cache.IsNull())
 		{
 			std::unique_lock<std::shared_mutex> lock(_cache_mutex);
@@ -77,6 +80,9 @@ HTTPDownloader::HTTPDownloader()
 	_curl = curl_easy_init();
 
 #ifdef HTTPDOWNLOADER_WITH_CACHE
+	// temporary fix, do not read cache
+	return;
+
 	if (_cache.IsNull())
 	{
 		std::unique_lock<std::shared_mutex> lock(_cache_mutex);

@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Klasa Microsoft AdControl umożliwia twórcom dodawanie reklam do swoich aplikacji.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Zdarzenie to występuje, jeśli klasa AdControl otrzyma nową reklamę.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Zdarzenie to występuje, jeśli klasa AdControl napotka błąd podczas pobierania reklam.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">To zdarzenie występuje, jeśli użytkownik kliknie reklamę i rozpocznie rozszerzoną interakcję.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Zdarzenie to występuje, zanim klasa AdControl wyświetli nową reklamę.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Zdarzenie to występuje, jeśli klasa AdControl otrzyma zdarzenie zmiany stanu manipulacji.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Zdarzenie to występuje, jeśli klasa AdControl otrzyma zdarzenie kółka myszy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">To zdarzenie występuje, jeśli użytkownik naciśnie przycisk w oknie AdControl, przy użyciu myszy, wskaźnika lub dotyku. Aplikacja może użyć tego zdarzenia do animowania elementu AdControl i wyświetlania reakcji na interakcję z przyciskiem. Reklama może wyciszyć to zdarzenie, jeśli sama zapewnia efekty graficzne.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">To zdarzenie występuje, jeśli użytkownik zwolni przycisk w oknie AdControl, przy użyciu myszy, wskaźnika lub dotyku. Aplikacja może użyć tego zdarzenia do animowania elementu AdControl i wyświetlania reakcji na interakcję z przyciskiem. Reklama może wyciszyć to zdarzenie, jeśli sama zapewnia efekty graficzne.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Zdarzenie to występuje, jeśli klasa AdControl otrzyma zdarzenie ruchu wskaźnika.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Identyfikator aplikacji. Wartość ta jest podawana przy rejestracji aplikacji w usłudze pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Identyfikator jednostki reklam.
+      
+        Wartość ta jest przekazywana wydawcy po utworzeniu przez niego jednostki reklam w usłudze pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Włącza lub wyłącza automatyczne odświeżanie reklam. Właściwości tej nie można zmienić po początkowym ustawieniu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Wskazuje, czy użytkownik wchodzi obecnie w interakcję z reklamą.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Kraj lub region użytkownika.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Zwraca wartość true, jeśli klasa AdControl otrzymała reklamę z serwera.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Wskazuje, czy klasa AdControl znajduje się obecnie w stanie zawieszonym.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Słowa kluczowe używane przy kierowaniu reklam.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Kod pocztowy użytkownika.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Rozpoczyna żądanie nowej reklamy, która jest wyświetlana, gdy tylko stanie się dostępna.
+      
+        Metody tej nie można używać, jeśli właściwość IsAutoRefreshEnabled jest ustawiona na true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Dodaje znacznik reklamy do klasy AdControl. Maksymalna liczba znaczników na element to 10. W przypadku przekroczenia wartości maksymalnej występuje zdarzenie errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Nazwa znacznika. Maksymalnie 16 znaków, w przypadku przekroczenia limitu długości występuje zdarzenie errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Wartość znacznika. Maksymalnie 128 znaków, w przypadku przekroczenia limitu długości występuje zdarzenie errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Usuwa znacznik reklamy z klasy AdControl. Nie ma efektu, jeśli dana nazwa znacznika nie istnieje.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Nazwa znacznika do usunięcia.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Zawiesza bieżącą reklamę. Odświeżanie reklam jest wyłączane. W przypadku interakcji z reklamą, powiększona reklama jest zamykana.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Wznawia normalne funkcjonowanie reklamy po jej zawieszeniu.
+      
+        Wznawia automatyczne odświeżanie klasy AdControl, jeśli IsAutoRefreshEnabled=true, a także umożliwia ponowne wystąpienie odświeżenia ręcznego.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">Klasa InterstitialAd umożliwia twórcom dodawanie pełnoekranowych reklam międzysegmentowych do aplikacji.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">To zdarzenie występuje, gdy reklama międzysegmentowa jest gotowa do wyświetlenia.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">To zdarzenie występuje, jeśli użytkownik anuluje reklamę, zanim będzie uważana za ukończoną.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">To zdarzenie występuje po zamknięciu reklamy, gdy cały segment reklamy jest uważany za ukończony.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Zdarzenie to występuje, jeśli klasa InterstitialAd napotka błąd podczas pobierania reklam.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Kraj lub region, w którym znajduje się użytkownik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Słowa kluczowe używane przy kierowaniu reklam.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Kod pocztowy użytkownika.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Liczba milisekund oczekiwania na ukończenie żądania reklamy przed upływem limitu czasu. Wartość domyślna to 30 000 ms lub 30 sekund.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Bieżący stan reklamy międzysegmentowej. Patrz wyliczenie InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Dodaje znacznik reklamy do użytku w żądaniu reklamy. Maksymalna liczba znaczników to 10. W przypadku przekroczenia wartości maksymalnej występuje zdarzenie błędu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Nazwa znacznika. Maksymalnie 16 znaków, w przypadku przekroczenia limitu długości występuje zdarzenie errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Wartość znacznika. Maksymalnie 128 znaków, w przypadku przekroczenia limitu długości występuje zdarzenie errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Usuwa znacznik reklamy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Nazwa znacznika do usunięcia.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Wysyła żądanie reklamy międzysegmentowej do serwera. Po pomyślnym zakończeniu żądania inicjowane jest zdarzenie AdReady. W przypadku wystąpienia problemu z pobieraniem reklamy inicjowane jest zdarzenie ErrorOccurred. Reklama nie jest wyświetlana użytkownikowi do momentu wywołania funkcji Show.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Typ reklamy międzysegmentowej do zażądania.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Identyfikator aplikacji. Wartość ta jest podawana przy rejestracji aplikacji w usłudze PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">Identyfikator adUnitId określony w usłudze pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Wyświetla reklamę międzysegmentową, jeśli jest w stanie gotowym.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Zamyka reklamę międzysegmentową, jeśli jest wyświetlana. Po zamknięciu dana reklama nie może zostać wyświetlona ponownie. Aplikacja może zażądać nowej reklamy po zamknięciu poprzedniej.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

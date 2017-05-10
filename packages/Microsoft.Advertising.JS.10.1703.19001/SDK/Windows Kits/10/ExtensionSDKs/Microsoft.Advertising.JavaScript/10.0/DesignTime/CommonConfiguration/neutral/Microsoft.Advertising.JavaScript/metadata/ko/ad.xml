@@ -1,0 +1,68 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Microsoft AdControl을 통해 개발자는 앱에 광고를 추가할 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">이 이벤트는 AdControl에서 새로운 광고를 수신할 때 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">이 이벤트는 AdControl에서 광고를 검색하는 동안 오류가 발생할 경우 일어납니다.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">이 이벤트는 사용자가 광고를 클릭하여 확장된 체험을 시작할 때 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">이 이벤트는 AdControl이 광고를 렌더링하기 전에 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">이 이벤트는 AdControl에서 조작 상태 변경됨 이벤트를 수신할 때 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">이 이벤트는 AdControl에서 마우스 휠 이벤트를 수신할 때 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">이 이벤트는 사용자가 마우스, 포인터 또는 터치를 사용하여 광고 컨트롤 내부를 누를 때 발생합니다. 응용 프로그램은 이 이벤트를 사용하여 광고 컨트롤에 시각적 터치 다운 피드백에 대한 애니메이션 효과를 줍니다. 광고에서 시각적 터치 다운 피드백을 제공하는 경우 이 이벤트가 발생하지 않을 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">이 이벤트는 사용자가 마우스, 포인터 또는 터치를 사용하여 광고 컨트롤 내부를 누르는 동작을 해제할 때 발생합니다. 응용 프로그램은 이 이벤트를 사용하여 광고 컨트롤에 시각적 터치 다운 피드백에 대한 애니메이션 효과를 줍니다. 광고에서 시각적 터치 다운 피드백을 제공하는 경우 이 이벤트가 발생하지 않을 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">이 이벤트는 AdControl에서 포인터 이동 이벤트를 수신할 때 발생합니다.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">앱의 응용 프로그램 ID입니다. 이 값은 pubCenter에 앱을 등록할 때 제공됩니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">광고 단위 ID입니다.
+      
+        이 값은 게시자가 pubCenter에서 광고 단위를 만들 때 게시자에게 제공됩니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">광고의 자동 새로 고침을 사용하거나 사용하지 않도록 지정합니다. 이 속성을 처음 설정한 후에는 변경할 수 없습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">사용자가 현재 광고와 상호 작용하는지 여부를 나타냅니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">사용자의 국가 또는 지역입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">AdControl이 서버에서 광고를 수신하면 true를 반환합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">AdControl이 현재 일시 중지된 상태에 있는지 여부를 나타냅니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">광고 타기팅에 사용되는 키워드입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">사용자의 우편 번호입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">사용 가능해지는 즉시 표시되는 새로운 광고에 대한 요청을 시작합니다.
+      IsAutoRefreshEnabled가 true로 설정되면 이 메서드가 사용되지 않을 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">광고 컨트롤에 광고 태그를 추가합니다. 최대값은 광고 컨트롤당 10개 태그입니다. 최대값을 초과할 경우 errorOccurred 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">태그의 이름입니다. 최대값은 16자이며, 최대값을 초과할 경우 errorOccurred 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">태그의 값입니다. 최대값은 128자이며, 최대값을 초과할 경우 errorOccurred 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">광고 컨트롤에서 광고 태그를 제거합니다. 태그 이름이 존재하지 않는 경우 이 작업은 아무런 영향도 미치지 않습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">제거할 태그의 이름입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">현재 광고를 일시 중지합니다. 광고 새로 고침을 사용할 수 없게 됩니다. 광고가 연결된 경우 확장된 광고가 닫힙니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">일시 중지된 후 광고의 정상적인 작동을 다시 시작합니다.
+      IsAutoRefreshEnabled=true이면 AdControl의 자동 새로 고침을 다시 시작하고 수동 새로 고침이 다시 수행되도록 허용합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd를 통해 개발자는 앱에 전체 화면 중간 광고를 추가할 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">중간 광고를 표시할 준비가 되면 이 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">광고 체험이 완료된 것으로 간주되기 전에 사용자가 광고를 취소하면 이 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">광고가 닫히고 광고 체험이 완료된 것으로 간주되면 이 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">이 이벤트는 InterstitialAd에서 광고를 검색하는 동안 오류가 발생할 경우 일어납니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">사용자가 있는 국가 또는 지역입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">타기팅에 사용할 키워드입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">사용자의 우편 번호입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">광고 요청이 완료되기를 기다려야 하는 시간(밀리초)으로, 이 시간이 경과되면 시간 초과가 발생합니다. 기본값은 30,000ms 또는 30초입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">중간 광고의 현재 상태입니다. InterstitialAdState 열거를 참조하십시오.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">광고 요청에 사용할 광고 태그를 추가합니다. 최대값은 10개 태그입니다. 최대값을 초과할 경우 오류 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">태그의 이름입니다. 최대값은 16자이며, 최대값을 초과할 경우 errorOccurred 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">태그의 값입니다. 최대값은 128자이며, 최대값을 초과할 경우 errorOccurred 이벤트가 발생합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">광고 태그를 제거합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">제거할 태그의 이름입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">서버에서 중간 광고를 요청합니다. 요청이 완료되면 AdReady 이벤트가 발생합니다. 광고를 가져오는 동안 문제가 있으면 ErrorOccurred 이벤트가 발생합니다. Show가 호출될 때까지 광고가 사용자에게 표시되지 않습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">요청할 중간 광고의 유형입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">앱의 응용 프로그램 ID입니다. 이 값은 pubCenter에 앱을 등록할 때 제공됩니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">pubCenter에서 프로비전된 adUnitId입니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">준비 상태에 있는 중간 광고를 표시합니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">표시 중인 중간 광고를 닫습니다. 한 번 닫은 후에는 동일한 광고가 다시 표시되지 않을 수 있습니다. 이전 광고가 닫힌 후 앱에서 새로운 광고를 요청할 수 있습니다.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

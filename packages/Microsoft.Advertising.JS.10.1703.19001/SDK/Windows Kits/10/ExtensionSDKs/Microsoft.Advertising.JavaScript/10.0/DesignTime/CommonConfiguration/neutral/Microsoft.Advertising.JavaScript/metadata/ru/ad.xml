@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Microsoft AdControl позволяет разработчикам добавлять рекламные объявления в создаваемые приложения.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Это событие возникает, когда AdControl получает новое рекламное объявление.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Это событие возникает, когда AdControl сталкивается с ошибкой при получении рекламных объявлений.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Это событие возникает, когда пользователь щелкает рекламное объявление для его развертывания.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Это событие возникает перед обработкой рекламного объявления в AdControl.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Это событие возникает, когда AdControl получает сигнал о новой манипуляции.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Это событие возникает, когда AdControl получает сигнал об использовании колесика мыши.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Это событие возникает, когда пользователь нажимает кнопку внутри элемента управления рекламного объявления, используя мышь, указатель или сенсорное управление. Приложение может использовать это событие для анимации рекламного объявления, добавляя визуальную реакцию на касание. Рекламное объявление может подавлять это событие в том случае, если оно само содержит визуальную реакцию на касание.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Это событие возникает, когда пользователь отпускает кнопку внутри элемента управления рекламного объявления, используя мышь, указатель или сенсорное управление. Приложение может использовать это событие для анимации рекламного объявления, добавляя визуальную реакцию на касание. Рекламное объявление может подавлять это событие в том случае, если оно само содержит визуальную реакцию на касание.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Это событие возникает, когда AdControl получает сигнал о движении указателя.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Код приложения. Это значение предоставляется при регистрации приложения с использованием pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Идентификатор рекламного объявления.
+      
+        Это значение предоставляется издателю при создании рекламного объявления в pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Разрешение или запрет автоматического обновления рекламных объявлений. После первоначальной настройки это свойство менять нельзя.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Указывает на текущий статус взаимодействия пользователя с рекламным объявлением.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Страна или регион пользователя.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Отклик true означает, что AdControl получил рекламное объявление с сервера.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Указывает на то, находится ли AdControl в приостановленном состоянии.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Ключевые слова, используемые для выбора аудитории рекламного объявления.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Почтовый индекс пользователя.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Инициализация запроса на новое рекламное объявление, которое будет показано сразу же после его появления.
+      
+        Этот метод можно использовать, если для параметра IsAutoRefreshEnabled выбрано значение true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Добавление тега для управления рекламным объявлением. Можно добавлять не более 10 тегов для управления каждым рекламным объявлением. Если максимальное количество превышено, возникнет событие errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Название тега. Не более 16 символов. Если максимальное количество превышено, возникнет событие errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Значение тега. Не более 128 символов. Если максимальное количество превышено, возникнет событие errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Удаление тега рекламного объявления из элемента управления рекламного объявления. Не действует, если название тега не существует.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Название удаляемого тега.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Приостановка текущего рекламного объявления. Обновление рекламного объявления отключено. Если рекламное объявление активировано, то раскрытое объявление будет закрыто.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Возобновление обычного отображения рекламного объявления после приостановки.
+      
+        Автоматическое обновление AdControl возобновляется в том случае, если IsAutoRefreshEnabled=true, при этом снова становится возможным обновление вручную.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd позволяет разработчикам добавлять полноэкранные рекламные вставки в создаваемые приложения.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Событие возникает, когда рекламная вставка готова к отображению.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Это событие возникает, когда пользователь отменяет рекламное объявление до того, как оно считается выполненным.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Событие возникает при закрытии рекламного объявления, когда его отображение считается выполненным.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Это событие возникает, когда InterstitialAd сталкивается с ошибкой при получении рекламных объявлений.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Страна или регион пользователя.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Ключевые слова, используемые для выбора аудитории.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Почтовый индекс пользователя.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Время ожидания (в миллисекундах) выполнения рекламного объявления. По умолчанию используется значение 30000 мс или 30 секунд.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Текущее состояние рекламной вставки. См. перечисление InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Добавление тега, используемого в запросе рекламного объявления. Можно добавлять не более 10 тегов. Если максимальное количество превышено, возникнет событие ошибки.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Название тега. Не более 16 символов. Если максимальное количество превышено, возникнет событие errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Значение тега. Не более 128 символов. Если максимальное количество превышено, возникнет событие errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Удаление тега рекламного объявления.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Название удаляемого тега.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Запрашивает рекламную вставку на сервере. Событие AdReady возникает при успешном выполнении запроса. Событие ErrorOccurred возникает при наличии проблем с получением рекламного объявления. Рекламное объявление будет показано пользователю только после вызова команды Show.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Тип запрашиваемой рекламной вставки.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Код приложения. Это значение предоставляется при регистрации приложения с использованием PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">Значение adUnitId, указанное на pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Отображает рекламную вставку в состоянии готовности.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Закрывает отображаемую рекламную вставку. После закрытия повторное отображение соответствующей вставки невозможно. Приложение может запрашивать новое рекламное объявление после закрытия предыдущего.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

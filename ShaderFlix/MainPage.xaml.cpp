@@ -285,14 +285,22 @@ void MainPage::StartRenderLoop()
 				bInitOK = mRenderer->InitShader(APP_KEY, mShaderFlixId.c_str());
 				if (!bInitOK && logger != nullptr)
 				{
-					logger->Log(L"ShaderInitError");
+					try
+					{
+						logger->Log(L"ShaderInitError");
+					}
+					catch (...) {}
 				}
 			}
 			catch (...)
 			{
 				if (logger != nullptr)
 				{
-					logger->Log(L"ShaderInitException");
+					try
+					{
+						logger->Log(L"ShaderInitException");
+					}
+					catch (...) {}
 				}
 				errorText = L"Sorry, I cannot initialize this shader.";
 				assert(!"Exception while initializing shader");
@@ -320,7 +328,11 @@ void MainPage::StartRenderLoop()
 			{
 				if (logger != nullptr)
 				{
-					logger->Log(L"ShaderInitSuccess");
+					try
+					{
+						logger->Log(L"ShaderInitSuccess");
+					}
+					catch (...) {}
 				}
 
 				swapchain->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High, ref new Windows::UI::Core::DispatchedHandler([=]()

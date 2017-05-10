@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FileList 
+  DisplayName = "Microsoft Advertising SDK for JavaScript"
+  FrameworkIdentity = "Name=Microsoft.Advertising.JavaScript, MinVersion=10.1703.1.0, Publisher='CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US'"
+  MinVSVersion = "14.0"
+  TargetPlatform="UAP"
+  TargetPlatformMinVersion="10.0.10240.0"
+  TargetPlatformVersion="10.0.10240.0"
+  DependsOn = "Microsoft.VCLibs, Version=14.0"
+  MoreInfo = "http://go.microsoft.com/fwlink/?LinkID=619694"
+  AppliesTo = "WindowsAppContainer + JavaScript"
+  AppX-x86 = ".\AppX\x86\Microsoft.Advertising.JavaScript.x86.10.0.appx"
+  AppX-x64 = ".\AppX\x64\Microsoft.Advertising.JavaScript.x64.10.0.appx"
+  AppX-ARM = ".\AppX\ARM\Microsoft.Advertising.JavaScript.ARM.10.0.appx"
+  SupportsMultipleVersions = "Error"
+  SupportedArchitectures="x86;x64;ARM">
+  <File Content="ad.js" />
+</FileList>

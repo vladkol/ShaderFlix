@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FileList 
+  DisplayName = "Microsoft Engagement Framework"
+  FrameworkIdentity = "Name=Microsoft.Services.Store.Engagement, MinVersion=10.0.1610.0, Publisher='CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US'"
+  TargetPlatform="UAP"
+  ProductFamilyName = "Microsoft.Services.Store.Engagement"  
+  TargetFramework = ".NETCore, version=v4.5.1;"
+  MinVSVersion = "14.0"
+  TargetPlatformMinVersion="10.0.10240.0"
+  TargetPlatformVersion="10.0.10240.0"
+  AppliesTo = "WindowsAppContainer + (Managed | Javascript | Native)"
+  AppX-x86 = ".\AppX\x86\Microsoft.Services.Store.Engagement.x86.10.0.appx"
+  AppX-x64 = ".\AppX\x64\Microsoft.Services.Store.Engagement.x64.10.0.appx"
+  AppX-ARM = ".\AppX\ARM\Microsoft.Services.Store.Engagement.ARM.10.0.appx"  
+  SupportsMultipleVersions = "Error"
+  SupportedArchitectures="x86;x64;ARM"
+  MoreInfo = "http://aka.ms/store-em-docs"
+  DependsOn = "Microsoft.VCLibs, Version=14.0" >
+  <File Reference = "Microsoft.Services.Store.Engagement.winmd" Implementation="Microsoft.Services.Store.Engagement.dll"></File>
+</FileList>

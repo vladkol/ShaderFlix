@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Microsoft AdControl võimaldab arendajatel rakendustesse reklaame lisada.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">See sündmus esineb siis, kui tarkvara AdControl saab uue reklaami.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">See sündmus esineb siis, kui tarkvaras AdControl ilmneb reklaamide hankimisel tõrge.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">See sündmus esineb siis, kui kasutaja klõpsab reklaami ja laiendab kasutust.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">See sündmus esineb enne seda, kui tarkvara AdControl reklaami renderdab.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">See sündmus esineb siis, kui tarkvara AdControl saab käsitsemisoleku muutumise sündmuse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">See sündmus esineb siis, kui tarkvara AdControl saab hiireratta sündmuse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">See sündmus esineb siis, kui kasutaja jõustab hiire, kursori või puute abil reklaamijuhtimise. Rakendus saab seda sündmust kasutada reklaamijuhtimise animeerimiseks visuaalse puutetagasiside andmise eesmärgil. Reklaam võib selle sündmuse alla suruda, kui annab ise visuaalset puutetagasisidet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">See sündmus esineb siis, kui kasutaja vabastab hiire, kursori või puute abil reklaamijuhtimises jõustamise. Rakendus saab seda sündmust kasutada reklaamijuhtimise animeerimiseks visuaalse puutetagasiside andmise eesmärgil. Reklaam võib selle sündmuse alla suruda, kui annab ise visuaalset puutetagasisidet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">See sündmus esineb siis, kui tarkvara AdControl saab kursori liigutamise sündmuse.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Rakenduse ID. Selle väärtuse saate teada rakendust PubCenteris registreeridesl.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Reklaamiüksuse identifikaator.
+      
+        See väärtus esitatakse reklaami avaldajale, kui avaldaja loob PubCenteris reklaamiüksuse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Lubab või keelab reklaamide automaatse värskendamise. Seda atribuuti ei saa pärast algset määramist muuta.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Näitab, kas kasutaja suhtleb praegu reklaamiga.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Kasutaja riik või piirkond.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Tagastab väärtuse tõene, kui tarkvara AdControl on saanud serverist reklaami.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Näitab, kas tarkvara AdControl on praegu peatatud olekus.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Reklaami sihtimise võtmesõnad.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Kasutaja postiindeks.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Käivitab päringu uue reklaami kohta, mis kuvatakse kohe, kui see on saadaval.
+      
+        Seda meetodit ei saa kasutada, kui atribuudi IsAutoRefreshEnabled sätteks on määratud tõene.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Lisage reklaamijuhtimisele reklaamisilt. Maksimaalne väärtus on 10 silti reklaamijuhtimise kohta. Maksimaalse arvu ületamisel võidakse käivitada sündmus ErrorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Sildi nimi. Maksimaalselt 16 tähemärki, mille ületamise korral käivitatakse sündmus ErrorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Sildi väärtus. Maksimaalselt 128 tähemärki, mille ületamise korral käivitatakse sündmus ErrorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Eemaldage reklaamijuhtimisest reklaamisilt. Sellel pole mingit mõju, kui sildi nime pole olemas.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Eemaldatava sildi nimi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Peatab praeguse reklaami. Reklaami värskendamine on keelatud. Reklaami rakendamise korral suletakse laiendatud reklaam.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Jätkab pärast reklaami peatamist selle normaalset toimimist.
+      
+        Jätkab tarkvara AdControl automaatset värskendamist, kui atribuut IsAutoRefreshEnabled = tõene, ja lubab uuesti käsitsi värskendada.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd võimaldab arendajatel lisada rakendustele täisekraanil kuvatavaid vahereklaame.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">See sündmus esineb siis, kui vahereklaam on kuvamiseks valmis.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">See sündmus esineb juhul, kui kasutaja tühistab reklaami enne kuvamise lõpetamist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">See sündmus esineb siis, kui reklaam on suletud ja selle kuvamine on lõpetatud.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">See sündmus esineb siis, kui sündmuses InterstitialAd ilmneb reklaamide toomisel tõrge.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Kasutaja asukohariik või piirkond.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Sihtkoha määramisel kasutatavad võtmesõnad.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Kasutaja postiindeks.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Enne ajalõppu reklaamipäringu lõpetamiseni kuluvate millisekundite arv. Vaikeväärtus on 30 000 ms või 30 sekundit.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Vahereklaami praegune olek. Vt üksuse InterstitialAdState loetelu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Lisage reklaamipäringus kasutatav reklaamisilt. Maksimaalselt võib olla 10 silti. Maksimaalse arvu ületamisel võidakse käitada tõrkesündmus.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Sildi nimi. Maksimaalselt 16 tähemärki, mille ületamise korral käivitatakse sündmus ErrorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Sildi väärtus. Maksimaalselt 128 tähemärki, mille ületamise korral käivitatakse sündmus ErrorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Eemaldage reklaamisilt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Eemaldatava sildi nimi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Esitab vahereklaami kohta serveris päringu. Kui päring on edukas, käivitub sündmus AdReady. Kui reklaami hankimisega on probleeme, käivitub sündmus ErrorOccurred. Reklaami ei näidata kasutajale, kuni kasutatakse kutset Kuva.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Päringuga seotud vahereklaami tüüp.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Rakenduse ID. Selle väärtuse saate teada rakendust PubCenteris registreerides.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">PubCenteris toodud adUnitId.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Kuvab valmisolekus vahereklaami.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Sulgeb kuvatava vahereklaami. Kui reklaam on suletud, ei saa seda enam uuesti kuvada. Rakendus võib eelmise reklaami sulgemise järel esitada päringu uue reklaami kohta.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

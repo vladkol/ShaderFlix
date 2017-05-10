@@ -1,0 +1,5 @@
+The following is a list of files available for redistribution under the terms
+of the Microsoft Store Services SDK for Windows Apps license agreement:
+
+Microsoft.Advertising.winmd
+Microsoft.Services.Store.Engagement.winmd
