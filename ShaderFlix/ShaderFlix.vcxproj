@@ -98,11 +98,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <PackageCertificateKeyFile>ShaderFlix_StoreKey.pfx</PackageCertificateKeyFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppxBundle>Never</AppxBundle>
-    <PackageCertificateThumbprint>2AC7B560B2E3770E240A366F846DA2E65F340046</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>3000FA5A9BAAB5515B0C2B18C4337E035254DA25</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)curl\include\win10;$(IncludePath)</IncludePath>
@@ -408,10 +408,10 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
     <Media Include="PresetData\presets\vid03.webm" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Package.StoreAssociation.xml" />
+    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
