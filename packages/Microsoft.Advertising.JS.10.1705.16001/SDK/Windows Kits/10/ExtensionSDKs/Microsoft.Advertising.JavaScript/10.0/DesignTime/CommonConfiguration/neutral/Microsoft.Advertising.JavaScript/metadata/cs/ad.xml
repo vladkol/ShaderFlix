@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">S Microsoft AdControl můžou vývojáři do aplikací přidávat reklamy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">K téhle události dojde, když AdControl obdrží novou reklamu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">K téhle události dojde, když v AdControl dojde při načítání reklam k chybě.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">K téhle události dojde, když uživatel klikne na reklamu a zobrazí se rozšířené možnosti.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">K téhle události dojde dřív, než AdControl vykreslí reklamu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">K téhle události dojde, když AdControl obdrží událost změněného stavu manipulace.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">K téhle události dojde, když AdControl obdrží událost kolečka myši.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">K téhle události dojde, když uživatel stiskne tlačítko uvnitř ovládacího prvku pomocí myši, ukazatele nebo dotyku. Aplikace může tuhle událost použít k animaci ovládacího prvku reklamy pro vizuální zpětnou vazbu na dotek. Reklama může tuhle událost potlačit, pokud poskytuje vlastní vizuální zpětnou vazbu na dotek.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">K téhle události dojde, když uživatel uvolní tlačítko uvnitř ovládacího prvku pomocí myši, ukazatele nebo dotyku. Aplikace může tuhle událost použít k animaci ovládacího prvku reklamy pro vizuální zpětnou vazbu na dotek. Reklama může tuhle událost potlačit, pokud poskytuje vlastní vizuální zpětnou vazbu na dotek.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">K téhle události dojde, když AdControl obdrží událost pohybu ukazatele.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">ID aplikace pro aplikaci. Tahle hodnota je poskytnutá, když zaregistrujete aplikaci v pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Identifikátor jednotky reklamy.
+      
+        Tahle hodnota je poskytnuta vydavateli, když vydavatel vytvoří jednotku reklamy v pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Povolí nebo zakáže automatické obnovení reklam. Tuhle vlastnost nelze po jejím počátečním nastavení změnit.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Označuje, jestli uživatel právě provádí interakci s reklamou.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Země nebo oblast uživatele.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Jestli AdControl obdržel reklamu ze serveru, vrátí pravda.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Označuje, jestli AdControl je aktuálně v pozastaveném stavu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Klíčové slovo použité v cílení reklamy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">PSČ uživatele.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Spustí požadavek na novou reklamu, která se zobrazí co nejdřív.
+      
+        Tahle metoda by se neměla používat, když je IsAutoRefreshEnabled nastaveno na pravda.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Přidání značky reklamy do ovládacího prvku reklamy. Maximální množství je 10 značek pro ovládací prvek reklamy. Když se dosáhne maximum, dojde k události errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Název značky. Maximum je 16 znaků. Pokud se překročí, dojde k události errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Hodnota značky. Maximum je 128 znaků. Pokud se překročí, dojde k události errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Odebrání značky reklamy z ovládacího prvku reklamy. Jestli název značky neexistuje, nemá to žádný efekt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Název značky k odebrání.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Pozastaví aktuální reklamu. Obnovení reklamy je zakázáno. Když byla reklama zapojená, zavře se.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Vrátí se k normální funkci reklamy poté, co byla pozastavená.
+      
+        Jestli IsAutoRefreshEnabled=true, vrátí automatické obnovení AdControl a umožní opětovný vznik ručním obnovením.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd umožňuje vývojářům do svých aplikací přidávat vkládané reklamy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Tahle událost vznikne, když je vkládaná reklama připravena k zobrazení.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Tahle událost vznikne, když uživatel zruší reklamu dřív, než je považovaná za dokončenou.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Tahle událost vznikne, když byla reklama zavřena a možnost reklamy je považována za dokončenou.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">K téhle události dojde, když v InterstitialAd dojde při načítání reklam k chybě.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Země nebo oblast, kde se nachází uživatel.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Klíčová slova, která se mají použít při plánování.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">PSČ uživatele.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Počet milisekund, po které se má čekat, než skončí limit platnosti žádosti o dokončení. Výchozí čas je 30 000 ms nebo 30 sekund.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Aktuální stav vkládané reklamy. Zobrazení výčtu InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Přidá značku reklamy pro použití v požadavku na reklamu. Maximum je 10 značek. Když se dosáhne maximum, dojde k události chyby.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Název značky. Maximum je 16 znaků. Pokud se překročí, dojde k události errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Hodnota značky. Maximum je 128 znaků. Pokud se překročí, dojde k události errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Odebere značku reklamy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Název značky k odebrání.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Požádá server o vkládanou reklamu. Událost AdReady se spustí, když se žádost úspěšně dokončí. Událost ErrorOccurred se spustí, když se nepodaří získat reklamu. Reklama se nezobrazí uživateli, dokud se nezavolá Show.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Typ vkládané reklamy, která se má vyžádat.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">ID aplikace pro aplikaci. Tahle hodnota se vám poskytne, když zaregistrujete aplikaci v PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">Identifikátor adUnitId, jak se zřídí v pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Zobrazí vkládanou reklamu, když je v připraveném stavu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Pokud se zobrazuje vkládaná reklama, zavře ji. Po zavření by se stejná reklama už neměla znovu zobrazit. Když se předchozí reklama zavře, aplikace si může požádat o novou.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

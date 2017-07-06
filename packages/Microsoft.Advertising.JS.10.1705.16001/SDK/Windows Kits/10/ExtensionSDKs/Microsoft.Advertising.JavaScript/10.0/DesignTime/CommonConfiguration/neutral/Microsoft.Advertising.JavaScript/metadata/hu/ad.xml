@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">A Microsoft AdControl használatával a fejlesztők reklámokat adhatnak az alkalmazásaikhoz.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Ez az esemény akkor fordul elő, amikor az AdControl egy új reklámot kap.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Ez az esemény akkor fordul elő, amikor az AdControl hibát észlel a reklámok lekérésekor.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Ez az esemény akkor fordul elő, amikor a felhasználó reklámra kattint, és megnyílik annak tartalma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Ez az esemény azelőtt történik, hogy az AdControl rendereli a reklámot.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Ez az esemény akkor fordul elő, amikor az AdControl a módosítási állapot változásával kapcsolatos eseményt kap.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Ez az esemény akkor fordul elő, amikor az AdControl az egérgörgőről érkező eseményt kap.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Ez az esemény akkor történik, amikor a felhasználó lenyomást hajt végre a reklámvezérlőn belül az egérrel, a mutatóval vagy érintéssel. Az alkalmazás ezzel az eseménnyel animálhatja a reklámvezérlőt az érintés vizuális visszajelzéshez. A reklám letilthatja ezt az eseményt, ha maga is nyújt vizuális visszajelzést az érintésről.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Ez az esemény akkor történik, amikor a felhasználó lenyomást hajt végre a reklámvezérlőn belül az egérrel, a mutatóval vagy érintéssel. Az alkalmazás ezzel az eseménnyel animálhatja a reklámvezérlőt az érintés vizuális visszajelzéshez. A reklám letilthatja ezt az eseményt, ha maga is nyújt vizuális visszajelzést az érintésről.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Ez az esemény akkor fordul elő, amikor az AdControl mutató mozgása eseményt kap.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Az alkalmazás alkalmazásazonosítója. Ezt az értéket akkor kapja meg, amikor a pubCenterben regisztrálja az alkalmazást.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">A reklámegység azonosítója.
+      
+        Ezt az értéket akkor kapja meg a kiadó, amikor a kiadó reklámegységet hoz létre a pubCenterben.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Engedélyezi vagy letiltja a reklámok automatikus frissítését. Ez a tulajdonság nem módosítható a kezdeti beállítás után.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Jelzi, hogy a felhasználó jelenleg használja-e a reklámot.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">A felhasználó országa vagy régiója.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Igaz értéket ad vissza, ha az AdControl reklámot kapott a kiszolgálóról.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Jelzi, hogy az AdControl jelenleg felfüggesztett állapotban van-e.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">A reklámcélzáskor használt kulcsszavak.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">A felhasználó irányítószáma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Új reklám kérelmezését indítja, amely megjelenik, amint elérhetővé válik.
+      
+        Ez a módszer nem használható, ha az IsAutoRefreshEnabled értéke igaz.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Reklámcímkéket adhat a reklámvezérlőhöz. Reklámvezérlőnként legfeljebb 10 címkét adhat hozzá. A maximális szám túllépésekor errorOccurred esemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">A címke neve. Legfeljebb 16 karakter, a túllépésekor errorOccurred esemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">A címke értéke. Legfeljebb 128 karakter, a túllépésekor errorOccurred esemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Reklámcímkéket távolíthat el a reklámvezérlőből. Ennek nincs hatása, ha a címke neve nem létezik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Az eltávolítandó címke neve.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Felfüggeszti az aktuális reklámot. A reklámfrissítés le van tiltva. Ha a reklám foglalt, a rendszer bezárja a kibővített reklámot.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Folytatja a reklám normál működését a felfüggesztése után.
+      
+        Folytatja az AdControl automatikus frissítését, ha az IsAutoRefreshEnabled=igaz, és lehetővé teszi kézi frissítés újbóli elvégzését.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">Az InterstitialAd használatával a fejlesztők teljes képernyős közbeszúrt reklámokat adhatnak az alkalmazásokhoz.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Ez az esemény akkor fordul elő, amikor egy közbeszúrt reklám készen áll a megjelenítésre.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Ez az esemény akkor fordul elő, ha a felhasználó megszakítja a reklámot, mielőtt az befejezettnek minősülne.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Ez az esemény akkor fordul elő, amikor a reklám bezáródott, és a reklámélmény befejezettnek minősül.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Ez az esemény akkor fordul elő, amikor az InterstitialAd hibát észlel a reklámok lekérésekor.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Az ország vagy régió, ahol a felhasználó található.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">A célzáshoz használandó kulcsszavak.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">A felhasználó irányítószáma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">A reklámkérelem befejeződéséig várt ezredmásodpercek száma, mielőtt időtúllépés történik. Az alapérték 30000 ms vagy 30 másodperc.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">A közbeszúrt reklám aktuális állapota. Lásd az InterstitialAdState felsorolást.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Reklámcímkéket adhat hozzá a reklámkérelemben való használathoz. Legfeljebb 10 címkét adhat hozzá. A maximális szám túllépésekor hibaesemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">A címke neve. Legfeljebb 16 karakter, a túllépésekor errorOccurred esemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">A címke értéke. Legfeljebb 128 karakter, a túllépésekor errorOccurred esemény történik.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Reklámcímkéket távolíthat el.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Az eltávolítandó címke neve.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Közbeszúrt reklámot kérelmez a kiszolgálótól. Az AdReady esemény a kérelem sikeres befejeződésekor történik. Az ErrorOccurred esemény akkor történik, ha probléma merült fel egy reklám beszerzésekor. A reklám nem jelenik meg a felhasználó számára a Megjelenítés meghívásáig.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">A kérelmezendő közbeszúrt reklám típusa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Az alkalmazás alkalmazásazonosítója. Ezt az értéket akkor kapja meg, amikor a pubCenterben regisztrálja az alkalmazást.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">A pubCenterben megadott adUnitId.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Megjeleníti a közbeszúrt reklámot, ha kész állapotú.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Bezárja a közbeszúrt reklámot, ha meg van jelenítve. Ha bezárult, nem jeleníthető meg újra ugyanaz a reklám. Az alkalmazás új reklámot kérelmezhet a korábbi reklám bezárása után.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

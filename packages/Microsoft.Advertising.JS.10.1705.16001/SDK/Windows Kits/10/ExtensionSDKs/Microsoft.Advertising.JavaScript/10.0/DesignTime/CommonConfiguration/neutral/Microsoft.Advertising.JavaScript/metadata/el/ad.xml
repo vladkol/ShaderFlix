@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Το Microsoft AdControl δίνει τη δυνατότητα στους προγραμματιστές να προσθέσουν διαφημιστικά στις εφαρμογές τους.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Αυτό το συμβάν προκύπτει όταν το AdControl λαμβάνει ένα νέο διαφημιστικό.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Αυτό το συμβάν προκύπτει όταν το AdControl εντοπίζει ένα σφάλμα κατά την ανάκτηση διαφημιστικών.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Αυτό το συμβάν προκύπτει όταν ο χρήστης κάνει κλικ σε ένα διαφημιστικό και ξεκινά μια εκτεταμένη εμπειρία.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Αυτό το συμβάν προκύπτει όταν το AdControl αποδίδει το διαφημιστικό.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Αυτό το συμβάν προκύπτει όταν το AdControl λαμβάνει ένα συμβάν αλλαγής κατάστασης χειρισμού.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Αυτό το συμβάν προκύπτει όταν το AdControl λαμβάνει ένα συμβάν του τροχού ποντικιού.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Αυτό το συμβάν προκύπτει όταν ο χρήστης πραγματοποιεί ένα πάτημα εντός του στοιχείου ελέγχου διαφημιστικού χρησιμοποιώντας το ποντίκι, το δείκτη ή την αφή. Η εφαρμογή μπορεί να χρησιμοποιήσει αυτό το συμβάν, για να θέσει σε κίνηση το στοιχείο ελέγχου διαφημιστικού για οπτική αναπαράσταση της αλληλεπίδρασης. Το διαφημιστικό ενδέχεται να αποκρύψει αυτό το συμβάν αν παρέχει το ίδιο οπτική αναπαράσταση της αλληλεπίδρασης.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Αυτό το συμβάν προκύπτει όταν ο χρήστης απελευθερώνει ένα πάτημα εντός του στοιχείου ελέγχου διαφημιστικού χρησιμοποιώντας το ποντίκι, το δείκτη ή την αφή. Η εφαρμογή μπορεί να χρησιμοποιήσει αυτό το συμβάν, για να θέσει σε κίνηση το στοιχείο ελέγχου διαφημιστικού για οπτική αναπαράσταση της αλληλεπίδρασης. Το διαφημιστικό ενδέχεται να αποκρύψει αυτό το συμβάν αν παρέχει το ίδιο οπτική αναπαράσταση της αλληλεπίδρασης.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Αυτό το συμβάν προκύπτει όταν το AdControl λαμβάνει ένα συμβάν κίνησης του δείκτη.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Το αναγνωριστικό εφαρμογής της εφαρμογής. Αυτή η τιμή παρέχεται όταν καταχωρείτε την εφαρμογή στο pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Το αναγνωριστικό μονάδας διαφημιστικού.
+      
+        Αυτή η τιμή παρέχεται στον εκδότη, όταν ο εκδότης δημιουργεί μια μονάδα διαφημιστικού στο pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Ενεργοποιεί ή απενεργοποιεί την αυτόματη ανανέωση διαφημιστικών. Δεν είναι δυνατή η αλλαγή αυτής της ιδιότητας μετά από την αρχική ρύθμισή της.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Υποδεικνύει εάν ο χρήστης αλληλεπιδρά αυτήν τη στιγμή με το διαφημιστικό.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Η χώρα ή η περιοχή του χρήστη.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Επιστρέφει την τιμή "true" αν το AdControl έχει λάβει ένα διαφημιστικό από το διακομιστή.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Υποδεικνύει εάν το AdControl βρίσκεται αυτήν τη στιγμή σε κατάσταση αναστολής.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Οι λέξεις-κλειδιά που χρησιμοποιούνται στη στόχευση διαφημιστικών.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Ο ταχυδρομικός κώδικας του χρήστη.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Ξεκινά ένα αίτημα για ένα νέο διαφημιστικό, το οποίο θα εμφανιστεί μόλις είναι διαθέσιμο.
+      
+        Αυτή η μέθοδος δεν μπορεί να χρησιμοποιηθεί αν η ιδιότητα IsAutoRefreshEnabled έχει οριστεί σε true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Προσθέστε μια ετικέτα διαφημιστικού στο στοιχείο ελέγχου διαφημιστικού. Το μέγιστο όριο είναι 10 ετικέτες ανά στοιχείο ελέγχου διαφημιστικού. Αν υπερβείτε το μέγιστο όριο, θα ενεργοποιηθεί ένα συμβάν errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Το όνομα της ετικέτας. Το μέγιστο όριο είναι 16 χαρακτήρες, αν το υπερβείτε θα ενεργοποιηθεί ένα συμβάν errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Η τιμή της ετικέτας. Το μέγιστο όριο είναι 128 χαρακτήρες, αν το υπερβείτε θα ενεργοποιηθεί ένα συμβάν errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Καταργήστε μια ετικέτα διαφημιστικού από το στοιχείο ελέγχου διαφημιστικού. Αυτή η ενέργεια δεν έχει κανένα αποτέλεσμα, αν το όνομα της ετικέτας δεν υπάρχει.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Το όνομα της ετικέτας προς κατάργηση.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Αναστέλλει το τρέχον διαφημιστικό. Η ανανέωση διαφημιστικών απενεργοποιείται. Αν το διαφημιστικό είχε δεσμευθεί, το εκτεταμένο διαφημιστικό θα κλείσει.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Επαναφέρει την κανονική λειτουργία του διαφημιστικού μετά την αναστολή του.
+      
+        Συνεχίζει την αυτόματη ανανέωση του AdControl, αν IsAutoRefreshEnabled=true και επιτρέπει εκ νέου χρήση της μη αυτόματης ανανέωσης.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">Το InterstitialAd δίνει τη δυνατότητα στους προγραμματιστές να προσθέσουν εμβόλιμα διαφημιστικά σε πλήρη οθόνη στις εφαρμογές τους.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Αυτό το συμβάν προκύπτει όταν ένα εμβόλιμο διαφημιστικό είναι έτοιμο να εμφανιστεί.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Αυτό το συμβάν προκύπτει αν ο χρήστης ακυρώσει το διαφημιστικό πριν να θεωρηθεί ολοκληρωμένο.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Αυτό το συμβάν προκύπτει όταν το διαφημιστικό έχει κλείσει και η εμπειρία του διαφημιστικού θεωρείται ολοκληρωμένη.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Αυτό το συμβάν προκύπτει όταν το InterstitialAd αντιμετωπίζει ένα σφάλμα κατά την ανάκτηση διαφημιστικών.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Η χώρα ή η περιοχή όπου βρίσκεται ο χρήστης.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Οι λέξεις-κλειδιά που θα χρησιμοποιηθούν στη στόχευση.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Ο ταχυδρομικός κώδικας του χρήστη.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Ο αριθμός των χιλιοστών του δευτερολέπτου που μπορεί ένα αίτημα διαφημιστικού να τεθεί σε αναμονή για ολοκλήρωση πριν από τη λήξη του χρονικού ορίου. Η προεπιλεγμένη τιμή είναι 30000 ms ή 30 δευτερόλεπτα.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Η τρέχουσα κατάσταση του εμβόλιμου διαφημιστικού. Ανατρέξτε στην απαρίθμηση InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Προσθέστε μια ετικέτα διαφημιστικού για χρήση στο αίτημα διαφημιστικού. Το μέγιστο όριο είναι 10 ετικέτες. Αν υπερβείτε το μέγιστο όριο, θα ενεργοποιηθεί ένα συμβάν σφάλματος.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Το όνομα της ετικέτας. Το μέγιστο όριο είναι 16 χαρακτήρες, αν το υπερβείτε θα ενεργοποιηθεί ένα συμβάν errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Η τιμή της ετικέτας. Το μέγιστο όριο είναι 128 χαρακτήρες, αν το υπερβείτε θα ενεργοποιηθεί ένα συμβάν errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Καταργήστε μια ετικέτα διαφημιστικού.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Το όνομα της ετικέτας προς κατάργηση.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Ζητά ένα εμβόλιμο διαφημιστικό από το διακομιστή. Το συμβάν AdReady θα ενεργοποιηθεί όταν το αίτημα ολοκληρωθεί με επιτυχία. Το συμβάν ErrorOccurred θα ενεργοποιηθεί αν έχει παρουσιαστεί πρόβλημα με τη λήψη ενός διαφημιστικού. Το διαφημιστικό δεν θα εμφανιστεί στο χρήστη μέχρι την κλήση της Show.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Ο τύπος του εμβόλιμου διαφημιστικού που ζητείται.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Το αναγνωριστικό εφαρμογής της εφαρμογής. Αυτή η τιμή παρέχεται σε εσάς όταν καταχωρείτε την εφαρμογή στο PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">Η ιδιότητα adUnitId όπως παρέχεται στο pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Εμφανίζει το εμβόλιμο διαφημιστικό, αν βρίσκεται σε κατάσταση ετοιμότητας.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Κλείνει το εμβόλιμο διαφημιστικό αν εμφανίζεται. Όταν κλείσει, το ίδιο διαφημιστικό ενδέχεται να μην εμφανιστεί ξανά. Η εφαρμογή ενδέχεται να ζητήσει ένα νέο διαφημιστικό, αφού κλείσει το προηγούμενο διαφημιστικό.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

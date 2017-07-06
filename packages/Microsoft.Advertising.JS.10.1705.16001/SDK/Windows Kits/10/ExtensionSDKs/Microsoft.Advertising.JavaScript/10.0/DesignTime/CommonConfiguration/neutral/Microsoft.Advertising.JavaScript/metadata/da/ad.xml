@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Med Microsoft AdControl kan udviklere føje reklamer til deres apps.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Denne hændelse opstår, når AdControl henter en ny reklame.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Denne hændelse opstår, hvis AdControl støder på en fejl, når reklamer hentes.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Denne hændelse opstår, når brugeren klikker på en reklame og begynder på en udvidet oplevelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Denne hændelse opstår, før AdControl gengiver en reklame.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Denne hændelse opstår, når AdControl modtager en manipulationshændelse til ændring af tilstand.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Denne hændelse opstår, når AdControl modtager en hændelse til musehjulet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Denne hændelse opstår, når brugeren trykker på en trykknap i reklamens kontrolelement vha. en mus, en markør eller et tryk. Programmet kan bruge denne hændelse til at animere reklamens kontrolelement for visuel tilbagemelding af tryk. Reklamen kan undertrykke denne hændelse, hvis den selv leverer visuel tilbagemelding af tryk.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Denne hændelse opstår, når brugeren slipper en trykknap i reklamens kontrolelement vha. en mus, en markør eller et tryk. Programmet kan bruge denne hændelse til at animere reklamens kontrolelement for visuel tilbagemelding af tryk. Reklamen kan undertrykke denne hændelse, hvis den selv leverer visuel tilbagemelding af tryk.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Denne hændelse opstår, når AdControl modtager en hændelse til flytning af markør.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Appens program-id. Denne værdi leveres, når du registrerer appen med pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Reklamens enheds-id.
+      
+        Denne værdi leveres til udgiveren, når udgiveren opretter en reklameenhed i pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Aktiverer eller deaktiverer reklamens automatiske opdatering. Denne egenskab kan ikke ændres, når den først er angivet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Angiver, om brugeren kommunikerer med reklamen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Brugerens land eller område.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Returnerer true, hvis AdControl har modtaget en reklame fra serveren.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Angiver, om AdControl er i suspenderet tilstand.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Nøgleord brugt i målretning af reklamer.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Brugerens postnr.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Starter en anmodning for en ny reklame, som vises, så snart den er tilgængelig.
+      
+        Denne metode, må ikke bruges, når IsAutoRefreshEnabled er angivet til true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Føj et reklame-tag til reklamens kontrolelement. Du maks. angive 10 tags pr. reklamekontrolenhed. Hvis maksimum overskrides, udløses en errorOccurred-hændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Navnet på tagget. Maks. 16 tegn. Hvis maksimum overskrides, udløses en errorOccurred-hændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Værdien af tagget. Maks. 128 tegn. Hvis maksimum overskrides, udløses en errorOccurred-hændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Fjern et reklame-tag fra reklamens kontrolelement. Det har ingen virkning, hvis tag-navnet ikke findes.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Navnet på det tag, der skal fjernes.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Suspenderer den aktuelle reklame. Opdatering af reklamen er deaktiveret. Hvis reklamen er optaget, lukkes den udvidede reklame.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Genoptager normal funktion af reklamen, efter den har være suspenderet.
+      
+        Genoptager automatisk opdatering af AdControl, hvis IsAutoRefreshEnabled=true, og tillader manuel opdatering igen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd lader udviklere føje interstitielle helskærmsreklamer til deres apps.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Denne hændelse opstår, når en interstitiel reklame er klar til at blive vist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Denne hændelse opstår, hvis brugeren annullerer reklamen, før den anses for at være afsluttet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Denne hændelse opstår, når reklamen er lukket, og reklameoplevelsen anses for at være afsluttet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Denne hændelse opstår, når InterstitialAd støder på en fejl, når reklamer hentes.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Det land eller område, hvor brugeren befinder sig.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Nøgleord, der skal bruges i målretningen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Brugerens postnr.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Det antal millisekunder at vente på, at en reklameanmodning skal afsluttes, før tiden løber ud. Standardværdien er 30.000 ms eller 30 sekunder.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Den interstitielle reklames aktuelle tilstand. Se optællingen InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Tilføj et reklame-tag, som skal bruges i reklameanmodningen. Maks. er 10 tags. Hvis maksimum overskrides, udløses en fejlhændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Navnet på tagget. Maks. 16 tegn. Hvis maksimum overskrides, udløses en errorOccurred-hændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Værdien af tagget. Maks. 128 tegn. Hvis maksimum overskrides, udløses en errorOccurred-hændelse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Fjern et reklame-tag</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Navnet på det tag, der skal fjernes.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Anmoder om en interstitiel reklame fra serveren. Hændelsen AdReady udløses, når anmodning er afsluttet. Hændelsen ErrorOccurred udløses, hvis der er problemer med at hente en reklame. Reklamen vises ikke for brugere, før Show kaldes.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Den type interstitiel reklame, der skal anmodes om.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Appens program-id. Denne værdi leveres, når du registrerer appen med PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">adUnitId som forsynet på pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Viser den interstitielle reklame, hvis den er i klar-tilstand.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Lukker den interstitielle reklame, hvis den vises. Når lukket, vises den samme reklame måske igen. Appen kan muligvis anmode om en ny reklame, efter at den foregående reklame er lukket.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

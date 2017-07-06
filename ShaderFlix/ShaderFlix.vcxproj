@@ -416,17 +416,17 @@ copy /Y "$(ProjectDir)curl\prebuilt\win10\$(PlatformName)\*.dll" "$(LayoutDir)"<
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets" Condition="Exists('..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets')" />
-    <Import Project="..\packages\Microsoft.Advertising.JS.10.1703.19001\build\Microsoft.Advertising.JS.targets" Condition="Exists('..\packages\Microsoft.Advertising.JS.10.1703.19001\build\Microsoft.Advertising.JS.targets')" />
-    <Import Project="..\packages\Microsoft.Advertising.XAML.10.1703.19001\build\Microsoft.Advertising.XAML.targets" Condition="Exists('..\packages\Microsoft.Advertising.XAML.10.1703.19001\build\Microsoft.Advertising.XAML.targets')" />
     <Import Project="..\packages\Microsoft.Services.Store.Engagement.10.1610.0\build\Microsoft.Services.Store.Engagement.targets" Condition="Exists('..\packages\Microsoft.Services.Store.Engagement.10.1610.0\build\Microsoft.Services.Store.Engagement.targets')" />
+    <Import Project="..\packages\Microsoft.Advertising.JS.10.1705.16001\build\Microsoft.Advertising.JS.targets" Condition="Exists('..\packages\Microsoft.Advertising.JS.10.1705.16001\build\Microsoft.Advertising.JS.targets')" />
+    <Import Project="..\packages\Microsoft.Advertising.XAML.10.1705.16001\build\Microsoft.Advertising.XAML.targets" Condition="Exists('..\packages\Microsoft.Advertising.XAML.10.1705.16001\build\Microsoft.Advertising.XAML.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ANGLE.WindowsStore.2.1.13\build\native\ANGLE.WindowsStore.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Advertising.JS.10.1703.19001\build\Microsoft.Advertising.JS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Advertising.JS.10.1703.19001\build\Microsoft.Advertising.JS.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Advertising.XAML.10.1703.19001\build\Microsoft.Advertising.XAML.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Advertising.XAML.10.1703.19001\build\Microsoft.Advertising.XAML.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Services.Store.Engagement.10.1610.0\build\Microsoft.Services.Store.Engagement.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Services.Store.Engagement.10.1610.0\build\Microsoft.Services.Store.Engagement.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Advertising.JS.10.1705.16001\build\Microsoft.Advertising.JS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Advertising.JS.10.1705.16001\build\Microsoft.Advertising.JS.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Advertising.XAML.10.1705.16001\build\Microsoft.Advertising.XAML.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Advertising.XAML.10.1705.16001\build\Microsoft.Advertising.XAML.targets'))" />
   </Target>
 </Project>

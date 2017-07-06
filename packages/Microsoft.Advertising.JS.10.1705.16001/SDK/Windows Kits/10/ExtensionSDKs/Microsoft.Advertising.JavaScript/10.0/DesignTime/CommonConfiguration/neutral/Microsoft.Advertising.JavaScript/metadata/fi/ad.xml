@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">The Microsoft AdControl antaa kehittäjille mahdollisuuden lisätä mainoksia sovelluksiinsa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Tämä tapahtuu, kun AdControl vastaanottaa uuden mainoksen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Tämä tapahtuu, kun AdControl kohtaa virheen noutaessaan mainoksia.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Tämä tapahtuu, kun käyttäjä napsauttaa mainosta aloittaakseen laajennetun kokemuksen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Tämä tapahtuu, ennen kuin AdControl renderoi mainoksen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Tämä tapahtuu, kun AdControl vastaanottaa manipulointitilan muutostapahtuman.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Tämä tapahtuu, kun AdControl vastaanottaa hiirirullatapahtuman.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Tämä tapahtuu, kun käyttäjä painaa mainosohjaimen sisällä käyttämällä hiirtä, osoitinta tai kosketusta. Sovellus voi käyttää tätä tapahtumaa mainosohjaimen animointiin visuaalista kosketuspalautetta varten. Mainos voi estää tämän tapahtuman, jos se tarjoaa visuaalisen kosketuspalautteen itse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Tämä tapahtuu, kun käyttäjä vapauttaa painalluksen mainosohjaimen sisällä käyttämällä hiirtä, osoitinta tai kosketusta. Sovellus voi käyttää tätä tapahtumaa mainosohjaimen animointiin visuaalista kosketuspalautetta varten. Mainos voi estää tämän tapahtuman, jos se tarjoaa visuaalisen kosketuspalautteen itse.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Tämä tapahtuu, kun AdControl vastaanottaa osoittimen siirtotapahtuman.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Sovelluksen sovellustunniste. Tämä arvo toimitetaan, kun rekisteröit sovelluksen pubCenteriin.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Mainosyksikön tunniste.
+      
+        Tämä arvo toimitetaan julkaisijalle, kun julkaisija luo mainosyksikön pubCenteriin.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Ottaa käyttöön tai poistaa käytöstä mainosten automaattisen päivityksen. Tätä ominaisuutta ei voi muuttaa, kun sen on kerran asetettu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Osoittaa, onko käyttäjä vuorovaikutuksessa mainoksen kanssa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Käyttäjän maa tai alue.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Palauttaa arvon true, jos AdControl on vastaanottanut mainoksen palvelimelta.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Osoittaa, onko AdControl parhaillaan pidätetyssä tilassa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Mainoksen kohdentamiseen käytettävät avainsanat.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Käyttäjän postinumero.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Aloittaa pyynnön uudesta mainoksesta, joka näytetään heti, kun se on saatavilla.
+      
+        Tätä tapaa ei saa käyttää, kun IsAutoRefreshEnabled-asetuksena on true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Lisää mainostunniste mainosohjaimeen. Tunnisteiden maksimäärä mainosohjainta kohden on 10. Jos maksimimäärä ylitetään, laukeaa errorOccurred-tapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Tunnisteen nimi. Enintään 16 merkkiä. Jos maksimimäärä ylitetään, laukeaa errorOccurred-tapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Tunnisteen arvo. Enintään 128 merkkiä. Jos maksimimäärä ylitetään, laukeaa errorOccurred-tapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Poista mainostunniste mainosohjaimesta. Tällä ei ole vaikutusta, jos tunnisteen nimeä ei löydy.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Poistettavan tunnisteen nimi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Pidättää nykyisen mainoksen. Mainosten päivittäminen poistetaan käytöstä. Auki oleva mainos suljetaan.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Jatkaa pidätetyn mainoksen normaalia toimintaa.
+      
+        Palauttaa AdControl-ohjaimen automaattisen päivityksen, jos IsAutoRefreshEnabled=true, ja sallii jälleen manuaaliset päivitykset.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd antaa kehittäjien lisätä koko näytön välimainoksia sovelluksiinsa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Tämä tapahtuu, kun välimainos on valmis näytettäväksi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Tämä tapahtuu, kun käyttäjä peruuttaa mainoksen, ennen kuin sen katsotaan päättyneen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Tämä tapahtuu, kun mainos on suljettu ja mainoskokemus katsotaan valmiiksi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Tämä tapahtuu, kun InterstitialAd kohtaa virheen noutaessaan mainoksia.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Käyttäjän maa tai alue.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Kohdentamiseen käytettävät avainsanat.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Käyttäjän postinumero.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Millisekuntiarvo, joka odotetaan mainospyynnön toteuttamista ennen aikakatkaisua. Oletusarvo on 30 000 ms eli 30 sekuntia.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Välimainoksen tila. Näytä InterstitialAdState-objektin luku.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Lisää mainostunniste käytettäväksi mainospyynnössä. Tunnisteiden maksimäärä on 10. Jos maksimimäärä ylitetään, laukeaa virhetapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Tunnisteen nimi. Enintään 16 merkkiä. Jos maksimimäärä ylitetään, laukeaa errorOccurred-tapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Tunnisteen arvo. Enintään 128 merkkiä. Jos maksimimäärä ylitetään, laukeaa errorOccurred-tapahtuma.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Poista mainostunniste.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Poistettavan tunnisteen nimi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Pyytää välimainosta palvelimelta. AdReady-tapahtuma laukeaa, kun pyyntö on toteutettu onnistuneesti. ErrorOccurred-tapahtuma laukeaa, jos mainoksen hakemisessa oli ongelma. Mainosta ei näytetä käyttäjälle, ennen kuin Show-funktiota kutsutaan.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Pyydettävän välimainoksen nimi.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Sovelluksen sovellustunniste. Tämä arvo toimitetaan, kun rekisteröit sovelluksen pubCenteriin.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">pubCenterin jakama adUnitId.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Näyttää välimainoksen mikäli valmiustilassa.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Sulkee näytettävän välimainoksen. Suljettua mainosta ei voi näyttää uudelleen. Sovellus voi pyytää uutta mainosta, kun edellinen mainos on suljettu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

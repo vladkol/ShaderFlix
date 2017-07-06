@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">يعمل Microsoft AdControl على تمكين المطورين لإضافة إعلانات إلى تطبيقاتهم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">يتم هذا الحدث عند استلام AdControl إعلانًا جديدًا.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">يتم هذا الحدث عندما يواجه AdControl خطأ أثناء استرداد إعلانات.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">يتم هذا الحدث عند نقر المستخدم على إعلان ويبدأ تجربة موسعة.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">يتم هذا الحدث قبل أن يعرض AdControl الإعلان.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">يتم هذا الحدث عند استلام AdControl حدث تغيير حالة المعالجة.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">يتم هذا الحدث عند استلام AdControl حدث عجلة التمرير في الماوس.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">يتم هذا الحدث عندما دفع المستخدم لأسفل داخل تحكم إعلان باستخدام الماوس أو المؤشر أو اللمس. بإمكان التطبيق استخدام هذا الحدث لإظهار حركة تحكم الإعلان للحصول على تعليقات مرئية عند اللمس لأسفل. قد يُوقف الإعلان هذا الحدث إذا كان يوفر ملاحظات مرئية عند اللمس لأسفل بنفسه.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">يتم هذا الحدث عندما يُحرر المستخدم ضغطة لأسفل داخل تحكم الإعلان باستخدام الماوس أو المؤشر أو اللمس. بإمكان التطبيق استخدام هذا الحدث لإظهار حركة تحكم الإعلان للحصول على تعليقات مرئية عند اللمس لأسفل. قد يُوقف الإعلان هذا الحدث إذا كان يوفر ملاحظات مرئية عند اللمس لأسفل بنفسه.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">يتم هذا الحدث عند استلام AdControl حدث حركة مؤشر.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">معرف التطبيق الخاص بالتطبيق. يتم توفير هذه القيمة عند تسجيل التطبيق مع pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">مُعرف وحدة الإعلان.
+      
+        يتم توفير هذه القيمة للناشر عندما يقوم الناشر بإنشاء وحدة إعلان في pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">يُمكن التحديث التلقائي للإعلانات أو يُعطله. لا يمكن تغيير هذه الخاصية بعد تعيينها مبدئيًا.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">يوضح ما إذا المستخدم متداخل حاليًا مع الإعلان أم لا.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">بلد أو منطقة المستخدم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">يظهر نتيجة صواب إذا استلم AdControl إعلانًا من الخادم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">يوضح ما إذا كان AdControl في حالة تعليق حاليًا أم لا.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">الكلمات الأساسية المستخدمة في استهداف الإعلان.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">الرمز البريدي للمستخدم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">يبدأ طلبًا لإعلان جديد، والذي سيتم عرضه بمجرد توفره.
+      
+        قد لا يتم استخدام هذه الطريقة عند تعيين IsAutoRefreshEnabled على صواب.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">إضافة علامة إعلان إلى تحكم الإعلان. الحد الأقصى 10 علامات لكل تحكم إعلان. إذا تم تجاوز الحد الأقصى، فسيتم حدث errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">اسم العلامة. الحد الأقصى 16 حرفًا، إذا تم تجاوزه فسيبدأ حدث errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">قيمة العلامة. الحد الأقصى 128 حرفًا، إذا تم تجاوزه فسيبدأ حدث errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">قم بإزالة علامة إعلان من تحكم الإعلان. لن يكون لهذا تأثيرًا إذا كان اسم العلامة غير موجود.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">اسم العلامة المطلوب إزالتها.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">يُعلق الإعلان الحالي. تم تعطيل تحديث الإعلان. إذا تم تعشيق الإعلان، فسيتم إغلاق الإعلان المُوسع.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">يستئنف الأداء الوظيفي العادي للإعلان بعد أن كان مُعلقًا.
+      
+        يستئنف التحديث التلقائي لـ AdControl، إذا كان IsAutoRefreshEnabled=صواب، ويسمح للتحديث اليدوي بأن يحدث مرة أخرى.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">يسمح InterstitialAd للمطورين بإضافة إعلانات متداخلة بملء الشاشة على تطبيقاتهم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">يتم هذا الحدث عندما يكون إعلانًا متداخلاً جاهزًا للعرض.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">يتم هذا الحدث إذا قام المستخدم بإلغاء الإعلان قبل اعتباره كاملاً.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">يتم هذا الحدث عند إغلاق الإعلان وتعتبر تجربة الإعلان كاملة.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">يتم هذا الحدث عندما يواجه InterstitialAd خطأ أثناء استرداد إعلانات.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">البلد أو المنطقة حيث يتواجد المستخدم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">كلمات أساسية ليتم استخدامها في الاستهداف.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">الرمز البريدي للمستخدم.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">عدد المللي ثانية التي سيتم انتظارها حتى يكتمل طلب إعلان قبل انتهاء المهلة. الافتراضي هو 30000 مللي ثانية أو 30 ثانية.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">الحالة الحالية للإعلان المتداخل. راجع قائمة تعداد InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">قم بإضافة علامة إعلان للاستخدام في طلب الإعلان. الحد الأقصى هو 10 علامات. إذا تم تجاوز الحد الأقصى، فسيظهر حدث خطأ.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">اسم العلامة. الحد الأقصى 16 حرفًا، إذا تم تجاوزه فسيبدأ حدث errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">قيمة العلامة. الحد الأقصى 128 حرفًا، إذا تم تجاوزه فسيبدأ حدث errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">قم بإزالة علامة إعلان.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">اسم العلامة المطلوب إزالتها.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">يقوم بطلب إعلان متداخل من الخادم. سيبدأ حدث AdReady عند اكتمال الطلب بنجاح. سيبدأ حدث ErrorOccurred إذا كانت هناك مشكلة في الحصول على إعلان. لن يتم عرض الإعلان للمستخدم حتى يتم استدعاء العرض.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">نوع الإعلان المتداخل لطلبه.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">معرف التطبيق الخاص بالتطبيق. يتم توفير هذه القيمة لك عند تسجيل التطبيق مع PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">adUnitId كما هو متوفر على pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">يعرض الإعلان المتداخل إن كان في حالة جاهزية.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">يُغلق الإعلان المتداخل إذا كان معروضًا. بمجرد الإغلاق، قد لا يتم عرض نفس الإعلان مرة أخرى. قد يطلب التطبيق إعلانًا جديدًا بعد إغلاق الإعلان السابق.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

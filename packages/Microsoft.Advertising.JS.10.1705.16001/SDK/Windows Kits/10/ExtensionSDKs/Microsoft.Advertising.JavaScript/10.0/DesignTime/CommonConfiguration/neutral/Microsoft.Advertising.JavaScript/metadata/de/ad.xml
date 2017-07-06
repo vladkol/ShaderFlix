@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Mit der AdControl von Microsoft können Entwickler ihren Apps Anzeigen hinzufügen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Dieses Ereignis tritt auf, wenn die AdControl eine neue Anzeige erhält.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Dieses Ereignis wird ausgelöst, wenn beim Abrufen von Anzeigen durch die AdControl ein Fehler auftritt.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Dieses Ereignis tritt auf, wenn der Benutzer auf eine Anzeige klickt und eine erweiterte Benutzeroberfläche geöffnet wird.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Dieses Ereignis tritt auf, bevor die AdControl eine neue Anzeige rendert.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Dieses Ereignis tritt auf, wenn die AdControl ein neues Ereignis zu einem geänderten Bearbeitungsstatus empfängt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Dieses Ereignis tritt auf, wenn die AdControl ein neues Ereignis des Mausrads empfängt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Dieses Ereignis tritt auf, wenn der Benutzer innerhalb des Anzeigensteuerelements mithilfe der Maus, des Zeigers oder Touchscreens nach unten schiebt. Die Anwendung kann mit diesem Ereignis das Anzeigensteuerelement für ein visuelles Feedback zur Beendigung der Bewegung animieren. Die Anzeige kann dieses Ereignis unterdrücken, wenn sie das visuelle Feedback zur Beendigung der Bewegung selbst bereitstellt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Dieses Ereignis tritt auf, wenn der Benutzer das Schieben nach unten innerhalb des Anzeigensteuerelements mithilfe der Maus, des Zeigers oder Touchscreens beendet. Die Anwendung kann mit diesem Ereignis das Anzeigensteuerelement für ein visuelles Feedback zur Beendigung der Bewegung animieren. Die Anzeige kann dieses Ereignis unterdrücken, wenn sie das visuelle Feedback zur Beendigung der Bewegung selbst bereitstellt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Dieses Ereignis tritt auf, wenn die AdControl ein Ereignis zum Verschieben des Zeigers empfängt.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">Die Anwendungs-ID der App. Dieser Wert wird bei der Registrierung der App in pubCenter bereitgestellt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">Der Bezeichner des Anzeigenblocks.
+      
+        Dieser Wert wird dem Herausgeber bereitgestellt, wenn dieser einen Anzeigenblock in pubCenter erstellt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Aktiviert oder deaktiviert die automatische Aktualisierung von Anzeigen. Diese Eigenschaft kann nach dem ersten Festlegen nicht mehr geändert werden.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Gibt an, ob der Benutzer zurzeit mit der Anzeige interagiert.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Das Land bzw. die Region des Benutzers.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Gibt true zurück, wenn die AdControl eine Anzeige vom Server empfangen hat.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Gibt an, ob die AdControl zurzeit ausgesetzt ist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Beim Anzeigen-Zielgruppen-Targeting verwendete Keywords.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">Die Postleitzahl des Benutzers.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Startet eine Anforderung für eine neue Anzeige, die sofort bei Verfügbarkeit angezeigt wird.
+      
+        Diese Methode darf nicht verwendet werden, wenn IsAutoRefreshEnabled auf true festgelegt ist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Hinzufügen eines Anzeigentags zum Anzeigensteuerelement. Maximal sind 10 Tags pro Anzeigensteuerelement zulässig. Bei Überschreitung des Maximums wird ein errorOccurred-Ereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">Der Name des Tags. Maximal 16 Zeichen, bei Überschreitung wird ein errorOccurred-Ereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">Der Wert des Tags. Maximal 128 Zeichen, bei Überschreitung wird ein errorOccurred-Ereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Entfernen eines Anzeigentags aus dem Anzeigensteuerelement. Wenn der Tagname nicht vorhanden ist, hat dies keine Auswirkungen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">Der Name des zu entfernenden Tags.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Setzt die aktuelle Anzeige aus. Die Anzeigenaktualisierung ist deaktiviert. Falls die Anzeige geschaltet wurde, wird die erweiterte Anzeige geschlossen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Setzt die normale Funktionsweise der Anzeige nach dem Aussetzen fort.
+      
+        Setzt das automatische Aktualisieren der AdControl fort, wenn IsAutoRefreshEnabled=true ist, und lässt das erneute Auftreten einer manuellen Aktualisierung zu.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd ermöglicht Entwicklern das Hinzufügen von Vollbild-Interstitialanzeigen zu ihren Apps.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Dieses Ereignis tritt auf, wenn eine Interstitialanzeige zur Anzeige bereit ist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Dieses Ereignis tritt auf, wenn der Benutzer die Anzeige abbricht, bevor sie als abgeschlossen gilt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Dieses Ereignis tritt auf, wenn die Anzeige geschlossen wurde und die Anzeigenschaltung als abgeschlossen gilt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Dieses Ereignis wird ausgelöst, wenn beim Abrufen von Anzeigen durch die InterstitialAd ein Fehler auftritt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Das Land bzw. die Region, in dem bzw. in der sich der Benutzer befindet.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Die beim Zielgruppen-Targeting zu verwendenden Keywords.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Die Postleitzahl des Benutzers.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Die Anzahl von Millisekunden, die auf die Beendigung einer Anzeigenanforderung gewartet wird, bevor ein Timeout auftritt. Der Standardwert sind 30.000 Millisekunden oder 30 Sekunden.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">Der aktuelle Status der Interstitialanzeige. Siehe InterstitialAdState-Aufzählung.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Hinzufügen eines Anzeigentags zur Verwendung in der Anzeigenanforderung. Maximal 10 Tags sind zulässig. Bei Überschreitung des Maximums wird ein Fehlerereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">Der Name des Tags. Maximal 16 Zeichen, bei Überschreitung wird ein errorOccurred-Ereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">Der Wert des Tags. Maximal 128 Zeichen, bei Überschreitung wird ein errorOccurred-Ereignis ausgelöst.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Entfernen eines Anzeigentags.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">Der Name des zu entfernenden Tags.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Fordert eine Interstitialanzeige vom Server an. Das AdReady-Ereignis wird ausgelöst, wenn die Anforderung erfolgreich beendet wird. Das ErrorOccurred-Ereignis wird ausgelöst, wenn beim Abrufen einer Anzeige ein Problem aufgetreten ist. Die Anzeige wird dem Benutzer erst nach Aufrufen von Show angezeigt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Der Typ der anzufordernden Interstitialanzeige.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">Die Anwendungs-ID der App. Dieser Wert wird Ihnen bei der Registrierung der App in PubCenter bereitgestellt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">Die im pubCenter bereitgestellte AdUnitId.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Zeigt die Interstitialanzeige an, falls sie bereit ist.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Schließt die Interstitialanzeige, wenn sie eingeblendet ist. Nach dem Schließen kann dieselbe Anzeige nicht erneut geschaltet werden. Die App kann eine neue Anzeige anfordern, nachdem die zuvor geschaltete Anzeige geschlossen wird.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

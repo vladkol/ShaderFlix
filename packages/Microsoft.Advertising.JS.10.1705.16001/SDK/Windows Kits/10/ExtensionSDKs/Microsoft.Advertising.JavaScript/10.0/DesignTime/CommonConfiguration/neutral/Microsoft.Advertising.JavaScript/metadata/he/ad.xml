@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Microsoft AdControl מאפשר למפתחים להוסיף פרסומות לאפליקציות שלהם.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">אירוע זה מתרחש כאשר AdControl מקבל פרסומת חדשה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">אירוע זה מתרחש כאשר AdControl נתקל בשגיאה במהלך אחזור פרסומות.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">אירוע זה מתרחש כאשר המשתמש לוחץ על פרסומת ומתחיל שימוש מורחב.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">אירוע זה מתרחש לפני ש- AdControl פורס את הפרסומת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">אירוע זה מתרחש כאשר AdControl מקבל אירוע של שינוי מצב מניפולציה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">אירוע זה מתרחש כאשר AdControl מקבל אירוע של גלגל העכבר.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">אירוע זה מתרחש כאשר המשתמש לוחץ בתוך פקד הפרסומת באמצעות עכבר, מצביע או מגע. האפליקציה יכולה להשתמש באירוע זה כדי להנפיש את פקד הפרסומת לקבלת משוב חזותי ללחיצה. הפרסומת יכולה לחסום אירוע זה אם היא מספקת בעצמה משוב חזותי ללחיצה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">אירוע זה מתרחש כאשר המשתמש משחרר לחיצה בתוך פקד הפרסומת באמצעות עכבר, מצביע או מגע. האפליקציה יכולה להשתמש באירוע זה כדי להנפיש את פקד הפרסומת לקבלת משוב חזותי ללחיצה. הפרסומת יכולה לחסום אירוע זה אם היא מספקת בעצמה משוב חזותי ללחיצה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">אירוע זה מתרחש כאשר AdControl מקבל אירוע של הזזת מצביע.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">מזהה היישום של האפליקציה. ערך זה מסופק כאשר אתה רושם את האפליקציה ב- pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">מזהה יחידת הפרסומת.
+      
+        ערך זה מסופק למפרסם כאשר המפרסם יוצר יחידת פרסומת ב- pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">מפעיל או משבית את הרענון האוטומטי של פרסומות. לא ניתן לשנות מאפיין זה לאחר שהוגדר בפעם הראשונה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">מציין האם המשתמש מקיים כרגע אינטראקציה עם הפרסומת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">הארץ או האזור של המשתמש.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">מחזיר true אם AdControl קיבל פרסומת מהשרת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">מציין אם AdControl נמצא כעת במצב מושהה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">מילות המפתח המשמשות בהכוונת פרסומות.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">המיקוד של המשתמש.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">מתחיל בקשה לפרסומת חדשה, שתוצג מיד כאשר תהיה זמינה.
+      
+        לא ניתן להשתמש בשיטה זו כאשר IsAutoRefreshEnabled מוגדר כ- true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">הוסף תג פרסומת לפקד הפרסומת. ניתן להוסיף עד 10 תגים לכל פקד פרסומת. במקרה של חריגה מהמספר המרבי, יופעל אירוע errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">שם התג. לכל היותר 16 תווים, במקרה של חריגה יופעל אירוע errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">ערך התג. לכל היותר 128 תווים, במקרה של חריגה יופעל אירוע errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">הסר תג פרסומת מפקד הפרסומת. אין לכך השפעה אם שם התג לא קיים.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">שם התג שיש להסיר.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">משהה את הפרסומת הנוכחית. רענון פרסומת מושבת. אם נוצרה התקשרות עם הפרסומת, הפרסומת המורחבת נסגרת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">מחדש את הפעולה הרגילה של הפרסומת לאחר השהיה.
+      
+        מחדש רענון אוטומטי של AdControl, אם IsAutoRefreshEnabled=true, ומאפשר התרחשות חוזרת של רענון ידני.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">InterstitialAd מאפשר למפתחים להוסיף לאפליקציות שלהם פרסומות ביניים במסך מלא.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">אירוע זה מתרחש כאשר פרסומת ביניים מוכנה להצגה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">אירוע זה מתרחש אם המשתמש מבטל את הפרסומת לפני שהיא הסתיימה מבחינת המערכת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">אירוע זה מתרחש כאשר הפרסומת נסגרה והשימוש בפרסומת הסתיים מבחינת המערכת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">אירוע זה מתרחש כאשר InterstitialAd נתקל בשגיאה במהלך אחזור פרסומות.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">הארץ או האזור שבהם נמצא המשתמש.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">מילות מפתח שבהן יש להשתמש בהכוונה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">המיקוד של המשתמש.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">מספר אלפיות השנייה שיש להמתין להשלמת בקשת פרסומת לפני סיום הזמן הקצוב. ברירת המחדל היא 30,000 אלפיות השנייה או 30 שניות.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">המצב הנוכחי של פרסומת הביניים. ראה מספור InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">הוסף תג פרסומת לשימוש בבקשת הפרסומת. ניתן להוסיף עד 10 תגים. במקרה של חריגה מהמספר המרבי, יופעל אירוע שגיאה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">שם התג. לכל היותר 16 תווים, במקרה של חריגה יופעל אירוע errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">ערך התג. לכל היותר 128 תווים, במקרה של חריגה יופעל אירוע errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">הסר תג פרסומת.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">שם התג שיש להסיר.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">מבקש מהשרת פרסומת ביניים. אירוע AdReady יופעל כאשר הבקשה הושלמה בהצלחה. האירוע ErrorOccurred יופעל אם אירעה בעיה בהשגת פרסומת. הפרסומת לא תוצג בפני המשתמש עד לקריאה ל- Show.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">סוג פרסומת הביניים שאותה יש לבקש.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">מזהה היישום של האפליקציה. ערך זה מסופק לך כאשר אתה רושם את האפליקציה ב- PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">ה- adUnitId כפי שהוקצה ב- pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">מציג את פרסומת הביניים, אם היא במצב מוכן.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">סוגר את פרסומת הביניים, אם היא מוצגת. לאחר שנסגרה, לא ניתן להציג את אותה פרסומת שוב. האפליקציה יכולה לבקש פרסומת חדשה לאחר שהפרסומת הקודמת נסגרה.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

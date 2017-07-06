@@ -1,0 +1,69 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">開発者は Microsoft AdControl を使用して、広告をアプリケーションに追加できます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">このイベントは、AdControl が新しい広告を取得したときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">このイベントは、AdControl が広告の取得中にエラーを検出したときに発生します。</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">このイベントは、ユーザーが広告をクリックして、エクスペリエンスの展開を開始したときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">このイベントは、AdControl が広告をレンダリングする前に発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">このイベントは、AdControl が操作状態の変更イベントを受け取ったときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">このイベントは、AdControl がマウス ホイール イベントを受け取ったときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">このイベントは、ユーザーがマウス、ポインター、またはタッチを使用して、広告コントロール内でプッシュダウンしたときに発生します。アプリケーションはこのイベントを使用して、広告コントロールにアニメーションを付け、タッチダウンのフィードバックを視覚化できます。タッチダウンの視覚的なフィードバックそのものを提供している場合は、広告がこのイベントを表示しない可能性があります。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">このイベントは、ユーザーがマウス、ポインター、またはタッチを使用して、広告コントロール内でプッシュダウンをリリースしたときに発生します。アプリケーションはこのイベントを使用して、広告コントロールにアニメーションを付け、タッチダウンのフィードバックを視覚化できます。タッチダウンの視覚的なフィードバックそのものを提供している場合は、広告がこのイベントを表示しない可能性があります。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">このイベントは、AdControl がポインターの移動イベントを受け取ったときに発生します。</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">アプリケーションのアプリケーション ID。この値は、アプリケーションを pubCenter に登録したときに通知されます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">広告ユニット識別子。
+      
+この値は、パブリッシャーが pubCenter で広告ユニットを作成したときにパブリッシャーに通知されます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">広告の自動更新を有効または無効にします。このプロパティは、初期設定した後は変更できません。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">ユーザーが現在、広告を操作しているかどうかを示します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">ユーザーの国または地域。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">AdControl がサーバーから広告を受け取った場合は true を返します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">AdControlが現在、中断状態かどうかを示します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">広告ターゲットに使用されるキーワード。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">ユーザーの郵便番号。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">新しい広告が利用可能になるとすぐに表示されるよう要求を開始します。
+      
+このメソッドは、IsAutoRefreshEnabled が true に設定されている場合は使用できません。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">広告タグを広告コントロールに追加します。追加できるタグは広告コントロールあたり最大 10 個です。最大値を超過すると、errorOccurred イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">タグの名前。最大 16 文字です。この文字数を超過すると、errorOccurred イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">タグの値。最大 128 文字です。この文字数を超過すると、errorOccurred イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">タグを広告コントロールから削除します。このタグ名が存在しない場合は、何も実行されません。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">削除するタグの名前。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">現在の広告を非表示にします。広告の更新が無効にされます。広告が使用中だった場合は、展開した広告を閉じます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">非表示にされていた広告の通常機能を再開します。
+      IsAutoRefreshEnabled=true の場合に AdControl の自動更新を再開します。手動更新で再開できます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">開発者は InterstitialAd を使用して、全画面のスポット広告をアプリケーションに追加できます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">このイベントは、スポット広告の表示準備が完了したときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">このイベントは、広告が完了と見なされる前にユーザーが広告を取り消した場合に発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">このイベントは、広告が閉じられ、広告エクスペリエンスが完了と見なされたときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">このイベントは、広告の取得中に InterstitialAd がエラーを検出したときに発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">ユーザーが居住する国または地域。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">ターゲットで使用されるキーワード。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">ユーザーの郵便番号。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">広告要求が完了し、タイムアウトするまでの秒数 (ミリ秒)。既定値は 30000 ミリ秒 (30 秒) です。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">スポット広告の現在の状態。InterstitialAdState 列挙を参照してください。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">使用する広告タグを広告要求に追加します。追加できるタグは最大 10 個です。最大値を超過すると、エラー イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">タグの名前。最大 16 文字です。この文字数を超過すると、errorOccurred イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">タグの値。最大 128 文字です。この文字数を超過すると、errorOccurred イベントが発生します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">広告タグを削除します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">削除するタグの名前。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">サーバーからスポット広告を要求します。AdReady イベントは、要求が正常終了したときに発生します。ErrorOccurred イベントは、広告の取得で問題があったときに発生します。広告は、Show が呼び出されるまでユーザーに表示されません。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">要求するスポット広告の種類。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">アプリケーションのアプリケーション ID。この値は、アプリケーションを pubCenter に登録したときに通知されます。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">pubCenter でプロビジョニングされる adUnitId。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">準備完了の状態にあるスポット広告を表示します。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">表示しているスポット広告を閉じます。広告をいったん閉じると、同じものは再表示できません。アプリケーションは、前の広告を閉じた後で新しい広告を要求する場合があります。</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

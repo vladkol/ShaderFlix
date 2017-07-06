@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">Met Microsoft AdControl kunnen ontwikkelaars advertenties toevoegen aan hun apps.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Deze gebeurtenis doet zich voor wanneer de AdControl een nieuwe advertentie ontvangt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Deze gebeurtenis doet zich voor wanneer er een fout optreedt terwijl de AdControl advertenties ophaalt.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Deze gebeurtenis doet zich voor wanneer de gebruiker op een advertentie klikt en aan een uitgebreide ervaring begint.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Deze gebeurtenis doet zich voor voordat de AdControl de advertentie toont.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Deze gebeurtenis doet zich voor wanneer de AdControl een informatie ontvangt over gewijzigde manipulatiestatus.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Deze gebeurtenis doet zich voor wanneer de AdControl een muiswielgebeurtenis ontvangt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Deze gebeurtenis doet zich voor wanneer de gebruiker op het besturingselement voor de advertentie drukt of klikt door middel van de muis, een aanwijzer of door aanraken. De toepassing kan deze gebeurtenis gebruiken om het besturingselement voor de advertentie te activeren voor visuele aanrakingsfeedback. De advertentie kan deze gebeurtenis onderdrukken als deze zelf visuele aanrakingsfeedback geeft.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Deze gebeurtenis doet zich voor wanneer de gebruiker het besturingselement voor de advertentie activeert door middel van de muis, een aanwijzer of door aanraken. De toepassing kan deze gebeurtenis gebruiken om het besturingselement voor de advertentie te activeren voor visuele aanrakingsfeedback. De advertentie kan deze gebeurtenis onderdrukken als deze zelf visuele aanrakingsfeedback geeft.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Deze gebeurtenis doet zich voor wanneer de AdControl een aanwijzergebeurtenis ontvangt.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">De toepassings-ID van de app. Deze waarde wordt gegeven wanneer u de app registreert bij pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">De ID van de advertentie-eenheid.
+      
+        Deze waarde wordt naar de uitgever gestuurd als deze een advertentie-eenheid in pubCenter maakt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Het automatisch vernieuwen van advertenties in- of uitschakelen. Deze eigenschap kan niet worden gewijzigd nadat deze is ingesteld.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Geeft aan of de gebruiker momenteel interactie heeft met de advertentie.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">Het land of de regio van de gebruiker.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Geeft true als de AdControl een advertentie van de server heeft ontvangen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Geeft aan of de AdControl momenteel is opgeschort.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Zoekwoorden die worden gebruikt bij advertentietargeting.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">De postcode van de gebruiker.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Start een aanvraag voor een nieuwe advertentie die wordt weergegeven zodra deze beschikbaar is.
+      
+        Deze methode kan niet worden gebruikt wanneer IsAutoRefreshEnabled is ingesteld op true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Voeg een advertentietag toe aan het besturingselement van de advertentie. Het maximum is 10 tags per besturingselement. Als het maximum wordt overschreden, wordt een errorOccurred-gebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">De naam van de tag. Maximaal 16 tekens. Als deze waarde wordt overschreden, wordt een errorOccurred-gebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">De waarde van de tag. Maximaal 128 tekens. Als deze waarde wordt overschreden, wordt een errorOccurred-gebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Verwijderen een advertentietag van het besturingselement van de advertentie. Dit heeft geen effect als de tagnaam niet bestaat.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">De naam van de tag die moet worden verwijderd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Schort de huidige advertentie op. Vernieuwen van advertenties is uitgeschakeld. Als de advertentie is geactiveerd, wordt de uitgebreide advertentie gesloten.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Hervat het normale functioneren van de advertentie na te zijn opgeschort.
+      
+        Hervat automatisch vernieuwen van de AdControl als IsAutoRefreshEnabled=true, en staat weer handmatig vernieuwen toe.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">Met InterstitialAd kunnen ontwikkelaars verspreide advertenties op volledig scherm toevoegen aan hun apps.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Deze gebeurtenis doet zich voor wanneer een verspreide advertentie gereed is om te worden getoond.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Deze gebeurtenis doet zich voor als de gebruiker de advertentie annuleert voordat deze wordt beschouwd als voltooid.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Deze gebeurtenis doet zich voor wanneer de advertentie is gesloten en de advertentie-ervaring wordt beschouwd als voltooid.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Deze gebeurtenis doet zich voor wanneer er een fout optreedt terwijl de InterstitialAd advertenties ophaalt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">Het land of de regio waar de gebruiker zich bevindt.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">Zoekwoorden die worden gebruikt voor targeting.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">Postcode van de gebruiker.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">Het aantal milliseconden dat moet worden gewacht op het voltooien van een advertentieaanvraag voordat een time-out optreedt. De standaard waarde is 30000 ms of 30 seconden.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">De huidige status van de verspreide advertentie. Zie overzicht InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Voeg een advertentietag toe voor gebruik in de advertentieaanvraag. Het maximum is 10 tags. Als het maximum wordt overschreden, wordt een foutgebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">De naam van de tag. Maximaal 16 tekens. Als deze waarde wordt overschreden, wordt een errorOccurred-gebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">De waarde van de tag. Maximaal 128 tekens. Als deze waarde wordt overschreden, wordt een errorOccurred-gebeurtenis geactiveerd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Verwijder een advertentietag.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">De naam van de tag die moet worden verwijderd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Vraagt een verspreide advertentie aan bij de server. De gebeurtenis AdReady wordt geactiveerd als de aanvraag wordt voltooid. De gebeurtenis ErrorOccurred wordt geactiveerd als er een fout is opgetreden bij het ophalen van de advertentie. De advertentie wordt niet weergegeven voor de gebruiker totdat Show wordt opgeroepen.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">Het type verspreide advertentie dat moet worden aangevraagd.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">De toepassings-ID van de app. Deze waarde wordt gegeven wanneer u de app registreert bij PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">De adUnitId zoals ingericht op pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Toont de verspreide advertentie als deze in de status gereed heeft.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Sluit de verspreide advertentie als deze wordt weergegeven. Als de advertentie eenmaal is gesloten, wordt dezelfde advertentie niet nogmaals weergegeven. App kan nieuwe advertentie aanvragen nadat de vorige advertentie is gesloten.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

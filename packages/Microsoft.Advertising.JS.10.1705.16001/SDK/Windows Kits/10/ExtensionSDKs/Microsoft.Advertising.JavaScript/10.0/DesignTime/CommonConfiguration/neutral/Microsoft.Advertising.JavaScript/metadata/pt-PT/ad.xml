@@ -1,0 +1,70 @@
+<messagebundle>
+  <msg name="MicrosoftNSJS.Advertising.AdControl">O Microsoft AdControl permite que os programadores adicionem anúncios às suas aplicações.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:element"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.element"></msg>
+  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onAdRefreshed">Este evento ocorre quando o AdControl recebe um anúncio novo.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onErrorOccurred">Este evento ocorre quando o AdControl deteta um erro durante a obtenção dos anúncios.</msg>  
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onEngagedChanged">Este evento ocorre quando o utilizador clica num anúncio e dá início a uma experiência expandida.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onBeforeAdRender">Este evento ocorre antes de o AdControl compor o anúncio.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onManipulationStateChanged">Este evento ocorre quando o AdControl recebe um evento de estado de manipulação alterado.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onMouseWheel">Este evento ocorre quando o AdControl recebe um evento de roda do rato.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerDown">Este evento ocorre quando o utilizador prime no controlo do anúncio utilizando o rato, o ponteiro ou a função de toque. A aplicação pode utilizar este evento para animar o controlo do anúncio e oferecer uma resposta visual à ação de toque. O anúncio pode suprimir este evento caso forneça resposta visual à ação de toque.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerUp">Este evento ocorre quando o utilizador deixa de premir no controlo do anúncio utilizando o rato, o ponteiro ou a função de toque. A aplicação pode utilizar este evento para animar o controlo do anúncio e oferecer uma resposta visual à ação de toque. O anúncio pode suprimir este evento caso forneça resposta visual à ação de toque.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.onPointerMove">Este evento ocorre quando o AdControl recebe um evento de movimento do ponteiro.</msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.applicationId">O ID da aplicação. Este valor é fornecido quando regista a aplicação no pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.adUnitId">O identificador do bloco de anúncios.
+      
+        Este valor é fornecido ao publicador quando este cria um bloco de anúncios no pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isAutoRefreshEnabled">Ativa ou desativa a atualização automática dos anúncios. Esta propriedade não pode ser alterada após a definição inicial.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isEngaged">Indica se o utilizador está a interagir com o anúncio.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.countryOrRegion">O país ou a região do utilizador.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.hasAd">Devolve true quando o AdControl recebe um anúncio a partir do servidor.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.isSuspended">Indica se o AdControl está no estado suspenso.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.keywords">Palavras-chave utilizadas na filtragem de anúncios.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.postalCode">O código postal do utilizador.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.preventDefaultApplicationEvents"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.AdControl.refresh">Inicia um pedido de anúncio novo que será apresentado assim que fique disponível.
+      
+        Este método poderá não ser utilizando quando IsAutoRefreshEnabled está definido como true.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag">Adicione uma tag de anúncio ao controlo de anúncio. O máximo são 10 tags por controlo de anúncio. Caso o máximo seja excedido, será acionado um evento errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagName">O nome da tag. Máximo de 16 carateres; se for excedido, será acionado um evento errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.addAdTag_p:tagValue">O valor da tag. Máximo de 128 carateres; se for excedido, será acionado um evento errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag">Remova uma tag de anúncio do controlo de anúncio. Caso o nome da tag não exista, nada será aplicado.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.removeAdTag_p:tagName">O nome da tag a remover.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.suspend">Suspende o anúncio atual. A atualização de anúncios é desativada. Se o anúncio estava ativado, o anúncio expandido é fechado.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.resume">Retoma o funcionamento normal do anúncio após a suspensão.
+      
+        Retoma a atualização automática do AdControl quando IsAutoRefreshEnabled=true e permite que a atualização manual volte a ocorrer.</msg>
+  <msg name="MicrosoftNSJS.Advertising.AdControl.dispose"></msg>
+
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd">O InterstitialAd permite aos programadores adicionarem anúncios intercalares às suas aplicações.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_p:options"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd_returnValue"></msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onAdReady">Este evento ocorre quando um anúncio intercalar está pronto para ser apresentado.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCancelled">Este evento ocorre quando o utilizador cancela o anúncio antes de ser considerado como estando concluído.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onCompleted">Este evento ocorre quando o anúncio foi fechado e a experiência de anúncio é considerada como estando concluída.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.onErrorOccurred">Este evento ocorre quando o InterstitialAd deteta um erro durante a obtenção dos anúncios.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.countryOrRegion">O país ou a região da localização do utilizador.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.keywords">As palavras-chave a utilizar na filtragem.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.postalCode">O código postal do utilizador.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestTimeout">O número de milissegundos a aguardar pela conclusão de um pedido de anúncio antes de o tempo limite ser atingido. A predefinição é 30000 ms ou 30 segundos.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.state">O estado atual do anúncio intercalar. Consulte a enumeração InterstitialAdState.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag">Adicione uma tag de anúncio para utilizar no pedido de anúncio. O máximo são 10 tags. Caso o máximo seja excedido, será acionado um evento de erro.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagName">O nome da tag. Máximo de 16 carateres; se for excedido, será acionado um evento errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.addAdTag_p:tagValue">O valor da tag. Máximo de 128 carateres; se for excedido, será acionado um evento errorOccurred.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag">Remova uma tag de anúncio.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.removeAdTag_p:tagName">O nome da tag a remover.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd">Pede um anúncio intercalar ao servidor. O evento AdReady será acionado assim que o evento for concluído com êxito. O evento ErrorOccurred será acionado quando ocorrer um problema com a obtenção de um anúncio. O anúncio só será apresentado ao utilizador quando Show for chamado.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adType">O tipo de anúncio intercalar a pedir.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:applicationId">O ID da aplicação. Este valor é-lhe fornecido quando regista a aplicação no PubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.requestAd_p:adUnitId">O elemento adUnitId tal como aprovisionado no pubCenter.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.show">Mostra o anúncio intercalar quando está no estado pronto.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.close">Fecha o anúncio intercalar apresentado. Depois de fechado, o anúncio não poderá ser apresentado novamente. A aplicação poderá pedir um anúncio novo depois de fechar o anúncio.</msg>
+  <msg name="MicrosoftNSJS.Advertising.InterstitialAd.dispose"></msg>
+</messagebundle>
+

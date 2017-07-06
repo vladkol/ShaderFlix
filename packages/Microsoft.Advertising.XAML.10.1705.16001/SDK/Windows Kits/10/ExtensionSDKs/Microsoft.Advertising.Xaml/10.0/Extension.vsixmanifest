@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="Microsoft.Advertising.Framework" Version="10.0.1705.16001" Language="en-US" Publisher="Microsoft Corporation" />
+    <DisplayName>Microsoft Advertising Framework</DisplayName>
+    <Description xml:space="preserve">This framework (part of the Microsoft Store Services SDK) provides a control to display advertisements in applications (ads-in-apps). The control displays ads from ad servers specified on Dev Center.</Description>
+    <MoreInfo>https://aka.ms/store-em-docs-aia</MoreInfo>
+    <License>License.rtf</License>
+  </Metadata>
+  <Installation Scope="Global" AllUsers="true" InstalledByMsi="true">
+    <InstallationTarget Id="Microsoft.ExtensionSDK" TargetPlatformIdentifier="UWP" TargetPlatformVersion="v10.0" SdkName="MicrosoftStoreEngagementAndMonetizationSDK.msi" SdkVersion="10.0.1705.16001" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.VCLibs" DisplayName="Microsoft Visual C++ Libs" Version="14.0" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.ExtensionSDK" d:Source="File" Path="SDKManifest.xml" />
+  </Assets>
+</PackageManifest>
